@@ -2,6 +2,7 @@ package be.multimedi.jammik.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.util.List;
 
 /**
  * Gemaakt door Jan
