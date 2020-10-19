@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 import static be.multimedi.jammik.tools.StringTool.validEmail;
 
 
-// Gemaakt door
+// Gemaakt door: Michael Creelle
 
 @MappedSuperclass
 public abstract class Person {
