@@ -1,10 +1,85 @@
 package be.multimedi.jammik.entities;
 
+import com.sun.istack.NotNull;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import net.minidev.json.annotate.JsonIgnore;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
 
 // Gemaakt door
 
 @MappedSuperclass
 public abstract class Person {
+
+    @Id
+    @NotNull
+    @Email
     protected String email;
+
+    @NotNull
+    @Column(name = "Naam")
+    protected String naam;
+
+    @NotNull
+    @Column(name = "Voornaam")
+    protected String voornaam;
+
+    @NotNull
+    @Column(name = "Wachtwoord")
+    protected String wachtwoord;
+
+    @NotNull
+    @Column(name = "Krediet")
+    protected int krediet;
+
+    public void setEmail(String email) {
+        //todo: email regex
+        if (email == null) throw new IllegalArgumentException("email mag niet null zijn en moet valid email zijn");
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        if (naam == null || naam.isBlank() || naam.length() > 25) throw new IllegalArgumentException("naam mag niet null of leeg of langer dan 25 characters zijn");
+        this.naam = naam;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        if (voornaam == null || voornaam.isBlank() || voornaam.length() > 25) throw new IllegalArgumentException("voornaam mag niet null of leeg of langer dan 25 characters zijn");
+        this.voornaam = voornaam;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
+    public void setWachtwoord(String wachtwoord) {
+        if (wachtwoord == null || wachtwoord.length() != 72) throw new IllegalArgumentException("wachtwoord mag niet null of moet 72 characters lang zijn");
+        this.wachtwoord = wachtwoord;
+    }
+
+    public int getKrediet() {
+        return krediet;
+    }
+
+    public void setKrediet(int krediet) {
+        if (krediet < 0) throw new IllegalArgumentException("krediet mag niet negatief zijn");
+        this.krediet = krediet;
+    }
 }
