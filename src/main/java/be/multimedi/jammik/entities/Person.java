@@ -1,14 +1,12 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-import net.minidev.json.annotate.JsonIgnore;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
+
+import static be.multimedi.jammik.tools.StringTool.validEmail;
 
 
 // Gemaakt door
@@ -37,14 +35,13 @@ public abstract class Person {
     @Column(name = "Krediet")
     protected int krediet;
 
-    public void setEmail(String email) {
-        //todo: email regex
-        if (email == null) throw new IllegalArgumentException("email mag niet null zijn en moet valid email zijn");
-        this.email = email;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        if (email == null || !validEmail(email)) throw new IllegalArgumentException("email mag niet null zijn en moet valid email zijn");
+        this.email = email;
     }
 
     public String getNaam() {
