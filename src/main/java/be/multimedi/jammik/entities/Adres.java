@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Gemaakt door Jan
@@ -18,6 +19,7 @@ public class Adres {
     private int id;
 
     @NotBlank
+    @Size(min=2)
     private String straat;
 
     @NotBlank
@@ -28,6 +30,7 @@ public class Adres {
     private int postcode;
 
     @NotBlank
+    @Size(min=2)
     private String gemeente;
 
     public int getId() {
@@ -35,7 +38,7 @@ public class Adres {
     }
 
     public void setId(int id) {
-        if(id < 0)
+        if(id < 1)
             throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
 
         this.id = id;
@@ -46,8 +49,8 @@ public class Adres {
     }
 
     public void setStraat(String straat) {
-        if(straat == null)
-            throw new IllegalArgumentException("straat mag niet null zijn");
+        if(straat == null) throw new IllegalArgumentException("straat mag niet null zijn");
+        if(straat.length() < 2) throw new IllegalArgumentException("straat moet minstens 2 karakters bevatten");
 
         this.straat = straat;
     }
@@ -79,8 +82,8 @@ public class Adres {
     }
 
     public void setGemeente(String gemeente) {
-        if(gemeente == null)
-            throw new IllegalArgumentException("gemeente mag niet null zijn");
+        if(gemeente == null) throw new IllegalArgumentException("gemeente mag niet null zijn");
+        if(gemeente.length() < 2) throw new IllegalArgumentException("gemeente moet minstens 2 karakters bevatten");
 
         this.gemeente = gemeente;
     }

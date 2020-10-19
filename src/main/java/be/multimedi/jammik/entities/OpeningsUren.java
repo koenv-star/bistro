@@ -24,6 +24,8 @@ public class OpeningsUren {
     }
 
     public void setId(int id) {
+        if(id < 1) throw new IllegalArgumentException("id kan niet kleiner zijn dan 1");
+
         this.id = id;
     }
 
@@ -32,6 +34,8 @@ public class OpeningsUren {
     }
 
     public void setDagen(List<Dag> dagen) {
+        if(dagen == null) throw new IllegalArgumentException("dagen kan niet null zijn");
+
         this.dagen = dagen;
     }
 
