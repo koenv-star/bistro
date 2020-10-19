@@ -1,7 +1,6 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class Bestelling {
 
     @NotNull
     @OneToMany
+    @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
     public void setId(int id) {
