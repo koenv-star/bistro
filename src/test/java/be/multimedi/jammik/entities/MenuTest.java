@@ -8,6 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Gemaakt door: Michael Creelle
+
 class MenuTest {
     private Menu menu;
 
