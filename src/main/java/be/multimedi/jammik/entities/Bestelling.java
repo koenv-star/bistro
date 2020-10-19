@@ -20,6 +20,7 @@ public class Bestelling {
     private List<MenuItem> menuItems;
 
     public void setId(int id) {
+        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 
