@@ -30,17 +30,6 @@ public class Adres {
     @NotBlank
     private String gemeente;
 
-    public Adres() {
-    }
-
-    public Adres(int id, String straat, String huisNr, int postcode, String gemeente) {
-        setId(id);
-        setStraat(straat);
-        setHuisNr(huisNr);
-        setPostcode(postcode);
-        setGemeente(gemeente);
-    }
-
     public int getId() {
         return id;
     }
