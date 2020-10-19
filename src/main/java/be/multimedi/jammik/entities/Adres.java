@@ -1,6 +1,9 @@
 package be.multimedi.jammik.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Gemaakt door Jan
@@ -11,22 +14,31 @@ public class Adres {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Min(1)
     private int id;
 
+    @NotBlank
     private String straat;
+
+    @NotBlank
     private String huisNr;
+
+    @Min(1000)
+    @Max(9999)
     private int postcode;
+
+    @NotBlank
     private String gemeente;
 
     public Adres() {
     }
 
     public Adres(int id, String straat, String huisNr, int postcode, String gemeente) {
-        this.id = id;
-        this.straat = straat;
-        this.huisNr = huisNr;
-        this.postcode = postcode;
-        this.gemeente = gemeente;
+        setId(id);
+        setStraat(straat);
+        setHuisNr(huisNr);
+        setPostcode(postcode);
+        setGemeente(gemeente);
     }
 
     public int getId() {
@@ -34,6 +46,9 @@ public class Adres {
     }
 
     public void setId(int id) {
+        if(id < 0)
+            throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
+
         this.id = id;
     }
 
@@ -42,6 +57,9 @@ public class Adres {
     }
 
     public void setStraat(String straat) {
+        if(straat == null)
+            throw new IllegalArgumentException("straat mag niet null zijn");
+
         this.straat = straat;
     }
 
@@ -50,6 +68,9 @@ public class Adres {
     }
 
     public void setHuisNr(String huisNr) {
+        if(huisNr == null)
+            throw new IllegalArgumentException("huisNr mag niet null zijn");
+
         this.huisNr = huisNr;
     }
 
@@ -58,6 +79,9 @@ public class Adres {
     }
 
     public void setPostcode(int postcode) {
+        if(postcode < 1000 || postcode > 9999)
+            throw new IllegalArgumentException("postcode moet tussen 1000 en 9999 liggen");
+
         this.postcode = postcode;
     }
 
@@ -66,6 +90,9 @@ public class Adres {
     }
 
     public void setGemeente(String gemeente) {
+        if(gemeente == null)
+            throw new IllegalArgumentException("gemeente mag niet null zijn");
+
         this.gemeente = gemeente;
     }
 
