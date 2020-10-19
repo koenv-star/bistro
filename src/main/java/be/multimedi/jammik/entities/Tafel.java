@@ -4,7 +4,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
-// Created by: Michael Creelle
+// Gemaakt door: Michael Creelle
 
 @Entity
 @Table(name = "Tafel")

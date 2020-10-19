@@ -8,8 +8,8 @@ import java.util.List;
 // Gemaakt door: Michael Creelle
 
 @Entity
-@Table(name = "Menu")
-public class Menu {
+@Table(name = "Bestelling")
+public class Bestelling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,9 @@ public class Menu {
 
     @NotNull
     @OneToMany
-    @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 
@@ -34,7 +32,7 @@ public class Menu {
     }
 
     public void setMenuItems(List<MenuItem> menuItems) {
-        if (menuItems == null || menuItems.size() < 1) throw new IllegalArgumentException("MenuItems mag niet null of leeg zijn");
+        if (menuItems == null || menuItems.size() < 1) throw new IllegalArgumentException("menu items mag niet null of leeg zijn");
         this.menuItems = menuItems;
     }
 }
