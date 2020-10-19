@@ -26,11 +26,11 @@ public class JammikApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        Klant klant = new Klant();
-        klant.setPaswoord(encoder.encode("KoenVochten"));
-        klant.setNaam("Vochten");
-        klant.setVoornaam("Koen");
-        repo.save(klant);
+//        Klant klant = new Klant();
+//        klant.setPaswoord(encoder.encode("KoenVochten"));
+//        klant.setNaam("Vochten");
+//        klant.setVoornaam("Koen");
+//        repo.save(klant);
 
 
     }
