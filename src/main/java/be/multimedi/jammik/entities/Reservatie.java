@@ -38,17 +38,14 @@ public class Reservatie {
     private double totaal;
 
     @ManyToOne
-    @Column(name="klant_id")
     @NotNull
     private Klant klant;
 
     @OneToOne
-    @Column(name="zaak_id")
     @NotNull
     private Zaak zaak;
 
     @OneToOne
-    @Column(name="tafel_id")
     @NotNull
     private Tafel tafel;
 

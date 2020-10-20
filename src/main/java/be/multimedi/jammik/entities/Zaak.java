@@ -34,22 +34,18 @@ public class Zaak {
 
     @NotNull
     @OneToOne
-    @Column(name="openingsuren_id")
     private OpeningsUren openingsUren;
 
     @NotNull
     @OneToOne
-    @Column(name="adres_id")
     private Adres adres;
 
     @NotNull
     @OneToOne
-    @Column(name="menu_id")
     private Menu menu;
 
     @NotNull
     @OneToOne
-    @Column(name="uitbater_id")
     private Uitbater uitbater;
 
     @NotNull

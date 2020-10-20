@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AdresRepository extends JpaRepository<Adres, Integer> {
 
+
     default Adres getAdresById(int id) {
         return getOne(id);
     }
