@@ -52,7 +52,7 @@ public class Zaak {
     private List<Reservatie> reservaties;
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 
@@ -65,6 +65,8 @@ public class Zaak {
     }
 
     public void setNaam(String naam) {
+        if(naam == null) throw new IllegalArgumentException("naam kan niet null zijn");
+
         this.naam = naam;
     }
 
@@ -81,7 +83,7 @@ public class Zaak {
     }
 
     public void setRating(float rating) {
-        if (rating < 0 || rating > 5) throw new IllegalArgumentException("rating mag ni negatief of meer dan 5 zijn");
+        if (rating < 0 || rating > 5) throw new IllegalArgumentException("rating mag niet negatief of meer dan 5 zijn");
         this.rating = rating;
     }
 

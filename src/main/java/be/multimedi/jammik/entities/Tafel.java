@@ -19,7 +19,7 @@ public class Tafel {
     private int stoelen;
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public class Tafel {
     }
 
     public void setStoelen(int stoelen) {
-        if (stoelen < 1) throw new IllegalArgumentException("stoelen mag niet 0 of negatief zijn");
+        if (stoelen < 1) throw new IllegalArgumentException("stoelen mag niet 1 of negatief zijn");
         this.stoelen = stoelen;
     }
 
