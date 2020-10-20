@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class Zaak {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
+    @Min(2)
+    private String naam;
 
     private boolean parking;
 
@@ -53,6 +58,14 @@ public class Zaak {
 
     public int getId() {
         return id;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
     }
 
     public boolean heeftParking() {

@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static be.multimedi.jammik.tools.DateTimeTool.*;
 
@@ -24,12 +25,12 @@ public class Reservatie {
     @Min(1)
     private int id;
 
-    @DateTimeFormat(pattern="dd-mm-yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Future
     private LocalDateTime wanneer;
 
-    @DateTimeFormat(pattern="dd-mm-yyyy")
-    private Time uurMarge;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalTime uurMarge;
 
     @Min(0)
     @Digits(integer=3, fraction=2)
@@ -68,17 +69,16 @@ public class Reservatie {
     public void setWanneer(LocalDateTime wanneer) {
         if(wanneer == null) throw new IllegalArgumentException("wanneer kan niet null zijn");
         if(wanneer.isBefore(LocalDateTime.now())) throw new IllegalArgumentException("wanneer moet in de toekomst liggen");
-        if(!checkDateTimeFormatting(wanneer)) throw new IllegalArgumentException("wanneer moet juist geformatteerd zijn");
 
         this.wanneer = wanneer;
     }
 
-    public Time getUurMarge() {
+    public LocalTime getUurMarge() {
         return uurMarge;
     }
 
-    public void setUurMarge(Time uurMarge) {
-        if(!checkTimeFormatting(uurMarge)) throw new IllegalArgumentException("uurMarge moet juist geformatteerd zijn");
+    public void setUurMarge(LocalTime uurMarge) {
+        if(uurMarge == null) throw new IllegalArgumentException("uurMarge kan niet null zijn");
         this.uurMarge = uurMarge;
     }
 
@@ -88,6 +88,8 @@ public class Reservatie {
 
     public void setTotaal(double totaal) {
         if(totaal < 0) throw new IllegalArgumentException("totaal kan niet kleiner dan 0 zijn");
+        if(!String.valueOf(totaal).matches("^[\\d]+\\.([\\d]|[\\d]{2})$"))
+            throw new IllegalArgumentException("totaal moet twee getallen na de komma hebben");
 
         this.totaal = totaal;
     }
