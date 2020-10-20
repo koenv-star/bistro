@@ -24,7 +24,7 @@ public class OpeningsUren {
     }
 
     public void setId(int id) {
-        if(id < 1) throw new IllegalArgumentException("id kan niet kleiner zijn dan 1");
+        if(id < 0) throw new IllegalArgumentException("id kan niet kleiner zijn dan 0");
 
         this.id = id;
     }

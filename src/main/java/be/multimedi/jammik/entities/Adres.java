@@ -38,7 +38,7 @@ public class Adres {
     }
 
     public void setId(int id) {
-        if(id < 1)
+        if(id < 0)
             throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
 
         this.id = id;

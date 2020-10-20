@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class AdresTest {
 
-    Adres adres;
+    private Adres adres;
 
     @BeforeEach
-    public void makeAddress() {
+    private void makeAddress() {
         adres = new Adres();
     }
 
     @Test
     void setId() {
-        assertThrows(IllegalArgumentException.class, () -> adres.setId(0));
+        assertThrows(IllegalArgumentException.class, () -> adres.setId(-1));
 
         adres.setId(150);
         assertEquals(150, adres.getId());
