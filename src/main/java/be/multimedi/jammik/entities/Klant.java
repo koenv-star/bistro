@@ -17,7 +17,7 @@ public class Klant extends Person {
 
     @NotNull
     @OneToMany
-    @Column(name = "reservaties")
+    @Column(name = "Reservaties")
     private List<Reservatie> reservaties;
 
     @NotNull

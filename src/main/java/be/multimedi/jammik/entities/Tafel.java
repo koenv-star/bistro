@@ -12,6 +12,7 @@ public class Tafel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Id")
     private int id;
 
     @NotNull

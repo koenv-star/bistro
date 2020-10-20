@@ -7,11 +7,8 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import static be.multimedi.jammik.tools.DateTimeTool.*;
 
 /**
  * Gemaakt door Jan
@@ -23,17 +20,21 @@ public class Reservatie {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Min(1)
+    @Column(name="Id")
     private int id;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Future
-    private LocalDateTime wanneer;
+    @Column(name="Tijdstip")
+    private LocalDateTime tijdstip;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Column(name="UurMarge")
     private LocalTime uurMarge;
 
     @Min(0)
     @Digits(integer=3, fraction=2)
+    @Column(name="Totaal")
     private double totaal;
 
     @ManyToOne
@@ -62,15 +63,15 @@ public class Reservatie {
         this.id = id;
     }
 
-    public LocalDateTime getWanneer() {
-        return wanneer;
+    public LocalDateTime getTijdstip() {
+        return tijdstip;
     }
 
-    public void setWanneer(LocalDateTime wanneer) {
+    public void setTijdstip(LocalDateTime wanneer) {
         if(wanneer == null) throw new IllegalArgumentException("wanneer kan niet null zijn");
         if(wanneer.isBefore(LocalDateTime.now())) throw new IllegalArgumentException("wanneer moet in de toekomst liggen");
 
-        this.wanneer = wanneer;
+        this.tijdstip = wanneer;
     }
 
     public LocalTime getUurMarge() {
@@ -128,7 +129,7 @@ public class Reservatie {
     public String toString() {
         return "Reservatie{" +
                 "id=" + id +
-                ", wanneer=" + wanneer +
+                ", wanneer=" + tijdstip +
                 ", uurMarge=" + uurMarge +
                 ", totaal=" + totaal +
                 ", klant=" + klant +

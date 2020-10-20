@@ -10,27 +10,32 @@ import javax.validation.constraints.Size;
  * Gemaakt door Jan
  */
 @Entity
-@Table(name="adres")
+@Table(name="Adres")
 public class Adres {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Min(1)
+    @Column(name="Id")
     private int id;
 
     @NotBlank
     @Size(min=2)
+    @Column(name="Straat")
     private String straat;
 
     @NotBlank
+    @Column(name="HuisNr")
     private String huisNr;
 
     @Min(1000)
     @Max(9999)
+    @Column(name="Postcode")
     private int postcode;
 
     @NotBlank
     @Size(min=2)
+    @Column(name="Gemeente")
     private String gemeente;
 
     public int getId() {

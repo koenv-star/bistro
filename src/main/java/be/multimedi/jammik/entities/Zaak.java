@@ -11,44 +11,55 @@ import java.util.List;
 // Gemaakt door: Michael Creelle
 
 @Entity
+@Table(name="Zaak")
 public class Zaak {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Id")
     private int id;
 
     @NotNull
     @Min(2)
+    @Column(name="Naam")
     private String naam;
 
+    @Column(name="Parking")
     private boolean parking;
 
     @Min(0)
     @Max(5)
+    @Column(name="Rating")
     private float rating;
 
     @NotNull
     @OneToOne
+    @Column(name="openingsuren_id")
     private OpeningsUren openingsUren;
 
     @NotNull
     @OneToOne
+    @Column(name="adres_id")
     private Adres adres;
 
     @NotNull
     @OneToOne
+    @Column(name="menu_id")
     private Menu menu;
 
     @NotNull
     @OneToOne
+    @Column(name="uitbater_id")
     private Uitbater uitbater;
 
     @NotNull
     @OneToMany
+    @Column(name="Tafels")
     private List<Tafel> tafels;
 
     @NotNull
     @OneToMany
+    @Column(name="Reservaties")
     private List<Reservatie> reservaties;
 
     public void setId(int id) {

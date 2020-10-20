@@ -6,16 +6,18 @@ import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalTime;
 
 // Gemaakt door: Michael Creelle
 
 @Entity
+@Table(name="Dag")
 public class Dag {
 
     @Id
     @NotNull
-    @Column(name = "naam")
+    @Column(name = "Naam")
     private String naam;
 
     @NotNull

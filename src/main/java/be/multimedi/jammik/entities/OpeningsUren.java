@@ -8,15 +8,17 @@ import java.util.List;
  * Gemaakt door Jan
  */
 @Entity
-@Table(name="openingsuren")
+@Table(name="Openingsuren")
 public class OpeningsUren {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Min(1)
+    @Column(name="Id")
     private int id;
 
     @OneToMany(mappedBy="openingsUur", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @Column(name="Dagen")
     private List<Dag> dagen;
 
     public int getId() {

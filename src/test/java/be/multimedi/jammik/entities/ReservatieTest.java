@@ -30,11 +30,11 @@ class ReservatieTest {
 
     @Test
     void setWanneer() {
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setWanneer(null));
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setWanneer(LocalDateTime.of(2019, 8, 12, 11, 50)));
+        assertThrows(IllegalArgumentException.class, () -> reservatie.setTijdstip(null));
+        assertThrows(IllegalArgumentException.class, () -> reservatie.setTijdstip(LocalDateTime.of(2019, 8, 12, 11, 50)));
 
-        reservatie.setWanneer(LocalDateTime.of(2021, 1, 10, 12, 0));
-        assertEquals("2021-01-10T12:00", reservatie.getWanneer().toString());
+        reservatie.setTijdstip(LocalDateTime.of(2021, 1, 10, 12, 0));
+        assertEquals("2021-01-10T12:00", reservatie.getTijdstip().toString());
     }
 
     @Test
