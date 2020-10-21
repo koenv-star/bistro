@@ -14,7 +14,7 @@ import java.time.LocalTime;
  * Gemaakt door Jan
  */
 @Entity
-@Table(name="reservatie")
+@Table(name="Reservatie")
 public class Reservatie {
 
     @Id
