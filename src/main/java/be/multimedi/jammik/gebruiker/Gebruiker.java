@@ -2,9 +2,11 @@ package be.multimedi.jammik.gebruiker;
 
 import be.multimedi.jammik.klant.Klant;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class Gebruiker implements UserDetails {
 
@@ -18,12 +20,12 @@ public class Gebruiker implements UserDetails {
 
         this.voornaam = klant.getVoornaam();
         this.naam = klant.getNaam();
-        this.paswoord= klant.getPaswoord();
+        this.paswoord = klant.getPaswoord();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override

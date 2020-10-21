@@ -20,7 +20,7 @@ public class KlantController {
     }
 
 
-    @PostMapping()
+    @PostMapping("register")
     public Klant save(@RequestBody Klant klant) {
         return service.saveEntity(klant);
     }

@@ -78,9 +78,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/")
-                .permitAll().anyRequest()
-                .authenticated();
+                .antMatchers("/klanten/register","/").permitAll()
+                .anyRequest().authenticated()
+        ;
 
 
     }
