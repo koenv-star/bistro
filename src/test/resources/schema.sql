@@ -57,7 +57,7 @@ CREATE TABLE MenuItem (
 CREATE TABLE Bestelling_menuItems (
     Bestelling_Id INT NOT NULL,
     menuItems_Id  INT NOT NULL,
-    CONSTRAINT UK_st8kn918j508qjoqnmmd9h8ya UNIQUE (menuItems_Id),
+--     CONSTRAINT UK_st8kn918j508qjoqnmmd9h8ya UNIQUE (menuItems_Id),
     CONSTRAINT FK_Bestelling_MenuItems_MenuItems FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id),
     CONSTRAINT FK_Bestelling_MenuItems_Bestelling FOREIGN KEY (Bestelling_Id) REFERENCES Bestelling (Id)
 );

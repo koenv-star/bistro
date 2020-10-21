@@ -28,7 +28,7 @@ class AdresRepositoryTest {
     }
 
     @Test
-    void getAdresById() {
+    void getById() {
         Adres adres = adresRepository.getAdresById(1);
         assertNotNull(adres);
         assertEquals("JavaStraat", adres.getStraat());
