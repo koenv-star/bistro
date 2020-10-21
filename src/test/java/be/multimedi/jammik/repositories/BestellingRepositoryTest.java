@@ -48,18 +48,10 @@ class BestellingRepositoryTest {
     @Test
     void save() {
         Bestelling bestelling = new Bestelling();
-
-        MenuItem mi1 = new MenuItem();
-        mi1.setId(5);
-        mi1.setNaam("Gentse Waterzooi");
-        mi1.setPrijs(13.25f);
-
-        MenuItem mi2 = new MenuItem();
-        mi2.setId(3);
-        mi2.setNaam("Cornflakes");
-        mi2.setPrijs(5.99f);
-
-        bestelling.setMenuItems(new ArrayList<>(List.of(mi1, mi2)));
+        bestelling.setMenuItems(new ArrayList<>(List.of(
+                new MenuItem(5, "Gentse Waterzooi", 13.25f),
+                new MenuItem(3, "Cornflakes", 5.99f)
+        )));
 
         bestelling = bestellingRepository.save(bestelling);
         assertEquals(4, bestelling.getId());

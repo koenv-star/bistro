@@ -17,7 +17,6 @@ create table BestellingVerzameling (
 CREATE TABLE BestellingVerzameling_bestellingen (
     BestellingVerzameling_Id    INT NOT NULL,
     bestellingen_Id             INT NOT NULL,
-    CONSTRAINT UK_q4l243ugd4p4f1oxy4k1fx1gr UNIQUE (bestellingen_Id),
     CONSTRAINT FK_BestellingVerzameling_Bestelling  FOREIGN KEY (bestellingen_Id) REFERENCES Bestelling (Id),
     CONSTRAINT FK_BestellingVerzameling_Bestellingen_BestellingVerzameling  FOREIGN KEY (BestellingVerzameling_Id) REFERENCES BestellingVerzameling (Id)
 );
@@ -39,7 +38,6 @@ CREATE TABLE Klant (
 CREATE TABLE Klant_bestellingVerzamelingen (
     Klant_email                 VARCHAR(255) NOT NULL,
     bestellingVerzamelingen_Id  INT NOT NULL,
-    CONSTRAINT UK_ao81e7bh7s9u22spsavy1xkfw UNIQUE (bestellingVerzamelingen_Id),
     CONSTRAINT FK_Klant_BestellingVerzamelingen_BestellingVerzameling  FOREIGN KEY (bestellingVerzamelingen_Id) REFERENCES BestellingVerzameling (Id),
     CONSTRAINT FK_Klant_BestellingVerzamelingen_Klant  FOREIGN KEY (Klant_email) REFERENCES Klant (email)
 );
@@ -57,7 +55,6 @@ CREATE TABLE MenuItem (
 CREATE TABLE Bestelling_menuItems (
     Bestelling_Id INT NOT NULL,
     menuItems_Id  INT NOT NULL,
---     CONSTRAINT UK_st8kn918j508qjoqnmmd9h8ya UNIQUE (menuItems_Id),
     CONSTRAINT FK_Bestelling_MenuItems_MenuItems FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id),
     CONSTRAINT FK_Bestelling_MenuItems_Bestelling FOREIGN KEY (Bestelling_Id) REFERENCES Bestelling (Id)
 );
@@ -65,7 +62,6 @@ CREATE TABLE Bestelling_menuItems (
 CREATE TABLE Menu_menuItems (
     Menu_Id         INT NOT NULL,
     menuItems_Id    INT NOT NULL,
-    CONSTRAINT UK_n4v8vvescrx25ew96cafp198l UNIQUE (menuItems_Id),
     CONSTRAINT FK_Menu_MenuItems_Menu  FOREIGN KEY (Menu_Id) REFERENCES Menu (Id),
     CONSTRAINT FK_Menu_MenuItems_MenuItem  FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id)
 );
@@ -105,7 +101,6 @@ CREATE TABLE Zaak (
 CREATE TABLE Uitbater_zaken (
     Uitbater_email VARCHAR(255) NOT NULL,
     zaken_Id       INT NOT NULL,
-    CONSTRAINT UK_k1k01cinsjs4ecj0f3fs6dkdt UNIQUE (zaken_Id),
     CONSTRAINT FK_Uitbater_Zaken_Zaak FOREIGN KEY (zaken_Id) REFERENCES Zaak (Id),
     CONSTRAINT FK_Uitbater_Zaken_Uitbater FOREIGN KEY (Uitbater_email) REFERENCES Uitbater (email)
 );
@@ -113,7 +108,6 @@ CREATE TABLE Uitbater_zaken (
 CREATE TABLE Zaak_tafels (
     Zaak_Id         INT NOT NULL,
     tafels_Id       INT NOT NULL,
-    CONSTRAINT UK_8sfwe4s91wh92rbi070xd3dcn UNIQUE (tafels_Id),
     CONSTRAINT FK_Zaak_Tafels_Tafel FOREIGN KEY (tafels_Id) REFERENCES Tafel (Id),
     CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
 );
@@ -134,7 +128,6 @@ CREATE TABLE Reservatie (
 CREATE TABLE Klant_reservaties (
     Klant_email     VARCHAR(255) NOT NULL,
     reservaties_Id  INT NOT NULL,
-    CONSTRAINT UK_j0ulrvrb81bjvny7kj38gqnjl UNIQUE (reservaties_Id),
     CONSTRAINT FK_Klant_Reservaties_Reservatie FOREIGN KEY (reservaties_Id) REFERENCES Reservatie (Id),
     CONSTRAINT FK_Klant_Reservaties_Klant FOREIGN KEY (Klant_email) REFERENCES Klant (email)
 );
@@ -142,7 +135,6 @@ CREATE TABLE Klant_reservaties (
 CREATE TABLE Zaak_reservaties (
     Zaak_Id        INT NOT NULL,
     reservaties_Id INT NOT NULL,
-    CONSTRAINT UK_trbo9wx5yxlgx4ca9ov0r4ti9 UNIQUE (reservaties_Id),
     CONSTRAINT FK_Zaak_Reservaties_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id),
     CONSTRAINT FK_Zaak_Reservaties_Reservatie FOREIGN KEY (reservaties_Id) REFERENCES Reservatie (Id)
 );

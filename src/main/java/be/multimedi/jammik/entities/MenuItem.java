@@ -24,6 +24,15 @@ public class MenuItem {
     @Column(name = "Prijs")
     private float prijs;
 
+    public MenuItem() {
+    }
+
+    public MenuItem(int id, String naam, float prijs) {
+        setId(id);
+        setNaam(naam);
+        setPrijs(prijs);
+    }
+
     public void setId(int id) {
         if(id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;

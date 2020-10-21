@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 // Gemaakt door: Michael Creelle
@@ -17,6 +18,16 @@ public class Uitbater extends Person{
     @OneToMany
     @Column(name = "Zaken")
     private List<Zaak> zaken;
+
+    public Uitbater() {
+    }
+
+    public Uitbater(@Email String email, String naam, String voornaam, String wachtwoord, int krediet,
+                    List<Zaak> zaken) {
+
+        super(email, naam, voornaam, wachtwoord, krediet);
+        setZaken(zaken);
+    }
 
     public List<Zaak> getZaken() {
         return zaken;

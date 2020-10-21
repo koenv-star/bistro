@@ -21,12 +21,20 @@ public class BestellingVerzameling {
     @Column(name = "Bestellingen")
     private List<Bestelling> bestellingen;
 
+    public BestellingVerzameling() {
+    }
+
+    public BestellingVerzameling(int id, List<Bestelling> bestellingen) {
+        setId(id);
+        setBestellingen(bestellingen);
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 

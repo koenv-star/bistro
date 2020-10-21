@@ -28,6 +28,15 @@ public class Dag {
     @Column(name = "SluitingsUur")
     private LocalTime sluitingsUur;
 
+    public Dag() {
+    }
+
+    public Dag(String naam, LocalTime openingsUur, LocalTime sluitingsUur) {
+        setNaam(naam);
+        setSluitingsUur(openingsUur);
+        setSluitingsUur(sluitingsUur);
+    }
+
     public String getNaam() {
         return naam;
     }

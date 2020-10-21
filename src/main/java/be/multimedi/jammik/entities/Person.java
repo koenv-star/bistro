@@ -35,6 +35,17 @@ public abstract class Person {
     @Column(name = "Krediet")
     protected int krediet;
 
+    public Person() {
+    }
+
+    public Person(@Email String email, String naam, String voornaam, String wachtwoord, int krediet) {
+        setEmail(email);
+        setNaam(naam);
+        setVoornaam(voornaam);
+        setWachtwoord(wachtwoord);
+        setKrediet(krediet);
+    }
+
     public String getEmail() {
         return email;
     }

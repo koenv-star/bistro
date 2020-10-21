@@ -38,6 +38,23 @@ public class Adres {
     @Column(name="Gemeente")
     private String gemeente;
 
+    public Adres() {
+    }
+
+    public Adres(@Min(1) int id,
+                 @NotBlank @Size(min = 2) String straat,
+                 @NotBlank String huisNr,
+                 @Min(1000)
+                 @Max(9999) int postcode,
+                 @NotBlank @Size(min = 2) String gemeente) {
+
+        setId(id);
+        setStraat(straat);
+        setHuisNr(huisNr);
+        setPostcode(postcode);
+        setGemeente(gemeente);
+    }
+
     public int getId() {
         return id;
     }

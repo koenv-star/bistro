@@ -58,6 +58,25 @@ public class Zaak {
     @Column(name="Reservaties")
     private List<Reservatie> reservaties;
 
+    public Zaak() {
+    }
+
+    public Zaak(int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
+                OpeningsUren openingsUren, Adres adres, Menu menu, Uitbater uitbater, List<Tafel> tafels,
+                List<Reservatie> reservaties) {
+
+        setId(id);
+        setNaam(naam);
+        setParking(parking);
+        setRating(rating);
+        setOpeningsUren(openingsUren);
+        setAdres(adres);
+        setMenu(menu);
+        setUitbater(uitbater);
+        setTafels(tafels);
+        setReservaties(reservaties);
+    }
+
     public void setId(int id) {
         if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;

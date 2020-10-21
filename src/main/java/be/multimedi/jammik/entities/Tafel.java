@@ -19,6 +19,14 @@ public class Tafel {
     @Column(name = "Stoelen")
     private int stoelen;
 
+    public Tafel() {
+    }
+
+    public Tafel(int id, int stoelen) {
+        setId(id);
+        setStoelen(stoelen);
+    }
+
     public void setId(int id) {
         if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;

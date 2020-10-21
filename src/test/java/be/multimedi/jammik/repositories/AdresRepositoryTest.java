@@ -43,12 +43,7 @@ class AdresRepositoryTest {
 
     @Test
     void save() {
-        Adres adres = new Adres();
-        adres.setId(0);
-        adres.setStraat("HibernateStraat");
-        adres.setHuisNr("15");
-        adres.setGemeente("JavaMeerbeek");
-        adres.setPostcode(1000);
+        Adres adres = new Adres(0, "HibernateStraat", "15", 1000, "JavaMeerBeek");
         Adres savedAdres = adresRepository.save(adres);
         assertEquals(4, savedAdres.getId());
     }

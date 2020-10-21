@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 // Gemaakt door: Michael Creelle
@@ -24,6 +25,17 @@ public class Klant extends Person {
     @OneToMany
     @Column(name = "BestellingVerzamelingen")
     private List<BestellingVerzameling> bestellingVerzamelingen;
+
+    public Klant() {
+    }
+
+    public Klant(@Email String email, String naam, String voornaam, String wachtwoord, int krediet,
+                 List<Reservatie> reservaties, List<BestellingVerzameling> bestellingVerzamelingen) {
+
+        super(email, naam, voornaam, wachtwoord, krediet);
+        setReservaties(reservaties);
+        setBestellingVerzamelingen(bestellingVerzamelingen);
+    }
 
     public List<Reservatie> getReservaties() {
         return reservaties;

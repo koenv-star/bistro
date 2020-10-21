@@ -20,6 +20,14 @@ public class Bestelling {
     @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
+    public Bestelling() {
+    }
+
+    public Bestelling(int id, List<MenuItem> menuItems) {
+        setId(id);
+        setMenuItems(menuItems);
+    }
+
     public void setId(int id) {
         if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;

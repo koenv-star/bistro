@@ -13,13 +13,21 @@ public class OpeningsUren {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
     @OneToMany(mappedBy="openingsUur", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
     @Column(name="Dagen")
     private List<Dag> dagen;
+
+    public OpeningsUren() {
+    }
+
+    public OpeningsUren(@Min(0) int id, List<Dag> dagen) {
+        setId(id);
+        setDagen(dagen);
+    }
 
     public int getId() {
         return id;

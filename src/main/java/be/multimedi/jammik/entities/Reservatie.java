@@ -49,6 +49,22 @@ public class Reservatie {
     @NotNull
     private Tafel tafel;
 
+    public Reservatie() {
+    }
+
+    public Reservatie(@Min(1) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge,
+                      @Min(0) @Digits(integer = 3, fraction = 2) double totaal, @NotNull Klant klant,
+                      @NotNull Zaak zaak, @NotNull Tafel tafel) {
+
+        setId(id);
+        setTijdstip(tijdstip);
+        setUurMarge(uurMarge);
+        setTotaal(totaal);
+        setKlant(klant);
+        setZaak(zaak);
+        setTafel(tafel);
+    }
+
     public int getId() {
         return id;
     }

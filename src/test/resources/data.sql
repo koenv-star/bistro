@@ -24,3 +24,13 @@ VALUES (1, 'Pizza', 15.5),
 
 INSERT INTO Bestelling_menuItems(Bestelling_Id, menuItems_Id)
 VALUES (1, 2), (2, 3), (2, 2), (3, 1);
+
+INSERT INTO BestellingVerzameling(Id) VALUES (1), (2), (3);
+
+INSERT INTO BestellingVerzameling_bestellingen(BestellingVerzameling_Id, bestellingen_Id)
+VALUES (2, 1), (3, 1), (2, 3);
+
+INSERT INTO Dag(Naam, OpeningsUur, SluitingsUur)
+VALUES ('Ma', '12:30 P.M.', '19:00 P.M.'),
+       ('Wo', '08:15 A.M.', '21:30 P.M.'),
+       ('Zo', '12:00 P.M.', '20:45 P.M.');
