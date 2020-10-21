@@ -1,6 +1,5 @@
 package be.multimedi.jammik;
 
-import be.multimedi.jammik.entities.Tafel;
 import be.multimedi.jammik.repositories.AdresRepository;
 import be.multimedi.jammik.repositories.MenuItemRepository;
 import be.multimedi.jammik.repositories.TafelRepository;
