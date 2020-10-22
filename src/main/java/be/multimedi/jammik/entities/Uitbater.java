@@ -20,7 +20,7 @@ public class Uitbater extends Person{
     public Uitbater() {
     }
 
-    public Uitbater(@Email String email, String naam, String voornaam, String wachtwoord, int krediet,
+    public Uitbater(@Email String email, String naam, String voornaam, String wachtwoord, double krediet,
                     List<Zaak> zaken) {
 
         super(email, naam, voornaam, wachtwoord, krediet);

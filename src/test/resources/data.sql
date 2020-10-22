@@ -76,7 +76,8 @@ INSERT INTO Zaak(Id, Naam, Parking, Rating, Adres_Id, Menu_Id, Openingsuren_Id, 
 VALUES (1, 'Bistro Mehmet', 1, 5, 3, 1, 2, 'mehmet@jammik.be'),
        (2, 'Bistro Michael', 1, 5, 1, 3, 2, 'michael@jammik.be'),
        (3, 'Bistro Koen', 1, 5, 4, 2, 3, 'koen@jammik.be'),
-       (4, 'Bistro Jan', 1, 5, 1, 3, 1, 'jan@jammik.be');
+       (4, 'Bistro Jan', 1, 5, 1, 3, 1, 'jan@jammik.be'),
+       (5, 'Bistro Mehmet 2', 0, 4, 1, 1, 2, 'mehmet@jammik.be');
 
 INSERT INTO Zaak_tafels(Zaak_Id, tafels_Id)
 VALUES (1, 2), (1, 2),
