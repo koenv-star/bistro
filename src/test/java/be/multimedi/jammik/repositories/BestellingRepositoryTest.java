@@ -49,8 +49,8 @@ class BestellingRepositoryTest {
     void save() {
         Bestelling bestelling = new Bestelling();
         bestelling.setMenuItems(new ArrayList<>(List.of(
-                new MenuItem(5, "Gentse Waterzooi", 13.25f),
-                new MenuItem(3, "Cornflakes", 5.99f)
+                new MenuItem(),
+                new MenuItem()
         )));
 
         bestelling = bestellingRepository.save(bestelling);

@@ -2,10 +2,7 @@ package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.List;
 
@@ -14,9 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "Uitbater")
 public class Uitbater extends Person{
+
     @NotNull
-    @OneToMany
-    @Column(name = "Zaken")
+    @OneToMany(mappedBy="uitbater", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "Zaken")
     private List<Zaak> zaken;
 
     public Uitbater() {

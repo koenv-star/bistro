@@ -34,28 +34,32 @@ public class Zaak {
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="Openingsuren_Id", referencedColumnName="Id")
     private OpeningsUren openingsUren;
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="Adres_Id", referencedColumnName="Id")
     private Adres adres;
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="Menu_Id", referencedColumnName="Id")
     private Menu menu;
 
     @NotNull
     @OneToOne
+    @JoinColumn(name="Uitbater_Email", referencedColumnName="Email")
     private Uitbater uitbater;
 
     @NotNull
-    @OneToMany
-    @Column(name="Tafels")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name="Tafels")
     private List<Tafel> tafels;
 
     @NotNull
-    @OneToMany
-    @Column(name="Reservaties")
+    @OneToMany(mappedBy="zaak", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name="Reservaties")
     private List<Reservatie> reservaties;
 
     public Zaak() {

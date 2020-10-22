@@ -2,11 +2,8 @@ package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import java.util.List;
 
@@ -17,13 +14,13 @@ import java.util.List;
 public class Klant extends Person {
 
     @NotNull
-    @OneToMany
-    @Column(name = "Reservaties")
+    @OneToMany(mappedBy="klant", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "Reservaties")
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany
-    @Column(name = "BestellingVerzamelingen")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "BestellingVerzamelingen")
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
     public Klant() {

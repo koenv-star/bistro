@@ -18,7 +18,7 @@ public class OpeningsUren {
     private int id;
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
-    @Column(name="Dagen")
+//    @Column(name="Dagen")
     private List<Dag> dagen;
 
     public OpeningsUren() {

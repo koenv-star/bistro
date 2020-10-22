@@ -17,6 +17,7 @@ public abstract class Person {
     @Id
     @NotNull
     @Email
+    @Column(name="Email")
     protected String email;
 
     @NotNull

@@ -10,15 +10,8 @@ CREATE TABLE Bestelling (
     Id                          INT IDENTITY PRIMARY KEY
 );
 
-create table BestellingVerzameling (
+CREATE TABLE BestellingVerzameling (
     Id                          INT IDENTITY PRIMARY KEY
-);
-
-CREATE TABLE BestellingVerzameling_bestellingen (
-    BestellingVerzameling_Id    INT NOT NULL,
-    bestellingen_Id             INT NOT NULL,
-    CONSTRAINT FK_BestellingVerzameling_Bestelling  FOREIGN KEY (bestellingen_Id) REFERENCES Bestelling (Id),
-    CONSTRAINT FK_BestellingVerzameling_Bestellingen_BestellingVerzameling  FOREIGN KEY (BestellingVerzameling_Id) REFERENCES BestellingVerzameling (Id)
 );
 
 CREATE TABLE Dag (
@@ -28,18 +21,11 @@ CREATE TABLE Dag (
 );
 
 CREATE TABLE Klant (
-    email                       VARCHAR(255) NOT NULL PRIMARY KEY ,
-    Krediet                     INT NULL,
+    Email                       VARCHAR(255) NOT NULL PRIMARY KEY ,
+    Krediet                     DOUBLE NULL,
     Naam                        VARCHAR(255) NULL,
     Voornaam                    VARCHAR(255) NULL,
     Wachtwoord                  VARCHAR(255) NULL
-);
-
-CREATE TABLE Klant_bestellingVerzamelingen (
-    Klant_email                 VARCHAR(255) NOT NULL,
-    bestellingVerzamelingen_Id  INT NOT NULL,
-    CONSTRAINT FK_Klant_BestellingVerzamelingen_BestellingVerzameling  FOREIGN KEY (bestellingVerzamelingen_Id) REFERENCES BestellingVerzameling (Id),
-    CONSTRAINT FK_Klant_BestellingVerzamelingen_Klant  FOREIGN KEY (Klant_email) REFERENCES Klant (email)
 );
 
 CREATE TABLE Menu (
@@ -47,27 +33,13 @@ CREATE TABLE Menu (
 );
 
 CREATE TABLE MenuItem (
-    Id    INT IDENTITY PRIMARY KEY ,
-    Naam  VARCHAR(255) NULL,
-    Prijs FLOAT NULL
-);
-
-CREATE TABLE Bestelling_menuItems (
-    Bestelling_Id INT NOT NULL,
-    menuItems_Id  INT NOT NULL,
-    CONSTRAINT FK_Bestelling_MenuItems_MenuItems FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id),
-    CONSTRAINT FK_Bestelling_MenuItems_Bestelling FOREIGN KEY (Bestelling_Id) REFERENCES Bestelling (Id)
-);
-
-CREATE TABLE Menu_menuItems (
-    Menu_Id         INT NOT NULL,
-    menuItems_Id    INT NOT NULL,
-    CONSTRAINT FK_Menu_MenuItems_Menu  FOREIGN KEY (Menu_Id) REFERENCES Menu (Id),
-    CONSTRAINT FK_Menu_MenuItems_MenuItem  FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id)
+    Id                          INT IDENTITY PRIMARY KEY ,
+    Naam                        VARCHAR(255) NULL,
+    Prijs                       FLOAT NULL
 );
 
 CREATE TABLE Openingsuren (
-    Id              INT IDENTITY PRIMARY KEY
+    Id                          INT IDENTITY PRIMARY KEY
 );
 
 CREATE TABLE Tafel (
@@ -76,11 +48,46 @@ CREATE TABLE Tafel (
 );
 
 CREATE TABLE Uitbater (
-    email           VARCHAR(255) NOT NULL PRIMARY KEY,
-    Krediet         INT NULL,
+    Email           VARCHAR(255) NOT NULL PRIMARY KEY,
+    Krediet         DOUBLE NULL,
     Naam            VARCHAR(255) NULL,
     Voornaam        VARCHAR(255) NULL,
     Wachtwoord      VARCHAR(255) NULL
+);
+
+CREATE TABLE BestellingVerzameling_bestellingen (
+    BestellingVerzameling_Id    INT NOT NULL,
+    bestellingen_Id             INT NOT NULL,
+    CONSTRAINT FK_BestellingVerzameling_Bestelling  FOREIGN KEY (bestellingen_Id) REFERENCES Bestelling (Id),
+    CONSTRAINT FK_BestellingVerzameling_Bestellingen_BestellingVerzameling  FOREIGN KEY (BestellingVerzameling_Id) REFERENCES BestellingVerzameling (Id)
+);
+
+CREATE TABLE Klant_bestellingVerzamelingen (
+    Klant_Email                 VARCHAR(255) NOT NULL,
+    bestellingVerzamelingen_Id  INT NOT NULL,
+    CONSTRAINT FK_Klant_BestellingVerzamelingen_BestellingVerzameling  FOREIGN KEY (bestellingVerzamelingen_Id) REFERENCES BestellingVerzameling (Id),
+    CONSTRAINT FK_Klant_BestellingVerzamelingen_Klant  FOREIGN KEY (Klant_Email) REFERENCES Klant (Email)
+);
+
+CREATE TABLE Menu_menuItems (
+    Menu_Id                     INT NOT NULL,
+    menuItems_Id                INT NOT NULL,
+    CONSTRAINT FK_Menu_MenuItems_Menu  FOREIGN KEY (Menu_Id) REFERENCES Menu (Id),
+    CONSTRAINT FK_Menu_MenuItems_MenuItem  FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id)
+);
+
+CREATE TABLE Bestelling_menuItems (
+    Bestelling_Id               INT NOT NULL,
+    menuItems_Id                INT NOT NULL,
+    CONSTRAINT FK_Bestelling_MenuItems_MenuItems FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id),
+    CONSTRAINT FK_Bestelling_MenuItems_Bestelling FOREIGN KEY (Bestelling_Id) REFERENCES Bestelling (Id)
+);
+
+CREATE TABLE Openingsuren_dagen (
+    OpeningsUren_Id             INT NOT NULL,
+    dagen_Naam                  VARCHAR(255) NOT NULL,
+    CONSTRAINT FK_Openingsuren_dagen_Openingsuren FOREIGN KEY (OpeningsUren_Id) REFERENCES Openingsuren (Id),
+    CONSTRAINT FK_Openingsuren_dagen_Dag FOREIGN KEY (dagen_Naam) REFERENCES Dag (Naam)
 );
 
 CREATE TABLE Zaak (
@@ -88,28 +95,21 @@ CREATE TABLE Zaak (
     Naam            VARCHAR(255) NULL,
     Parking         BIT          NULL,
     Rating          FLOAT        NULL,
-    adres_Id        INT          NULL,
-    menu_Id         INT          NULL,
-    openingsUren_Id INT          NULL,
-    uitbater_email  VARCHAR(255) NULL,
-    CONSTRAINT FK_Zaak_Uitbater FOREIGN KEY (uitbater_email) REFERENCES Uitbater (email),
-    CONSTRAINT FK_Zaak_Menu FOREIGN KEY (menu_Id) REFERENCES Menu (Id),
-    CONSTRAINT FK_Zaak_Adres FOREIGN KEY (adres_Id) REFERENCES Adres (Id),
-    CONSTRAINT FK_Zaak_Openingsuren FOREIGN KEY (openingsUren_Id) REFERENCES Openingsuren (Id)
-);
-
-CREATE TABLE Uitbater_zaken (
-    Uitbater_email VARCHAR(255) NOT NULL,
-    zaken_Id       INT NOT NULL,
-    CONSTRAINT FK_Uitbater_Zaken_Zaak FOREIGN KEY (zaken_Id) REFERENCES Zaak (Id),
-    CONSTRAINT FK_Uitbater_Zaken_Uitbater FOREIGN KEY (Uitbater_email) REFERENCES Uitbater (email)
+    Adres_Id        INT          NULL,
+    Menu_Id         INT          NULL,
+    Openingsuren_Id INT          NULL,
+    Uitbater_Email  VARCHAR(255) NULL,
+    CONSTRAINT FK_Zaak_Uitbater FOREIGN KEY (Uitbater_Email) REFERENCES Uitbater (Email),
+    CONSTRAINT FK_Zaak_Menu FOREIGN KEY (Menu_Id) REFERENCES Menu (Id),
+    CONSTRAINT FK_Zaak_Adres FOREIGN KEY (Adres_Id) REFERENCES Adres (Id),
+    CONSTRAINT FK_Zaak_Openingsuren FOREIGN KEY (Openingsuren_Id) REFERENCES Openingsuren (Id)
 );
 
 CREATE TABLE Zaak_tafels (
-    Zaak_Id         INT NOT NULL,
-    tafels_Id       INT NOT NULL,
-    CONSTRAINT FK_Zaak_Tafels_Tafel FOREIGN KEY (tafels_Id) REFERENCES Tafel (Id),
-    CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
+     Zaak_Id         INT NOT NULL,
+     tafels_Id       INT NOT NULL,
+     CONSTRAINT FK_Zaak_Tafels_Tafel FOREIGN KEY (tafels_Id) REFERENCES Tafel (Id),
+     CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
 );
 
 CREATE TABLE Reservatie (
@@ -117,24 +117,10 @@ CREATE TABLE Reservatie (
     Tijdstip        DATETIME(6)  NULL,
     Totaal          DOUBLE       NULL,
     UurMarge        TIME         NULL,
-    klant_email     VARCHAR(255) NULL,
-    tafel_Id        INT          NULL,
-    zaak_Id         INT          NULL,
-    CONSTRAINT FK_Reservatie_Tafel FOREIGN KEY (tafel_Id) REFERENCES Tafel (Id),
-    CONSTRAINT FK_Reservatie_Klant FOREIGN KEY (klant_email) REFERENCES Klant (email),
-    CONSTRAINT FK_Reservatie_Zaak FOREIGN KEY (zaak_Id) REFERENCES Zaak (Id)
-);
-
-CREATE TABLE Klant_reservaties (
-    Klant_email     VARCHAR(255) NOT NULL,
-    reservaties_Id  INT NOT NULL,
-    CONSTRAINT FK_Klant_Reservaties_Reservatie FOREIGN KEY (reservaties_Id) REFERENCES Reservatie (Id),
-    CONSTRAINT FK_Klant_Reservaties_Klant FOREIGN KEY (Klant_email) REFERENCES Klant (email)
-);
-
-CREATE TABLE Zaak_reservaties (
-    Zaak_Id        INT NOT NULL,
-    reservaties_Id INT NOT NULL,
-    CONSTRAINT FK_Zaak_Reservaties_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id),
-    CONSTRAINT FK_Zaak_Reservaties_Reservatie FOREIGN KEY (reservaties_Id) REFERENCES Reservatie (Id)
+    Klant_Email     VARCHAR(255) NULL,
+    Tafel_Id        INT          NULL,
+    Zaak_Id         INT          NULL,
+    CONSTRAINT FK_Reservatie_Tafel FOREIGN KEY (Tafel_Id) REFERENCES Tafel (Id),
+    CONSTRAINT FK_Reservatie_Klant FOREIGN KEY (Klant_Email) REFERENCES Klant (Email),
+    CONSTRAINT FK_Reservatie_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
 );

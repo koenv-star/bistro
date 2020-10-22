@@ -16,8 +16,8 @@ public class Menu {
     private int id;
 
     @NotNull
-    @OneToMany
-    @Column(name = "MenuItems")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
     public Menu() {

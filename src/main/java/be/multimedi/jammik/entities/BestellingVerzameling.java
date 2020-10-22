@@ -17,8 +17,8 @@ public class BestellingVerzameling {
     private int id;
 
     @NotNull
-    @OneToMany
-    @Column(name = "Bestellingen")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "Bestellingen")
     private List<Bestelling> bestellingen;
 
     public BestellingVerzameling() {

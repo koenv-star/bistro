@@ -38,14 +38,17 @@ public class Reservatie {
     private double totaal;
 
     @ManyToOne
+    @JoinColumn(name="Klant_Email", referencedColumnName="Email")
     @NotNull
     private Klant klant;
 
     @OneToOne
+    @JoinColumn(name="Zaak_Id", referencedColumnName="Id")
     @NotNull
     private Zaak zaak;
 
     @OneToOne
+    @JoinColumn(name="Tafel_Id", referencedColumnName="Id")
     @NotNull
     private Tafel tafel;
 

@@ -16,8 +16,8 @@ public class Bestelling {
     private int id;
 
     @NotNull
-    @OneToMany
-    @Column(name = "MenuItems")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+//    @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
     public Bestelling() {
