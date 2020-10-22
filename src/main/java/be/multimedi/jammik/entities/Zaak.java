@@ -16,6 +16,7 @@ public class Zaak {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     @Column(name="Id")
     private int id;
 
@@ -54,18 +55,16 @@ public class Zaak {
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY)
-//    @Column(name="Tafels")
     private List<Tafel> tafels;
 
     @NotNull
     @OneToMany(mappedBy="zaak", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
-//    @Column(name="Reservaties")
     private List<Reservatie> reservaties;
 
     public Zaak() {
     }
 
-    public Zaak(int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
+    public Zaak(@Min(1) int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
                 OpeningsUren openingsUren, Adres adres, Menu menu, Uitbater uitbater, List<Tafel> tafels,
                 List<Reservatie> reservaties) {
 

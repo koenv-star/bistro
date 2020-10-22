@@ -15,12 +15,10 @@ public class Klant extends Person {
 
     @NotNull
     @OneToMany(mappedBy="klant", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
-//    @Column(name = "Reservaties")
     private List<Reservatie> reservaties;
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
-//    @Column(name = "BestellingVerzamelingen")
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
     public Klant() {

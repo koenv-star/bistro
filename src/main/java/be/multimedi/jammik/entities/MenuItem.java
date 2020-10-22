@@ -4,6 +4,7 @@ package be.multimedi.jammik.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 // Gemaakt door: Michael Creelle
 
@@ -13,6 +14,7 @@ public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     @Column(name="Id")
     private int id;
 
@@ -27,7 +29,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int id, String naam, float prijs) {
+    public MenuItem(@Min(1) int id, String naam, float prijs) {
         setId(id);
         setNaam(naam);
         setPrijs(prijs);

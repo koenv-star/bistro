@@ -13,18 +13,17 @@ public class OpeningsUren {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Min(0)
+    @Min(1)
     @Column(name="Id")
     private int id;
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
-//    @Column(name="Dagen")
     private List<Dag> dagen;
 
     public OpeningsUren() {
     }
 
-    public OpeningsUren(@Min(0) int id, List<Dag> dagen) {
+    public OpeningsUren(@Min(1) int id, List<Dag> dagen) {
         setId(id);
         setDagen(dagen);
     }

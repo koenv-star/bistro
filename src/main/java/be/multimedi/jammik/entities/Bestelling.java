@@ -2,6 +2,7 @@ package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 // Gemaakt door: Michael Creelle
@@ -12,18 +13,18 @@ public class Bestelling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     @Column(name="Id")
     private int id;
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
-//    @Column(name = "MenuItems")
     private List<MenuItem> menuItems;
 
     public Bestelling() {
     }
 
-    public Bestelling(int id, List<MenuItem> menuItems) {
+    public Bestelling(@Min(1) int id, List<MenuItem> menuItems) {
         setId(id);
         setMenuItems(menuItems);
     }

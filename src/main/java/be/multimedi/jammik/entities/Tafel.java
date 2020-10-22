@@ -3,6 +3,7 @@ package be.multimedi.jammik.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 // Gemaakt door: Michael Creelle
 
@@ -12,6 +13,7 @@ public class Tafel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     @Column(name="Id")
     private int id;
 
@@ -22,7 +24,7 @@ public class Tafel {
     public Tafel() {
     }
 
-    public Tafel(int id, int stoelen) {
+    public Tafel(@Min(1) int id, int stoelen) {
         setId(id);
         setStoelen(stoelen);
     }

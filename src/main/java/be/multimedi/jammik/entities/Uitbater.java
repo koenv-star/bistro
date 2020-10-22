@@ -14,7 +14,6 @@ public class Uitbater extends Person{
 
     @NotNull
     @OneToMany(mappedBy="uitbater", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
-//    @Column(name = "Zaken")
     private List<Zaak> zaken;
 
     public Uitbater() {
