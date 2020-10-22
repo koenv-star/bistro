@@ -53,7 +53,7 @@ public class Zaak {
     private Uitbater uitbater;
 
     @NotNull
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany(fetch=FetchType.LAZY)
 //    @Column(name="Tafels")
     private List<Tafel> tafels;
 

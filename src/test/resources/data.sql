@@ -21,7 +21,8 @@ INSERT INTO Adres(Id, Straat, HuisNr, Postcode, Gemeente)
 VALUES (1, 'JavaStraat', 18, 3000, 'Leuven'),
        (2, 'SpringStraat', 255, 2000, 'Antwerpen'),
        (3, 'JPAWeg', 64, 1020, 'Ergens'),
-       (4, 'HibernateStraat', 50, 1000, 'Leuven');
+       (4, 'HibernateStraat', 50, 1000, 'Leuven'),
+       (5, 'JavaEEStraat', 150, 3000, 'Leuven');
 
 INSERT INTO Bestelling(Id) VALUES (1), (2), (3);
 
@@ -29,6 +30,7 @@ INSERT INTO BestellingVerzameling(Id) VALUES (1), (2), (3);
 
 INSERT INTO Dag(Naam, OpeningsUur, SluitingsUur)
 VALUES ('Ma', '12:30:00', '19:00:00'),
+       ('Di', '09:45:00', '13:30:00'),
        ('Wo', '08:15:00', '21:30:00'),
        ('Zo', '12:00:00', '20:45:00');
 
@@ -64,20 +66,20 @@ INSERT INTO Klant_bestellingVerzamelingen(Klant_Email, bestellingVerzamelingen_I
 VALUES ('resto@rant.be', 2), ('test@klant.be', 1);
 
 INSERT INTO Menu_menuItems(Menu_Id, menuItems_Id)
-VALUES (1, 2), (1, 3), (2, 1), (2, 3);
+VALUES (1, 2), (1, 3), (2, 1), (2, 3), (3, 1);
 
 INSERT INTO Bestelling_menuItems(Bestelling_Id, menuItems_Id)
 VALUES (1, 2), (2, 3), (2, 2), (3, 1);
 
 INSERT INTO Openingsuren_dagen(Openingsuren_Id, dagen_Naam)
-VALUES (1, 'Ma'), (1, 'Zo'), (2, 'Wo'), (2, 'Zo');
+VALUES (1, 'Ma'), (1, 'Zo'), (2, 'Wo'), (2, 'Zo'), (3, 'Di');
 
 INSERT INTO Zaak(Id, Naam, Parking, Rating, Adres_Id, Menu_Id, Openingsuren_Id, Uitbater_Email)
 VALUES (1, 'Bistro Mehmet', 1, 5, 3, 1, 2, 'mehmet@jammik.be'),
-       (2, 'Bistro Michael', 1, 5, 1, 3, 2, 'michael@jammik.be'),
+       (2, 'Bistro Michael', 1, 5, 1, 2, 2, 'michael@jammik.be'),
        (3, 'Bistro Koen', 1, 5, 4, 2, 3, 'koen@jammik.be'),
-       (4, 'Bistro Jan', 1, 5, 1, 3, 1, 'jan@jammik.be'),
-       (5, 'Bistro Mehmet 2', 0, 4, 1, 1, 2, 'mehmet@jammik.be');
+       (4, 'Bistro Jan', 1, 5, 2, 3, 1, 'jan@jammik.be'),
+       (5, 'Bistro Mehmet 2', 0, 4, 5, 1, 2, 'mehmet@jammik.be');
 
 INSERT INTO Zaak_tafels(Zaak_Id, tafels_Id)
 VALUES (1, 2), (1, 2),

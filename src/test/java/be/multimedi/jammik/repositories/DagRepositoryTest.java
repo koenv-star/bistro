@@ -40,7 +40,7 @@ class DagRepositoryTest {
     @Test
     void findAll() {
         List<Dag> dagen = dagRepository.findAll();
-        assertEquals(3, dagen.size());
+        assertEquals(4, dagen.size());
     }
 
     @Test
@@ -48,12 +48,12 @@ class DagRepositoryTest {
         Dag dag = new Dag("Za", LocalTime.of(9,15), LocalTime.of(18, 0));
         dag = dagRepository.save(dag);
         assertEquals("Za", dag.getNaam());
-        assertEquals(4, dagRepository.findAll().size());
+        assertEquals(5, dagRepository.findAll().size());
     }
 
     @Test
     void deleteById() {
         dagRepository.deleteById("Wo");
-        assertEquals(2, dagRepository.findAll().size());
+        assertEquals(3, dagRepository.findAll().size());
     }
 }

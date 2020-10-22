@@ -14,8 +14,6 @@ import java.time.LocalTime;
 @EnableJpaRepositories(basePackages = {"be.multimedi.jammik.repositories"})
 public class JammikApplication implements CommandLineRunner {
 
-	@Autowired
-	private DagRepository dagRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JammikApplication.class, args);
@@ -23,7 +21,6 @@ public class JammikApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Dag dag = new Dag("Za", LocalTime.of(9, 15), LocalTime.of(18, 0));
-		dagRepository.save(dag);
+
 	}
 }
