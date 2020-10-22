@@ -38,14 +38,14 @@ class AdresRepositoryTest {
     void findAll() {
         List<Adres> adressen = adresRepository.findAll();
         assertNotNull(adressen);
-        assertEquals(3, adressen.size());
+        assertEquals(4, adressen.size());
     }
 
     @Test
     void save() {
         Adres adres = new Adres(0, "HibernateStraat", "15", 1000, "JavaMeerBeek");
         Adres savedAdres = adresRepository.save(adres);
-        assertEquals(4, savedAdres.getId());
+        assertEquals(5, savedAdres.getId());
     }
 
     @Test
@@ -53,6 +53,6 @@ class AdresRepositoryTest {
         adresRepository.deleteById(3);
 
         List<Adres> adressen = adresRepository.findAll();
-        assertEquals(2, adressen.size());
+        assertEquals(3, adressen.size());
     }
 }

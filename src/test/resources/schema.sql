@@ -1,9 +1,9 @@
 CREATE TABLE Adres (
     Id                          INT IDENTITY PRIMARY KEY,
-    Gemeente                    VARCHAR(255) NULL,
-    HuisNr                      VARCHAR(255) NULL,
-    Postcode                    INT          NULL,
-    Straat                      VARCHAR(255) NULL
+    Gemeente                    VARCHAR(255) NOT NULL,
+    HuisNr                      VARCHAR(255) NOT NULL,
+    Postcode                    INT          NOT NULL,
+    Straat                      VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Bestelling (
@@ -101,7 +101,7 @@ CREATE TABLE Zaak (
     Uitbater_Email  VARCHAR(255) NULL,
     CONSTRAINT FK_Zaak_Uitbater FOREIGN KEY (Uitbater_Email) REFERENCES Uitbater (Email),
     CONSTRAINT FK_Zaak_Menu FOREIGN KEY (Menu_Id) REFERENCES Menu (Id),
-    CONSTRAINT FK_Zaak_Adres FOREIGN KEY (Adres_Id) REFERENCES Adres (Id),
+    CONSTRAINT FK_Zaak_Adres FOREIGN KEY (Adres_Id) REFERENCES Adres (Id) ON DELETE CASCADE,
     CONSTRAINT FK_Zaak_Openingsuren FOREIGN KEY (Openingsuren_Id) REFERENCES Openingsuren (Id)
 );
 
@@ -109,7 +109,7 @@ CREATE TABLE Zaak_tafels (
      Zaak_Id         INT NOT NULL,
      tafels_Id       INT NOT NULL,
      CONSTRAINT FK_Zaak_Tafels_Tafel FOREIGN KEY (tafels_Id) REFERENCES Tafel (Id),
-     CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
+     CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id) ON DELETE CASCADE
 );
 
 CREATE TABLE Reservatie (
@@ -122,5 +122,5 @@ CREATE TABLE Reservatie (
     Zaak_Id         INT          NULL,
     CONSTRAINT FK_Reservatie_Tafel FOREIGN KEY (Tafel_Id) REFERENCES Tafel (Id),
     CONSTRAINT FK_Reservatie_Klant FOREIGN KEY (Klant_Email) REFERENCES Klant (Email),
-    CONSTRAINT FK_Reservatie_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id)
+    CONSTRAINT FK_Reservatie_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id) ON DELETE CASCADE
 );

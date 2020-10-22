@@ -38,7 +38,7 @@ public class Zaak {
     private OpeningsUren openingsUren;
 
     @NotNull
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
     @JoinColumn(name="Adres_Id", referencedColumnName="Id")
     private Adres adres;
 

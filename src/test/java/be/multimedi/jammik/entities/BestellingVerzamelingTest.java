@@ -38,10 +38,10 @@ class BestellingVerzamelingTest {
         assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(-1));
     }
 
-    @Test
-    void throw_exception_on_0_id() {
-        assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(0));
-    }
+//    @Test
+//    void throw_exception_on_0_id() {
+//        assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(0));
+//    }
 
     @Test
     void set_get_bestellingen() {
