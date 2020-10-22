@@ -29,7 +29,7 @@ public class Menu {
     }
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if (id < 0) throw new IllegalArgumentException("id mag niet negatief zijn");
         this.id = id;
     }
 
