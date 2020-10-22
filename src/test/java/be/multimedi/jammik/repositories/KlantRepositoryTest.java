@@ -73,8 +73,8 @@ class KlantRepositoryTest {
         Klant klant = new Klant("java@mail.com", "test", "test", generateLongString(),
                 857.2d, reservaties, bestellingVerzamelingen);
 
-        klantRepository.save(klant);
-        assertThrows(IllegalArgumentException.class, () -> klantRepository.save(klant));
+        klant = klantRepository.save(klant);
+        assertEquals("java@mail.com", klant.getEmail());
     }
 
     @Test

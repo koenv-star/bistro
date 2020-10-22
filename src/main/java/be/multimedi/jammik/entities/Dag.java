@@ -3,10 +3,7 @@ package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalTime;
 
 // Gemaakt door: Michael Creelle
@@ -33,7 +30,7 @@ public class Dag {
 
     public Dag(String naam, LocalTime openingsUur, LocalTime sluitingsUur) {
         setNaam(naam);
-        setSluitingsUur(openingsUur);
+        setOpeningsUur(openingsUur);
         setSluitingsUur(sluitingsUur);
     }
 

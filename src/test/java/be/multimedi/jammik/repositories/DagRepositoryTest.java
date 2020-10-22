@@ -22,10 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class DagRepositoryTest {
 
     private DagRepository dagRepository;
+    private OpeningsUrenRepository our;
 
     @Autowired
-    public DagRepositoryTest(DagRepository dagRepository) {
+    public DagRepositoryTest(DagRepository dagRepository, OpeningsUrenRepository our) {
         this.dagRepository = dagRepository;
+        this.our = our;
     }
 
     @Test
@@ -43,7 +45,7 @@ class DagRepositoryTest {
 
     @Test
     void save() {
-        Dag dag = new Dag("Za", LocalTime.of(9, 15), LocalTime.of(18, 0));
+        Dag dag = new Dag("Za", LocalTime.of(9,15), LocalTime.of(18, 0));
         dag = dagRepository.save(dag);
         assertEquals("Za", dag.getNaam());
         assertEquals(4, dagRepository.findAll().size());
