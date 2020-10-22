@@ -29,7 +29,7 @@ public class Klant extends Person {
     public Klant() {
     }
 
-    public Klant(@Email String email, String naam, String voornaam, String wachtwoord, int krediet,
+    public Klant(@Email String email, String naam, String voornaam, String wachtwoord, double krediet,
                  List<Reservatie> reservaties, List<BestellingVerzameling> bestellingVerzamelingen) {
 
         super(email, naam, voornaam, wachtwoord, krediet);

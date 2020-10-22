@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Gemaakt door Jan
  */
-public interface DagRepository extends JpaRepository<Dag, Integer> {
+public interface DagRepository extends JpaRepository<Dag, String> {
 
-    default Dag getDagById(int id) {
-        return getOne(id);
-    }
+    Dag getDagByNaam(String naam);
 }

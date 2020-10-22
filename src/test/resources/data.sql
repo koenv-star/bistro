@@ -31,6 +31,11 @@ INSERT INTO BestellingVerzameling_bestellingen(BestellingVerzameling_Id, bestell
 VALUES (2, 1), (3, 1), (2, 3);
 
 INSERT INTO Dag(Naam, OpeningsUur, SluitingsUur)
-VALUES ('Ma', '12:30 P.M.', '19:00 P.M.'),
-       ('Wo', '08:15 A.M.', '21:30 P.M.'),
-       ('Zo', '12:00 P.M.', '20:45 P.M.');
+VALUES ('Ma', '12:30:00', '19:00:00'),
+       ('Wo', '08:15:00', '21:30:00'),
+       ('Zo', '12:00:00', '20:45:00');
+
+INSERT INTO Klant(email, Krediet, Naam, Voornaam, Wachtwoord)
+VALUES ('jammik@bistro.be', 150.6, 'Jammik', 'Bistro', 'BiJam123'),
+       ('resto@rant.be', 750.6, 'Rant', 'Resto', 'RaRo789'),
+       ('test@klant.be', 300, 'mail', 'klant', 'klma852');

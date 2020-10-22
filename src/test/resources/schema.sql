@@ -1,5 +1,5 @@
 CREATE TABLE Adres (
-    Id                          INT IDENTITY PRIMARY KEY ,
+    Id                          INT IDENTITY PRIMARY KEY,
     Gemeente                    VARCHAR(255) NULL,
     HuisNr                      VARCHAR(255) NULL,
     Postcode                    INT          NULL,

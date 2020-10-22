@@ -33,12 +33,12 @@ public abstract class Person {
 
     @NotNull
     @Column(name = "Krediet")
-    protected int krediet;
+    protected double krediet;
 
     public Person() {
     }
 
-    public Person(@Email String email, String naam, String voornaam, String wachtwoord, int krediet) {
+    public Person(@Email String email, String naam, String voornaam, String wachtwoord, double krediet) {
         setEmail(email);
         setNaam(naam);
         setVoornaam(voornaam);
@@ -82,11 +82,11 @@ public abstract class Person {
         this.wachtwoord = wachtwoord;
     }
 
-    public int getKrediet() {
+    public double getKrediet() {
         return krediet;
     }
 
-    public void setKrediet(int krediet) {
+    public void setKrediet(double krediet) {
         if (krediet < 0) throw new IllegalArgumentException("krediet mag niet negatief zijn");
         this.krediet = krediet;
     }

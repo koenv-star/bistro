@@ -17,7 +17,7 @@ public class OpeningsUren {
     @Column(name="Id")
     private int id;
 
-    @OneToMany(mappedBy="openingsUur", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
     @Column(name="Dagen")
     private List<Dag> dagen;
 
