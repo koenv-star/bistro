@@ -1,5 +1,6 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -29,6 +30,7 @@ public abstract class Person {
     protected String voornaam;
 
     @NotNull
+    @JsonIgnore
     @Column(name = "Wachtwoord")
     protected String wachtwoord;
 
