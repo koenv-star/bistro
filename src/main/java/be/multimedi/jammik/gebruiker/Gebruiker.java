@@ -14,6 +14,7 @@ public class Gebruiker implements UserDetails {
 
     private String naam;
     private String voornaam;
+
     @JsonIgnore
     private String paswoord;
 

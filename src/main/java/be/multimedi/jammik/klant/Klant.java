@@ -1,5 +1,6 @@
 package be.multimedi.jammik.klant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ public class Klant {
     private String email;
     private String naam;
     private String voornaam;
+
+    @JsonIgnore
     private String paswoord;
 
     public String getEmail() {
