@@ -19,8 +19,6 @@ public class Gebruiker implements UserDetails {
     private String paswoord;
 
     public Gebruiker(Klant klant) {
-
-
         this.voornaam = klant.getVoornaam();
         this.naam = klant.getNaam();
         this.paswoord = klant.getWachtwoord();

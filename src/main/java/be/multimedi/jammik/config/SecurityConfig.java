@@ -68,10 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService);
-
-
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -87,13 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/klanten/register","/", "/login").permitAll()
-                .anyRequest().authenticated()
-        ;
-
-
+                .anyRequest().authenticated();
     }
-
-
 }
 
 
