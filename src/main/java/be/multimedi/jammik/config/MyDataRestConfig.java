@@ -1,4 +1,4 @@
-package be.multimedi.jammik.Config;
+package be.multimedi.jammik.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

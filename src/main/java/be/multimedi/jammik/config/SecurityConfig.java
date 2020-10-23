@@ -1,4 +1,4 @@
-package be.multimedi.jammik.Config;
+package be.multimedi.jammik.config;
 
 import be.multimedi.jammik.services.KlantServiceImpl;
 import be.multimedi.jammik.jwt.JwtConfig;
