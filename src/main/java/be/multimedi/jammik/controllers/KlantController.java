@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * made by Koen
+ */
+
 @RestController
 @RequestMapping("/klant")
 public class KlantController {
@@ -20,11 +24,11 @@ public class KlantController {
 
     @GetMapping()
     List<Klant> findAll() {
-        return service.findAllEntities();
+        return service.findAllKlanten();
     }
 
     @PostMapping("register")
     public Klant save(@RequestBody Klant klant) {
-        return service.saveEntity(klant);
+        return service.saveKlant(klant);
     }
 }

@@ -6,14 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.crypto.SecretKey;
-
+/**
+ * made by Koen
+ */
 @Configuration
 public class JwtSecretKey {
 
-    private final JwtConfig jwtConfig;
+    private JwtConfig jwtConfig;
 
     @Autowired
-    public JwtSecretKey(JwtConfig jwtConfig) {
+    public void setJwtConfig(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
     }
 

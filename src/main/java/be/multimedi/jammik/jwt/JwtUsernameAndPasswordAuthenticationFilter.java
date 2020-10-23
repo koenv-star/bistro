@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * made by Koen
+ */
+
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;

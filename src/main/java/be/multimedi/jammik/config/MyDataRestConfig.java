@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+ * made by Koen
+ */
+
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 

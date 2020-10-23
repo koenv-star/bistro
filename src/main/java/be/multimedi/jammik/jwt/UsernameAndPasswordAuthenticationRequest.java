@@ -1,5 +1,8 @@
 package be.multimedi.jammik.jwt;
 
+/**
+ * made by Koen
+ */
 public class UsernameAndPasswordAuthenticationRequest {
 
     private String username;

@@ -1,4 +1,4 @@
-package be.multimedi.jammik.config;
+package be.multimedi.jammik.Config;
 
 import be.multimedi.jammik.services.KlantServiceImpl;
 import be.multimedi.jammik.jwt.JwtConfig;
@@ -20,6 +20,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.SecretKey;
+
+/**
+ * made by Koen
+ */
 
 @Configuration
 @EnableWebSecurity
@@ -68,7 +72,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService);
+
+
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -83,9 +90,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/klanten/register","/", "/login").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/klanten/register", "/", "/login").permitAll()
+                .anyRequest().authenticated()
+        ;
+
+
     }
+
+
 }
 
 

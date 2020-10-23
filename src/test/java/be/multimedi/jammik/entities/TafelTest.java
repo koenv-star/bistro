@@ -33,10 +33,7 @@ class TafelTest {
         assertThrows(IllegalArgumentException.class, () -> tafel.setId(-1));
     }
 
-    @Test
-    void throw_on_0_id() {
-        assertThrows(IllegalArgumentException.class, () -> tafel.setId(0));
-    }
+
 
     @Test
     void set_get_stoelen() {
