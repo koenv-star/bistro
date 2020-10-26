@@ -1,6 +1,5 @@
 package be.multimedi.jammik.services;
 
-import be.multimedi.jammik.entities.Klant;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.UitbaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;

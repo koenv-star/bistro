@@ -63,7 +63,7 @@ class ZaakRepositoryTest {
 
         Adres adres = ar.getAdresById(1);
         Menu menu = mr.getMenuById(3);
-        Uitbater uitbater = ur.getUitbaterByEmail("michael@jammik.be");
+        Uitbater uitbater = ur.findUitbaterByEmail("michael@jammik.be").get();
         List<Tafel> tafels = new ArrayList<>(List.of(tr.getTafelById(2), tr.getTafelById(3)));
         List<Reservatie> reservaties = new ArrayList<>(List.of(rr.getReservatieById(1), rr.getReservatieById(3)));
 

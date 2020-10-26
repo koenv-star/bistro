@@ -21,7 +21,7 @@ public class KlantServiceImpl {
         return klantRepository.findAll();
     }
     public Klant findKlantById(String email) {
-        return klantRepository.getKlantByEmail(email);
+        return klantRepository.findKlantByEmail(email).get();
     }
     public Klant saveKlant(Klant klant) {
         klant.setWachtwoord(encoder.encode(klant.getWachtwoord()));

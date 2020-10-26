@@ -48,7 +48,7 @@ class KlantRepositoryTest {
 
     @Test
     void getByEmail() {
-        Klant klant = klantRepository.getKlantByEmail("resto@rant.be");
+        Klant klant = klantRepository.findKlantByEmail("resto@rant.be").get();
         assertNotNull(klant);
         assertEquals("Resto", klant.getVoornaam());
     }

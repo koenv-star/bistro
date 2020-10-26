@@ -42,7 +42,7 @@ class UitbaterRepositoryTest {
 
     @Test
     void getByEmail() {
-        Uitbater uitbater = ur.getUitbaterByEmail("mehmet@jammik.be");
+        Uitbater uitbater = ur.findUitbaterByEmail("mehmet@jammik.be").get();
         assertNotNull(uitbater);
         assertEquals("Bistro Mehmet 2", uitbater.getZaken().get(1).getNaam());
     }
