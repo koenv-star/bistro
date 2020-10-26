@@ -41,11 +41,13 @@ public abstract class Person {
 
 
     @NotNull
-    @OneToMany(mappedBy="klant", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany(fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "Klant_Uitbater_Email")
     private List<Reservatie> reservaties;
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "Klant_Uitbater_Email")
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
 

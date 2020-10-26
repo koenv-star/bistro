@@ -18,6 +18,7 @@ public class OpeningsUren {
     private int id;
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "OpeningsUrenId")
     private List<Dag> dagen;
 
     public OpeningsUren() {
