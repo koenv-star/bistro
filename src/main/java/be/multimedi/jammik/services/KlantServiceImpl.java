@@ -14,14 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class KlantServiceImpl implements UserDetailsService {
 
     private KlantRepository repo;
-
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 
     public List<Klant> findAllEntities() {
         return repo.findAll();

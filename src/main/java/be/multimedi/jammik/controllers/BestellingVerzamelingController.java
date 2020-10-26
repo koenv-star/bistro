@@ -48,6 +48,8 @@ public class BestellingVerzamelingController extends ExceptionHandling {
 
     @DeleteMapping(path="/{id:^\\d+$}")
     public ResponseEntity<?> deleteMapping(@PathVariable("id") int id) {
+        if(id <= 0) return ResponseEntity.badRequest().build();
+
         bvr.deleteById(id);
         return ResponseEntity.ok().build();
     }

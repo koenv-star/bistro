@@ -45,6 +45,8 @@ public class DagController extends ExceptionHandling {
 
     @DeleteMapping(path="/{id:^\\d+$}")
     public ResponseEntity<?> deleteHandler(@PathVariable("naam") String naam) {
+        if(naam == null) return ResponseEntity.badRequest().build();
+
         dr.deleteById(naam);
         return ResponseEntity.ok().build();
     }
