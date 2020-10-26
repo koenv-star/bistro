@@ -34,4 +34,8 @@ public class Uitbater extends Person{
         if (zaken == null) throw new IllegalArgumentException("zaken mag niet null zijn");
         this.zaken = zaken;
     }
+
+    public String getRole() {
+        return "ROLE_UITBATER";
+    }
 }

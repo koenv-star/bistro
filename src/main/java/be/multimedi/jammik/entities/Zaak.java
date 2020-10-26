@@ -49,7 +49,7 @@ public class Zaak {
     private Menu menu;
 
     @NotNull
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="Uitbater_Email", referencedColumnName="Email")
     private Uitbater uitbater;
 

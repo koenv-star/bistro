@@ -76,19 +76,19 @@ class PersonTest {
 
     @Test
     void setWachtwoord() {
-        String ww = "a".repeat(72);
+        String ww = "a".repeat(60);
         personMock.setWachtwoord(ww);
         assertEquals(ww, personMock.getWachtwoord());
     }
 
     @Test
     void throws_on_71long_wachtwoord() {
-        assertThrows(IllegalArgumentException.class, () -> personMock.setWachtwoord("a".repeat(71)));
+        assertThrows(IllegalArgumentException.class, () -> personMock.setWachtwoord("a".repeat(59)));
     }
 
     @Test
     void throws_on_73long_wachtwoord() {
-        assertThrows(IllegalArgumentException.class, () -> personMock.setWachtwoord("a".repeat(73)));
+        assertThrows(IllegalArgumentException.class, () -> personMock.setWachtwoord("a".repeat(61)));
     }
 
     @Test

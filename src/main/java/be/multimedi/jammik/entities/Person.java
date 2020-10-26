@@ -2,10 +2,11 @@ package be.multimedi.jammik.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
+
+import java.util.List;
 
 import static be.multimedi.jammik.tools.StringTool.validEmail;
 
@@ -37,6 +38,16 @@ public abstract class Person {
     @NotNull
     @Column(name = "Krediet")
     protected double krediet;
+
+
+    @NotNull
+    @OneToMany(mappedBy="klant", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    private List<Reservatie> reservaties;
+
+    @NotNull
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    private List<BestellingVerzameling> bestellingVerzamelingen;
+
 
     public Person() {
     }
@@ -81,7 +92,7 @@ public abstract class Person {
     }
 
     public void setWachtwoord(String wachtwoord) {
-        if (wachtwoord == null || wachtwoord.length() != 72) throw new IllegalArgumentException("wachtwoord mag niet null of moet 72 characters lang zijn");
+        if (wachtwoord == null || wachtwoord.length() != 60) throw new IllegalArgumentException("wachtwoord mag niet null of moet 60 characters lang zijn");
         this.wachtwoord = wachtwoord;
     }
 
@@ -92,5 +103,23 @@ public abstract class Person {
     public void setKrediet(double krediet) {
         if (krediet < 0) throw new IllegalArgumentException("krediet mag niet negatief zijn");
         this.krediet = krediet;
+    }
+
+    public List<Reservatie> getReservaties() {
+        return reservaties;
+    }
+
+    public void setReservaties(List<Reservatie> reservaties) {
+        if(reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
+        this.reservaties = reservaties;
+    }
+
+    public List<BestellingVerzameling> getBestellingVerzamelingen() {
+        return bestellingVerzamelingen;
+    }
+
+    public void setBestellingVerzamelingen(List<BestellingVerzameling> bestellingVerzamelingen) {
+        if (bestellingVerzamelingen == null) throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
+        this.bestellingVerzamelingen = bestellingVerzamelingen;
     }
 }
