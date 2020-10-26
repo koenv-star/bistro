@@ -12,7 +12,7 @@ import java.util.List;
  * made by Koen
  */
 @Service
-public class UitbaterServiceImpl {
+public class UitbaterController {
 
     private UitbaterRepository uitbaterRepository;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
