@@ -19,6 +19,11 @@ public class Uitbater extends Klant {
     public Uitbater() {
     }
 
+    @Override
+    public String getRole() {
+        return "ROLE_UITBATER";
+    }
+
     public Uitbater(@Email String email, String naam, String voornaam, String wachtwoord, double krediet,
                    List<Reservatie> reservaties, List<BestellingVerzameling> bestellingVerzamelingen , List<Zaak> zaken) {
 

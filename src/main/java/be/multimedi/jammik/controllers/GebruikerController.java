@@ -1,7 +1,7 @@
 package be.multimedi.jammik.controllers;
 
 
-import be.multimedi.jammik.entities.Klant;
+import be.multimedi.jammik.entities.Person;
 import be.multimedi.jammik.services.GebruikerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("gebruiker")
+@RequestMapping("Gebruiker")
 @CrossOrigin()
 public class GebruikerController {
 
@@ -27,9 +27,7 @@ public class GebruikerController {
     }
 
     @GetMapping()
-    public Klant getHuidigeGebruiker() {
-
-        System.out.println(service.getPerson().getNaam());
+    public Person getHuidigeGebruiker() {
         return service.getPerson();
     }
 

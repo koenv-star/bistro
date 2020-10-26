@@ -1,34 +1,22 @@
 package be.multimedi.jammik.controllers;
 
-import be.multimedi.jammik.entities.Klant;
-import be.multimedi.jammik.services.KlantServiceImpl;
+import be.multimedi.jammik.entities.Person;
+import be.multimedi.jammik.services.GebruikerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /**
  * made by Koen
  */
-
 @RestController
-@RequestMapping("/klant")
+@RequestMapping("Klanten")
+@CrossOrigin()
 public class KlantController {
 
-    private KlantServiceImpl service;
 
-    @Autowired
-    public KlantController(KlantServiceImpl service) {
-        this.service = service;
     }
 
-    @GetMapping()
-    List<Klant> findAll() {
-        return service.findAllKlanten();
-    }
-
-    @PostMapping("register")
-    public Klant save(@RequestBody Klant klant) {
-        return service.saveKlant(klant);
-    }
-}

@@ -15,5 +15,5 @@ public interface KlantRepository extends JpaRepository<Klant, String> {
     default Klant getKlantByEmail(String email) {
         return getOne(email);
     }
-    Optional<Klant> findKlantByEmail(String email);
+
 }

@@ -2,9 +2,11 @@ package be.multimedi.jammik;
 
 
 import be.multimedi.jammik.entities.Klant;
+import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.KlantRepository;
 
 
+import be.multimedi.jammik.repositories.UitbaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +26,10 @@ public class JammikApplication implements CommandLineRunner {
     }
 
     @Autowired
-    private KlantRepository repo;
+    private KlantRepository klantrepo;
+
+    @Autowired
+    private UitbaterRepository uitbaterrepo;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -38,8 +43,17 @@ public class JammikApplication implements CommandLineRunner {
 //        klant.setWachtwoord(encoder.encode("KoenVochten"));
 //        klant.setNaam("Vochten");
 //        klant.setVoornaam("Koen");
+//        klant.setEmail("koenvochten@hotmail.com");
 //        repo.save(klant);
 
+
+//        Uitbater uitbater= new Uitbater();
+//
+//        uitbater.setWachtwoord(encoder.encode("JanO"));
+//        uitbater.setNaam("Olaerts");
+//        uitbater.setVoornaam("Jan");
+//        uitbater.setEmail("jano@hotmail.com");
+//        uitbaterrepo.save(uitbater);
 
     }
 

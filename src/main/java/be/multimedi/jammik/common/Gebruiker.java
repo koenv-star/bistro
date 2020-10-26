@@ -1,6 +1,6 @@
 package be.multimedi.jammik.common;
 
-import be.multimedi.jammik.entities.Klant;
+import be.multimedi.jammik.entities.Person;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,19 +19,21 @@ public class Gebruiker implements UserDetails {
 
     private String naam;
     private String voornaam;
-    private String email;
+    private  String email;
     private String role;
+
 
     @JsonIgnore
     private String paswoord;
 
-    public Gebruiker(Klant klant) {
-        this.voornaam = klant.getVoornaam();
-        this.naam = klant.getNaam();
-        this.paswoord = klant.getWachtwoord();
-        this.email = klant.getEmail();
-        this.role = klant.getRole();
+    public Gebruiker(Person person) {
 
+
+        this.voornaam = person.getVoornaam();
+        this.naam = person.getNaam();
+        this.paswoord = person.getWachtwoord();
+        this.email=person.getEmail();
+        this.role=person.getRole();
     }
 
     @Override
@@ -46,7 +48,7 @@ public class Gebruiker implements UserDetails {
 
     @Override
     public String getUsername() {
-        return voornaam + naam;
+        return email;
     }
 
     @Override

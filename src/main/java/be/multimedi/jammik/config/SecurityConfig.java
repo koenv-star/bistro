@@ -1,6 +1,6 @@
 package be.multimedi.jammik.Config;
 
-import be.multimedi.jammik.services.KlantServiceImpl;
+import be.multimedi.jammik.services.GebruikerServiceImpl;
 import be.multimedi.jammik.jwt.JwtConfig;
 import be.multimedi.jammik.jwt.JwtTokenVerifier;
 import be.multimedi.jammik.jwt.JwtUsernameAndPasswordAuthenticationFilter;
@@ -30,7 +30,7 @@ import javax.crypto.SecretKey;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    KlantServiceImpl userDetailService;
+    GebruikerServiceImpl userDetailService;
     SecretKey secretKey;
     JwtConfig jwtConfig;
 
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void setUserDetailService(KlantServiceImpl userDetailService) {
+    public void setUserDetailService(GebruikerServiceImpl userDetailService) {
         this.userDetailService = userDetailService;
     }
 
@@ -90,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/klanten/register", "/", "/login").permitAll()
+                .antMatchers("/klanten/register", "/", "/login","/gebruiker").permitAll()
                 .anyRequest().authenticated()
         ;
 
