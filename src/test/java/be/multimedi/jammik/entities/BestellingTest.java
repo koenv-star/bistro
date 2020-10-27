@@ -65,11 +65,24 @@ class BestellingTest {
     void set_get_zaak() {
         Zaak zaak = new Zaak();
         bestelling.setZaak(zaak);
-        assertThrows(IllegalArgumentException.class, () -> bestelling.getZaak());
+        assertEquals(zaak, bestelling.getZaak());
     }
 
     @Test
     void throws_on_zaak_null(){
         assertThrows(IllegalArgumentException.class, () -> bestelling.setZaak(null));
     }
+
+    @Test
+    void set_get_bestelling_verzameling() {
+        BestellingVerzameling bestellingVerzameling = new BestellingVerzameling();
+        bestelling.setBestellingVerzameling(bestellingVerzameling);
+        assertEquals(bestellingVerzameling, bestelling.getBestellingVerzameling());
+    }
+
+    @Test
+    void throws_on_bestellingverzameling_null(){
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setBestellingVerzameling(null));
+    }
+
 }

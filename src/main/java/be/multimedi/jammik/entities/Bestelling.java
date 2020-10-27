@@ -68,4 +68,13 @@ public class Bestelling {
         if (zaak == null) throw new IllegalArgumentException("zaak mag niet null zijn");
         this.zaak = zaak;
     }
+
+    public BestellingVerzameling getBestellingVerzameling() {
+        return bestellingVerzameling;
+    }
+
+    public void setBestellingVerzameling(BestellingVerzameling bestellingVerzameling) {
+        if(bestellingVerzameling == null) throw new IllegalArgumentException("Bestellingverzameling mag niet null zijn");
+        this.bestellingVerzameling = bestellingVerzameling;
+    }
 }
