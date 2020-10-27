@@ -24,9 +24,14 @@ public class Bestelling {
             inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})
     private List<MenuItem> menuItems;
 
-    @ManyToOne
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     private Zaak zaak;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bestelling_verzameling_id")
+    private BestellingVerzameling bestellingVerzameling;
 
     public Bestelling() {
     }

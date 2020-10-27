@@ -19,13 +19,12 @@ public class BestellingVerzameling {
     private int id;
 
     @NotNull
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
-    @JoinColumn(name = "bestelling_verzameling_id")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy = "bestellingVerzameling")
     private List<Bestelling> bestellingen;
 
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     private Klant klant;
 
