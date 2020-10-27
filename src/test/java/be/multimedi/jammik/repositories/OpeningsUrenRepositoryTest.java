@@ -33,7 +33,7 @@ class OpeningsUrenRepositoryTest {
     void getById() {
         OpeningsUren ou = our.getOpeningsUrenById(2);
         assertNotNull(ou);
-        assertEquals("Wo", ou.getDagen().get(0).getNaam());
+        assertEquals("Di", ou.getDagen().get(0).getNaam());
     }
 
     @Test
@@ -46,8 +46,8 @@ class OpeningsUrenRepositoryTest {
     @Test
     void save() {
         OpeningsUren ourn = new OpeningsUren(0, List.of(
-                dr.getDagByNaam("Ma"),
-                dr.getDagByNaam("Zo")
+                dr.getDagById(1),
+                dr.getDagById(2)
         ));
 
         ourn = our.save(ourn);

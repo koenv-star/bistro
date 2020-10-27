@@ -13,6 +13,10 @@ import java.time.LocalTime;
 public class Dag {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private int id;
+
     @NotNull
     @Column(name = "Naam")
     private String naam;
@@ -28,10 +32,19 @@ public class Dag {
     public Dag() {
     }
 
-    public Dag(String naam, LocalTime openingsUur, LocalTime sluitingsUur) {
+    public Dag(int id ,String naam, LocalTime openingsUur, LocalTime sluitingsUur) {
+        setId(id);
         setNaam(naam);
         setOpeningsUur(openingsUur);
         setSluitingsUur(sluitingsUur);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNaam() {

@@ -53,15 +53,6 @@ class ReservatieTest {
     }
 
     @Test
-    void setTotaal() {
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setTotaal(-1d));
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setTotaal(1.205));
-
-        reservatie.setTotaal(10.30);
-        assertEquals(10.30, reservatie.getTotaal());
-    }
-
-    @Test
     void setKlant() {
         assertThrows(IllegalArgumentException.class, () -> reservatie.setPerson(null));
 

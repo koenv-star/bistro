@@ -57,7 +57,7 @@ class KlantRepositoryTest {
     void findAll() {
         List<Klant> klanten = klantRepository.findAll();
         assertNotNull(klanten);
-        assertEquals(3, klanten.size());
+        assertEquals(7, klanten.size());
     }
 
     @Test
@@ -80,6 +80,6 @@ class KlantRepositoryTest {
     @Test
     void deleteByEmail() {
         klantRepository.deleteById("test@klant.be");
-        assertEquals(2, klantRepository.findAll().size());
+        assertEquals(6, klantRepository.findAll().size());
     }
 }

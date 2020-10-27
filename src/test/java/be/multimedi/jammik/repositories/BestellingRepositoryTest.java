@@ -42,7 +42,7 @@ class BestellingRepositoryTest {
     void findAll() {
         List<Bestelling> bestellingen = bestellingRepository.findAll();
         assertNotNull(bestellingen);
-        assertEquals(3, bestellingen.size());
+        assertEquals(4, bestellingen.size());
     }
 
     @Test
@@ -54,12 +54,12 @@ class BestellingRepositoryTest {
         )));
 
         bestelling = bestellingRepository.save(bestelling);
-        assertEquals(4, bestelling.getId());
+        assertEquals(5, bestelling.getId());
     }
 
     @Test
     void deleteById() {
         bestellingRepository.deleteById(2);
-        assertEquals(2, bestellingRepository.findAll().size());
+        assertEquals(3, bestellingRepository.findAll().size());
     }
 }

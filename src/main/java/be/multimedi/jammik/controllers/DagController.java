@@ -23,12 +23,12 @@ public class DagController extends ExceptionHandling {
         this.dr = dr;
     }
 
-    @GetMapping(path="/{id:^\\d+$}", produces="application/json")
+/*    @GetMapping(path="/{id:^\\d+$}", produces="application/json")
     public ResponseEntity<Dag> getByNaamHandler(@PathVariable("naam") String naam) {
 
         Dag dag = dr.getDagByNaam(naam);
         return dag != null ? ResponseEntity.ok(dag) : ResponseEntity.badRequest().build();
-    }
+    }*/
 
     @GetMapping(produces="application/json")
     public ResponseEntity<List<Dag>> getAllHandler() {
@@ -43,11 +43,11 @@ public class DagController extends ExceptionHandling {
         return ResponseEntity.ok(dr.save(dag));
     }
 
-    @DeleteMapping(path="/{id:^\\d+$}")
+/*    @DeleteMapping(path="/{id:^\\d+$}")
     public ResponseEntity<?> deleteHandler(@PathVariable("naam") String naam) {
         if(naam == null) return ResponseEntity.badRequest().build();
 
         dr.deleteById(naam);
         return ResponseEntity.ok().build();
-    }
+    }*/
 }

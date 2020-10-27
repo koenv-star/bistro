@@ -32,11 +32,6 @@ public class Reservatie {
     @Column(name="UurMarge")
     private LocalTime uurMarge;
 
-    @Min(0)
-    @Digits(integer=3, fraction=2)
-    @Column(name="Totaal")
-    private double totaal;
-
     @ManyToOne
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @NotNull
@@ -55,14 +50,12 @@ public class Reservatie {
     public Reservatie() {
     }
 
-    public Reservatie(@Min(1) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge,
-                      @Min(0) @Digits(integer = 3, fraction = 2) double totaal, @NotNull Klant klant,
+    public Reservatie(@Min(1) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge, @NotNull Klant klant,
                       @NotNull Zaak zaak, @NotNull Tafel tafel) {
 
         setId(id);
         setTijdstip(tijdstip);
         setUurMarge(uurMarge);
-        setTotaal(totaal);
         setPerson(klant);
         setZaak(zaak);
         setTafel(tafel);
@@ -97,18 +90,6 @@ public class Reservatie {
     public void setUurMarge(LocalTime uurMarge) {
         if(uurMarge == null) throw new IllegalArgumentException("uurMarge kan niet null zijn");
         this.uurMarge = uurMarge;
-    }
-
-    public double getTotaal() {
-        return totaal;
-    }
-
-    public void setTotaal(double totaal) {
-        if(totaal < 0) throw new IllegalArgumentException("totaal kan niet kleiner dan 0 zijn");
-        if(!String.valueOf(totaal).matches("^[\\d]+\\.([\\d]|[\\d]{2})$"))
-            throw new IllegalArgumentException("totaal moet twee getallen na de komma hebben");
-
-        this.totaal = totaal;
     }
 
     public Klant getPerson() {
@@ -147,7 +128,6 @@ public class Reservatie {
                 "id=" + id +
                 ", wanneer=" + tijdstip +
                 ", uurMarge=" + uurMarge +
-                ", totaal=" + totaal +
                 ", klant=" + klant +
                 ", zaak=" + zaak +
                 ", tafel=" + tafel +

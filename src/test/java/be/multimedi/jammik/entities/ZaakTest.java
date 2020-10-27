@@ -134,4 +134,18 @@ class ZaakTest {
 
         assertEquals(2, zaak.getReservaties().size());
     }
+
+    @Test
+    void setBestellingen() {
+        List<Bestelling> bestellingen = new ArrayList<>();
+        bestellingen.add(new Bestelling());
+        bestellingen.add(new Bestelling());
+        zaak.setBestellingen(bestellingen);
+        assertEquals(2, zaak.getBestellingen().size());
+    }
+
+    @Test
+    void throws_exception_on_null_bestellingen() {
+        assertThrows(IllegalArgumentException.class, () -> zaak.setBestellingen(null));
+    }
 }

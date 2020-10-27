@@ -19,7 +19,7 @@ public class OpeningsUren {
     @Column(name="Id")
     private int id;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
     @JoinColumn(name = "openings_uren_id")
     private List<Dag> dagen;
 

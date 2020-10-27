@@ -62,8 +62,7 @@ public class Zaak {
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "zaak_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "zaak")
     private List<Bestelling> bestellingen;
 
     public Zaak() {

@@ -18,7 +18,10 @@ public class Menu {
     private int id;
 
     @NotNull
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @JoinTable(name = "Menu_MenuItems",
+                joinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")},
+                inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})
     private List<MenuItem> menuItems;
 
     public Menu() {
