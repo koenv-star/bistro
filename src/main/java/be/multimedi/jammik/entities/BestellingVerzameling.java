@@ -42,7 +42,7 @@ public class BestellingVerzameling {
     }
 
     public void setId(int id) {
-        if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
         this.id = id;
     }
 
@@ -53,5 +53,14 @@ public class BestellingVerzameling {
     public void setBestellingen(List<Bestelling> bestellingen) {
         if (bestellingen == null || bestellingen.size() < 1) throw new IllegalArgumentException("bestellingen mag niet null of leeg zijn");
         this.bestellingen = bestellingen;
+    }
+
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Klant klant) {
+        if (klant == null) throw new IllegalArgumentException("klant mag niet null zijn");
+        this.klant = klant;
     }
 }

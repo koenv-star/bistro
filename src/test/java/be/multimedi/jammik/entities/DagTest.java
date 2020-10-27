@@ -26,6 +26,18 @@ class DagTest {
     }
 
     @Test
+    void set_get_Id() {
+        dag.setId(15);
+        assertEquals(15, dag.getId());
+    }
+
+    @Test
+    void throws_on_0_or_negative_id() {
+        assertThrows(IllegalArgumentException.class, () -> dag.setId(-1));
+        assertThrows(IllegalArgumentException.class, () -> dag.setId(0));
+    }
+
+    @Test
     void set_get_naam() {
         String naam = "someday";
         dag.setNaam(naam);

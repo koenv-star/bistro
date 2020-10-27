@@ -44,6 +44,7 @@ public class Dag {
     }
 
     public void setId(int id) {
+        if (id < 1) throw new IllegalArgumentException("Id mag niet 0 of negative");
         this.id = id;
     }
 

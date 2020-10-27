@@ -1,5 +1,6 @@
 package be.multimedi.jammik.entities;
 
+import org.checkerframework.checker.units.qual.K;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,10 +39,10 @@ class BestellingVerzamelingTest {
         assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(-1));
     }
 
-//    @Test
-//    void throw_exception_on_0_id() {
-//        assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(0));
-//    }
+    @Test
+    void throw_exception_on_0_id() {
+        assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setId(0));
+    }
 
     @Test
     void set_get_bestellingen() {
@@ -59,5 +60,17 @@ class BestellingVerzamelingTest {
     @Test
     void throws_exception_on_empty_list_menuItems() {
         assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setBestellingen(new ArrayList<>()));
+    }
+
+    @Test
+    void set_get_Klant(){
+        Klant klant = new Klant();
+        bestellingVerzameling.setKlant(klant);
+        assertEquals( klant, bestellingVerzameling.getKlant());
+    }
+
+    @Test
+    void throw_on_klant_null(){
+        assertThrows(IllegalArgumentException.class, () -> bestellingVerzameling.setKlant(null));
     }
 }

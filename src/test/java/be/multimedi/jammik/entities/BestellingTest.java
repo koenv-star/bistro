@@ -60,4 +60,16 @@ class BestellingTest {
     void throws_exception_on_empty_list_menuItems() {
         assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItems(new ArrayList<>()));
     }
+
+    @Test
+    void set_get_zaak() {
+        Zaak zaak = new Zaak();
+        bestelling.setZaak(zaak);
+        assertThrows(IllegalArgumentException.class, () -> bestelling.getZaak());
+    }
+
+    @Test
+    void throws_on_zaak_null(){
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setZaak(null));
+    }
 }

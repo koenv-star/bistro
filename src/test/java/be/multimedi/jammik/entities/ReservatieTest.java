@@ -36,7 +36,7 @@ class ReservatieTest {
     }
 
     @Test
-    void setWanneer() {
+    void setTijdstip() {
         assertThrows(IllegalArgumentException.class, () -> reservatie.setTijdstip(null));
         assertThrows(IllegalArgumentException.class, () -> reservatie.setTijdstip(LocalDateTime.of(2019, 8, 12, 11, 50)));
 
