@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("Gebruiker")
+@RequestMapping("gebruiker")
 @CrossOrigin()
 public class GebruikerController {
 
@@ -28,6 +28,8 @@ public class GebruikerController {
 
     @GetMapping()
     public Person getHuidigeGebruiker() {
+
+        System.out.println(service.getPerson().getNaam());
         return service.getPerson();
     }
 

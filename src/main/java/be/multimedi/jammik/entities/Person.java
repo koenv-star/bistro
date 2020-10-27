@@ -30,7 +30,7 @@ public abstract class Person {
     protected String voornaam;
 
     @NotNull
-    @JsonIgnore
+//    @JsonIgnore
     @Column(name = "Wachtwoord")
     protected String wachtwoord;
 
