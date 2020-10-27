@@ -35,6 +35,7 @@ public class Uitbater extends Klant {
         this.zaken = zaken;
     }
 
+    @Override
     public String getRole() {
         return "ROLE_UITBATER";
     }

@@ -35,4 +35,9 @@ class UitbaterTest {
     void throws_on_null_zaken() {
         assertThrows(IllegalArgumentException.class, () -> uitbater.setZaken(null));
     }
+
+    @Test
+    void getRole_returns_ROLE_UITBATER() {
+        assertEquals("ROLE_UITBATER", uitbater.getRole());
+    }
 }

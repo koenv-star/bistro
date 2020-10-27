@@ -134,4 +134,9 @@ class KlantTest {
     void throws_on_null_bestellingVerzameling() {
         assertThrows(IllegalArgumentException.class, () -> klant.setBestellingVerzamelingen(null));
     }
+
+    @Test
+    void getRole_returns_ROLE_KLANT() {
+        assertEquals("ROLE_KLANT", klant.getRole());
+    }
 }
