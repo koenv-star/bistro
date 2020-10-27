@@ -39,7 +39,7 @@ class ReservatieRepositoryTest {
     void getById() {
         Reservatie reservatie = rr.getReservatieById(3);
         assertNotNull(reservatie);
-        assertEquals("jammik@bistro.be", reservatie.getKlant().getEmail());
+        assertEquals("jammik@bistro.be", reservatie.getPerson().getEmail());
     }
 
     @Test

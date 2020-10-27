@@ -38,11 +38,11 @@ public class Reservatie {
     private double totaal;
 
     @ManyToOne
-    @JoinColumn(name="Klant_Email", referencedColumnName="Email")
+    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @NotNull
     private Klant klant;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="Zaak_Id", referencedColumnName="Id")
     @NotNull
     private Zaak zaak;
@@ -63,7 +63,7 @@ public class Reservatie {
         setTijdstip(tijdstip);
         setUurMarge(uurMarge);
         setTotaal(totaal);
-        setKlant(klant);
+        setPerson(klant);
         setZaak(zaak);
         setTafel(tafel);
     }
@@ -111,11 +111,11 @@ public class Reservatie {
         this.totaal = totaal;
     }
 
-    public Klant getKlant() {
+    public Klant getPerson() {
         return klant;
     }
 
-    public void setKlant(Klant klant) {
+    public void setPerson(Klant klant) {
         if(klant == null) throw new IllegalArgumentException("klant kan niet null zijn");
 
         this.klant = klant;

@@ -2,6 +2,7 @@ package be.multimedi.jammik.entities;
 
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.JoinColumnOrFormula;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

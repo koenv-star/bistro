@@ -39,7 +39,7 @@ class KlantRepositoryTest {
     private String generateLongString() {
         StringBuilder sb = new StringBuilder();
         char c = 'A';
-        for(int i = 0; i < 72; i++) {
+        for(int i = 0; i < 60; i++) {
             sb.append(c++);
         }
 

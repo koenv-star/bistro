@@ -20,7 +20,14 @@ public class BestellingVerzameling {
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "bestelling_verzameling_id")
     private List<Bestelling> bestellingen;
+
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
+    private Klant klant;
 
     public BestellingVerzameling() {
     }

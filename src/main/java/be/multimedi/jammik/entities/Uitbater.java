@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Uitbater")
-public class Uitbater extends Person{
+public class Uitbater extends Klant {
 
     @NotNull
     @OneToMany(mappedBy="uitbater", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
@@ -20,9 +20,9 @@ public class Uitbater extends Person{
     }
 
     public Uitbater(@Email String email, String naam, String voornaam, String wachtwoord, double krediet,
-                    List<Zaak> zaken) {
+                   List<Reservatie> reservaties, List<BestellingVerzameling> bestellingVerzamelingen , List<Zaak> zaken) {
 
-        super(email, naam, voornaam, wachtwoord, krediet);
+        super(email, naam, voornaam, wachtwoord, krediet, reservaties, bestellingVerzamelingen);
         setZaken(zaken);
     }
 

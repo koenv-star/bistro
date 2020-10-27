@@ -18,11 +18,97 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class KlantTest {
+    private class KlantMock extends Klant {}
     private Klant klant;
 
     @BeforeEach
     void setUp() {
         klant = new Klant();
+    }
+
+    @Test
+    void set_get_email() {
+        String email = "jos@somemail.com";
+        klant.setEmail(email);
+        assertEquals(email, klant.getEmail());
+    }
+
+    @Test
+    void throws_on_invalidEmail() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setEmail("1@2.3>6"));
+    }
+
+    @Test
+    void throws_on_null_email() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setEmail(null));
+    }
+
+    @Test
+    void set_get_naam() {
+        String naam = "jos";
+        klant.setNaam(naam);
+        assertEquals(naam, klant.getNaam());
+    }
+
+    @Test
+    void throws_on_empty_naam() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setNaam(""));
+    }
+
+    @Test
+    void throws_on_null_naam() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setNaam(null));
+    }
+
+    @Test
+    void set_get_voornaam() {
+        String voornaam = "jos";
+        klant.setVoornaam(voornaam);
+        assertEquals(voornaam, klant.getVoornaam());
+    }
+
+    @Test
+    void throws_on_empty_voornaam() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setVoornaam(""));
+    }
+
+    @Test
+    void throws_on_null_voornaam() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setVoornaam(null));
+    }
+
+    @Test
+    void setWachtwoord() {
+        String ww = "a".repeat(60);
+        klant.setWachtwoord(ww);
+        assertEquals(ww, klant.getWachtwoord());
+    }
+
+    @Test
+    void throws_on_71long_wachtwoord() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setWachtwoord("a".repeat(59)));
+    }
+
+    @Test
+    void throws_on_73long_wachtwoord() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setWachtwoord("a".repeat(61)));
+    }
+
+    @Test
+    void throws_on_null_wachtwoord() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setWachtwoord(null));
+    }
+
+    @Test
+    void set_get_krediet() {
+        int krediet = 15;
+        klant.setKrediet(krediet);
+        assertEquals(krediet, klant.getKrediet());
+    }
+
+    @Test
+    void throws_on_negative_krediet() {
+        assertThrows(IllegalArgumentException.class, () -> klant.setKrediet(-1));
     }
 
     @Test

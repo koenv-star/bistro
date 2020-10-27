@@ -1,5 +1,7 @@
 package be.multimedi.jammik.repositories;
 
+import be.multimedi.jammik.entities.BestellingVerzameling;
+import be.multimedi.jammik.entities.Reservatie;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.entities.Zaak;
 import org.junit.jupiter.api.Test;
@@ -54,8 +56,8 @@ class UitbaterRepositoryTest {
 
     @Test
     void save() {
-        Uitbater uitbater = new Uitbater("nieuweuitbater@jammik.be", "Nieuwe", "Uitbater", generateLongString(), 1000d,
-                List.of(new Zaak()));
+        Uitbater uitbater = new Uitbater("nieuweuitbater@jammik.be", "Nieuwe", "Uitbater", generateLongString(), 1000d
+                , List.of(new Reservatie()), List.of(new BestellingVerzameling()), List.of(new Zaak()));
 
         uitbater = ur.save(uitbater);
         assertEquals("nieuweuitbater@jammik.be", uitbater.getEmail());

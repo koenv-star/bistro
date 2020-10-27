@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 import java.util.List;
 
@@ -55,11 +54,17 @@ public class Zaak {
 
     @NotNull
     @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name = "zaak_id")
     private List<Tafel> tafels;
 
     @NotNull
     @OneToMany(mappedBy="zaak", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
     private List<Reservatie> reservaties;
+
+    @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "zaak_id")
+    private List<Bestelling> bestellingen;
 
     public Zaak() {
     }
@@ -168,5 +173,14 @@ public class Zaak {
     public void setReservaties(List<Reservatie> reservaties) {
         if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
         this.reservaties = reservaties;
+    }
+
+    public List<Bestelling> getBestellingen() {
+        return bestellingen;
+    }
+
+    public void setBestellingen(List<Bestelling> bestellingen) {
+        if (bestellingen == null) throw new IllegalArgumentException("bestellingen mag niet null zijn");
+        this.bestellingen = bestellingen;
     }
 }

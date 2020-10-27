@@ -1,5 +1,7 @@
 package be.multimedi.jammik.entities;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.util.List;
@@ -17,8 +19,8 @@ public class OpeningsUren {
     @Column(name="Id")
     private int id;
 
-    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
-    @JoinColumn(name = "OpeningsUrenId")
+    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @JoinColumn(name = "openings_uren_id")
     private List<Dag> dagen;
 
     public OpeningsUren() {
