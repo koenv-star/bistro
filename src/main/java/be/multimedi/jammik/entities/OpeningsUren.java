@@ -15,7 +15,7 @@ public class OpeningsUren {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
@@ -26,7 +26,7 @@ public class OpeningsUren {
     public OpeningsUren() {
     }
 
-    public OpeningsUren(@Min(1) int id, List<Dag> dagen) {
+    public OpeningsUren(@Min(0) int id, List<Dag> dagen) {
         setId(id);
         setDagen(dagen);
     }
@@ -37,7 +37,6 @@ public class OpeningsUren {
 
     public void setId(int id) {
         if(id < 0) throw new IllegalArgumentException("id kan niet kleiner zijn dan 0");
-
         this.id = id;
     }
 

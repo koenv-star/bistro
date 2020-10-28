@@ -39,11 +39,6 @@ class BestellingTest {
     }
 
     @Test
-    void throw_exception_on_0_id() {
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setId(0));
-    }
-
-    @Test
     void set_get_MenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem());

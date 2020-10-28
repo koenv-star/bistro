@@ -15,7 +15,7 @@ public class Zaak {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
@@ -68,7 +68,7 @@ public class Zaak {
     public Zaak() {
     }
 
-    public Zaak(@Min(1) int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
+    public Zaak(@Min(0) int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
                 OpeningsUren openingsUren, Adres adres, Menu menu, Uitbater uitbater, List<Tafel> tafels,
                 List<Reservatie> reservaties) {
 
@@ -85,7 +85,7 @@ public class Zaak {
     }
 
     public void setId(int id) {
-        if (id < 0) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 

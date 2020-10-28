@@ -15,7 +15,7 @@ public class Adres {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
@@ -41,7 +41,7 @@ public class Adres {
     public Adres() {
     }
 
-    public Adres(@Min(1) int id,
+    public Adres(@Min(0) int id,
                  @NotBlank @Size(min = 2) String straat,
                  @NotBlank String huisNr,
                  @Min(1000)
@@ -60,9 +60,7 @@ public class Adres {
     }
 
     public void setId(int id) {
-        if(id < 0)
-            throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
-
+        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 

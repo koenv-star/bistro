@@ -18,7 +18,7 @@ public class Reservatie {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
@@ -49,9 +49,8 @@ public class Reservatie {
     public Reservatie() {
     }
 
-    public Reservatie(@Min(1) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge, @NotNull Klant klant,
+    public Reservatie(@Min(0) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge, @NotNull Klant klant,
                       @NotNull Zaak zaak, @NotNull Tafel tafel) {
-
         setId(id);
         setTijdstip(tijdstip);
         setUurMarge(uurMarge);
@@ -65,9 +64,7 @@ public class Reservatie {
     }
 
     public void setId(int id) {
-        if(id < 0)
-            throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
-
+        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 

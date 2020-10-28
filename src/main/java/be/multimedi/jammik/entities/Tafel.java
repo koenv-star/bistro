@@ -24,7 +24,7 @@ public class Tafel {
     public Tafel() {
     }
 
-    public Tafel(@Min(1) int id, int stoelen) {
+    public Tafel(@Min(0) int id, int stoelen) {
         setId(id);
         setStoelen(stoelen);
     }

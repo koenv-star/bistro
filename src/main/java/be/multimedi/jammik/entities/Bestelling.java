@@ -13,7 +13,7 @@ public class Bestelling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Min(1)
+    @Min(0)
     @Column(name="Id")
     private int id;
 
@@ -36,14 +36,14 @@ public class Bestelling {
     public Bestelling() {
     }
 
-    public Bestelling(@Min(1) int id, List<MenuItem> menuItems, Zaak zaak) {
+    public Bestelling(@Min(0) int id, List<MenuItem> menuItems, Zaak zaak) {
         setId(id);
         setMenuItems(menuItems);
         setZaak(zaak);
     }
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("id mag niet 0 of negatief zijn");
+        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 

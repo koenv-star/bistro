@@ -4,6 +4,7 @@ package be.multimedi.jammik.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalTime;
 
 // Gemaakt door: Michael Creelle
@@ -15,6 +16,7 @@ public class Dag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
+    @Min(0)
     private int id;
 
     @NotNull
@@ -44,7 +46,7 @@ public class Dag {
     }
 
     public void setId(int id) {
-        if (id < 1) throw new IllegalArgumentException("Id mag niet 0 of negative");
+        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 

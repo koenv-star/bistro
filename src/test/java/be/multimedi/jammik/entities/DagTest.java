@@ -32,9 +32,8 @@ class DagTest {
     }
 
     @Test
-    void throws_on_0_or_negative_id() {
+    void throws_on_negative_id() {
         assertThrows(IllegalArgumentException.class, () -> dag.setId(-1));
-        assertThrows(IllegalArgumentException.class, () -> dag.setId(0));
     }
 
     @Test

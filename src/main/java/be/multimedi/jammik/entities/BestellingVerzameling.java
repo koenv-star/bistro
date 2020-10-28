@@ -31,7 +31,7 @@ public class BestellingVerzameling {
     public BestellingVerzameling() {
     }
 
-    public BestellingVerzameling(@Min(1) int id, List<Bestelling> bestellingen) {
+    public BestellingVerzameling(@Min(0) int id, List<Bestelling> bestellingen) {
         setId(id);
         setBestellingen(bestellingen);
     }
