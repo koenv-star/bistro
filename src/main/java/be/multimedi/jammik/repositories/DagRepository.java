@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
  * Gemaakt door Jan
  */
 @Repository
-public interface DagRepository extends JpaRepository<Dag, String> {
+public interface DagRepository extends JpaRepository<Dag, Integer> {
 
-    Dag getDagByNaam(String naam);
+    Dag getDagById(int id);
+
 }

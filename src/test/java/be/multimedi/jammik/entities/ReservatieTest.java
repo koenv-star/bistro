@@ -54,12 +54,12 @@ class ReservatieTest {
 
     @Test
     void setKlant() {
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setPerson(null));
+        assertThrows(IllegalArgumentException.class, () -> reservatie.setKlant(null));
 
         Klant klant = new Klant();
         klant.setEmail("test@test.be");
-        reservatie.setPerson(klant);
-        assertEquals("test@test.be", reservatie.getPerson().getEmail());
+        reservatie.setKlant(klant);
+        assertEquals("test@test.be", reservatie.getKlant().getEmail());
     }
 
     @Test

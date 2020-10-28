@@ -3,7 +3,6 @@ package be.multimedi.jammik.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -56,7 +55,7 @@ public class Reservatie {
         setId(id);
         setTijdstip(tijdstip);
         setUurMarge(uurMarge);
-        setPerson(klant);
+        setKlant(klant);
         setZaak(zaak);
         setTafel(tafel);
     }
@@ -92,11 +91,11 @@ public class Reservatie {
         this.uurMarge = uurMarge;
     }
 
-    public Klant getPerson() {
+    public Klant getKlant() {
         return klant;
     }
 
-    public void setPerson(Klant klant) {
+    public void setKlant(Klant klant) {
         if(klant == null) throw new IllegalArgumentException("klant kan niet null zijn");
 
         this.klant = klant;

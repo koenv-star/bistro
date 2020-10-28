@@ -52,7 +52,7 @@ class ReservatieRepositoryTest {
     @Test
     void save() {
         Reservatie reservatie = new Reservatie(0, LocalDateTime.of(2021, 12, 25, 9, 15),
-                LocalTime.of(1, 0), 125.5, kr.findKlantByEmail("jammik@bistro.be").get(), zr.getZaakById(2), tr.getTafelById(1));
+                LocalTime.of(1, 0), kr.findKlantByEmail("jammik@bistro.be").get(), zr.getZaakById(2), tr.getTafelById(1));
 
         reservatie = rr.save(reservatie);
         assertEquals(4, reservatie.getId());
