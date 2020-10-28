@@ -3,7 +3,6 @@ package be.multimedi.jammik.services;
 
 import be.multimedi.jammik.common.Gebruiker;
 import be.multimedi.jammik.entities.Klant;
-import be.multimedi.jammik.entities.Person;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.KlantRepository;
 import be.multimedi.jammik.repositories.UitbaterRepository;
@@ -26,9 +25,9 @@ public class GebruikerServiceImpl implements UserDetailsService {
 
     private UitbaterRepository uitbaterRepository;
 
-    private Person person;
+    private Klant person;
 
-    public Person getPerson() {
+    public Klant getPerson() {
         return person;
     }
 

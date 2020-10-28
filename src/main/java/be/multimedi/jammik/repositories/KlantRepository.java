@@ -12,7 +12,6 @@ import java.util.Optional;
 @Repository
 public interface KlantRepository extends JpaRepository<Klant, String> {
 
-
     Optional<Klant> findKlantByEmail(String email);
 
 }

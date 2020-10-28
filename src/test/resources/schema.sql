@@ -1,130 +1,132 @@
-
-
-CREATE TABLE IF NOT EXISTS Adres (
-    Id                          INT IDENTITY PRIMARY KEY,
-    Gemeente                    VARCHAR(255) NOT NULL,
-    HuisNr                      VARCHAR(255) NOT NULL,
-    Postcode                    INT          NOT NULL,
-    Straat                      VARCHAR(255) NOT NULL
+create table if not exists Adres
+(
+    Id       int IDENTITY
+        primary key,
+    Gemeente varchar(255) null,
+    HuisNr   varchar(255) null,
+    Postcode int          null,
+    Straat   varchar(255) null
 );
-
-CREATE TABLE IF NOT EXISTS Bestelling (
-    Id                          INT IDENTITY PRIMARY KEY
+create table if not exists BestellingVerzameling
+(
+    Id          int IDENTITY
+        primary key,
+    Klant_Email varchar(255) null
 );
-
-CREATE TABLE IF NOT EXISTS BestellingVerzameling (
-    Id                          INT IDENTITY PRIMARY KEY
+create table if not exists Klant
+(
+    Email      varchar(255) not null
+        primary key,
+    Krediet    double       null,
+    Naam       varchar(255) null,
+    Voornaam   varchar(255) null,
+    Wachtwoord varchar(255) null
 );
-
-CREATE TABLE IF NOT EXISTS Dag (
-    Naam                        VARCHAR(255) NOT NULL PRIMARY KEY ,
-    OpeningsUur                 TIME NOT NULL,
-    SluitingsUur                TIME NOT NULL
+create table if not exists Menu
+(
+    Id int IDENTITY
+        primary key
 );
-
-CREATE TABLE IF NOT EXISTS Klant (
-    Email                       VARCHAR(255) NOT NULL PRIMARY KEY ,
-    Krediet                     DOUBLE NOT NULL,
-    Naam                        VARCHAR(255) NOT NULL,
-    Voornaam                    VARCHAR(255) NOT NULL,
-    Wachtwoord                  VARCHAR(255) NOT NULL
+create table if not exists MenuItem
+(
+    Id    int IDENTITY
+        primary key,
+    Naam  varchar(255) null,
+    Prijs float        null
 );
-
-CREATE TABLE IF NOT EXISTS Menu (
-    Id INT IDENTITY PRIMARY KEY
+create table if not exists Menu_MenuItems
+(
+    menu_id      int not null,
+    menu_item_id int not null,
+    constraint FKcc68jx1q1g14tne50g12jipcm
+        foreign key (menu_id) references Menu (Id) ON DELETE CASCADE ,
+    constraint FKcguavnqxv4uriuxr916qju5sa
+        foreign key (menu_item_id) references MenuItem (Id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS MenuItem (
-    Id                          INT IDENTITY PRIMARY KEY ,
-    Naam                        VARCHAR(255) NOT NULL,
-    Prijs                       FLOAT NOT NULL
+create table if not exists Openingsuren
+(
+    Id int IDENTITY
+        primary key
 );
-
-CREATE TABLE IF NOT EXISTS Openingsuren (
-    Id                          INT IDENTITY PRIMARY KEY
+create table if not exists Dag
+(
+    id               int IDENTITY
+        primary key,
+    Naam             varchar(255) null,
+    OpeningsUur      time         null,
+    SluitingsUur     time         null,
+    openings_uren_id int          null,
+    constraint FKg25w7pdeyrnhonpku522die1v
+        foreign key (openings_uren_id) references Openingsuren (Id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS Tafel (
-    Id              INT IDENTITY PRIMARY KEY,
-    Stoelen         INT NOT NULL
+create table if not exists Uitbater
+(
+    Email      varchar(255) not null
+        primary key,
+    Krediet    double       null,
+    Naam       varchar(255) null,
+    Voornaam   varchar(255) null,
+    Wachtwoord varchar(255) null
 );
-
-CREATE TABLE IF NOT EXISTS Uitbater (
-    Email           VARCHAR(255) NOT NULL PRIMARY KEY,
-    Krediet         DOUBLE NOT NULL,
-    Naam            VARCHAR(255) NOT NULL,
-    Voornaam        VARCHAR(255) NOT NULL,
-    Wachtwoord      VARCHAR(255) NOT NULL
+create table if not exists Zaak
+(
+    Id              int IDENTITY
+        primary key,
+    Naam            varchar(255) null,
+    Parking         bit          null,
+    Rating          float        null,
+    Adres_Id        int          null,
+    Menu_Id         int          null,
+    Openingsuren_Id int          null,
+    Uitbater_Email  varchar(255) null,
+    constraint FK6olxl6sn5b85w6ykn90exg55u
+        foreign key (Menu_Id) references Menu (Id) ON DELETE CASCADE ,
+    constraint FK9yy7qly1y9uvgm5l1fs8ynatt
+        foreign key (Adres_Id) references Adres (Id) ON DELETE CASCADE ,
+    constraint FKjkdv2a7douv2bfs4uiy0rpp4p
+        foreign key (Openingsuren_Id) references Openingsuren (Id) ON DELETE CASCADE ,
+    constraint FKor2ftcutapr3ehfipjtbfldsw
+        foreign key (Uitbater_Email) references Uitbater (Email) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS BestellingVerzameling_bestellingen (
-    BestellingVerzameling_Id    INT NOT NULL,
-    bestellingen_Id             INT NOT NULL,
-    CONSTRAINT FK_BestellingVerzameling_Bestelling FOREIGN KEY (bestellingen_Id) REFERENCES Bestelling (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_BestellingVerzameling_Bestellingen_BestellingVerzameling  FOREIGN KEY (BestellingVerzameling_Id) REFERENCES
-        BestellingVerzameling (Id) ON DELETE CASCADE
+create table if not exists Bestelling
+(
+    Id                        int IDENTITY primary key,
+    zaak_Id                   int null,
+    bestelling_verzameling_id int null,
+    constraint FK6pgylk2t442urcq35hdgp1dae
+        foreign key (bestelling_verzameling_id) references BestellingVerzameling (Id) ON DELETE CASCADE ,
+    constraint FKqd3hhj7o4aewxl4rcmcdkltuq
+        foreign key (zaak_Id) references Zaak (Id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS Klant_bestellingVerzamelingen (
-    Klant_Email                 VARCHAR(255) NOT NULL,
-    bestellingVerzamelingen_Id  INT NOT NULL,
-    CONSTRAINT FK_Klant_BestellingVerzamelingen_BestellingVerzameling  FOREIGN KEY (bestellingVerzamelingen_Id)
-        REFERENCES BestellingVerzameling (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Klant_BestellingVerzamelingen_Klant  FOREIGN KEY (Klant_Email) REFERENCES Klant (Email) ON DELETE CASCADE
+create table if not exists Bestelling_MenuItems
+(
+    bestelling_id int not null,
+    menu_item_id  int not null,
+    constraint FK3d8r0a1hj2gyddve7ucx4391r
+        foreign key (menu_item_id) references MenuItem (Id) ON DELETE CASCADE ,
+    constraint FKbps9k79up3ic9opqhs2of6i88
+        foreign key (bestelling_id) references Bestelling (Id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS Menu_menuItems (
-    Menu_Id                     INT NOT NULL,
-    menuItems_Id                INT NOT NULL,
-    CONSTRAINT FK_Menu_MenuItems_Menu  FOREIGN KEY (Menu_Id) REFERENCES Menu (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Menu_MenuItems_MenuItem  FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id) ON DELETE CASCADE
+create table if not exists Tafel
+(
+    Id      int IDENTITY
+        primary key,
+    Stoelen int null,
+    zaak_id int null,
+    constraint FK5hnlkh5cb97ymj8x910fqldn4
+        foreign key (zaak_id) references Zaak (Id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS Bestelling_menuItems (
-    Bestelling_Id               INT NOT NULL,
-    menuItems_Id                INT NOT NULL,
-    CONSTRAINT FK_Bestelling_MenuItems_MenuItems FOREIGN KEY (menuItems_Id) REFERENCES MenuItem (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Bestelling_MenuItems_Bestelling FOREIGN KEY (Bestelling_Id) REFERENCES Bestelling (Id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Openingsuren_dagen (
-    OpeningsUren_Id             INT NOT NULL,
-    dagen_Naam                  VARCHAR(255) NOT NULL,
-    CONSTRAINT FK_Openingsuren_dagen_Openingsuren FOREIGN KEY (OpeningsUren_Id) REFERENCES Openingsuren (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Openingsuren_dagen_Dag FOREIGN KEY (dagen_Naam) REFERENCES Dag (Naam) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Zaak (
-    Id              INT IDENTITY PRIMARY KEY,
-    Naam            VARCHAR(255) NOT NULL,
-    Parking         BIT          NOT NULL,
-    Rating          FLOAT        NOT NULL,
-    Adres_Id        INT          NOT NULL,
-    Menu_Id         INT          NOT NULL,
-    Openingsuren_Id INT          NOT NULL,
-    Uitbater_Email  VARCHAR(255) NOT NULL,
-    CONSTRAINT FK_Zaak_Uitbater FOREIGN KEY (Uitbater_Email) REFERENCES Uitbater (Email) ON DELETE CASCADE,
-    CONSTRAINT FK_Zaak_Menu FOREIGN KEY (Menu_Id) REFERENCES Menu (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Zaak_Adres FOREIGN KEY (Adres_Id) REFERENCES Adres (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Zaak_Openingsuren FOREIGN KEY (Openingsuren_Id) REFERENCES Openingsuren (Id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Zaak_tafels (
-     Zaak_Id         INT NOT NULL,
-     tafels_Id       INT NOT NULL,
-     CONSTRAINT FK_Zaak_Tafels_Tafel FOREIGN KEY (tafels_Id) REFERENCES Tafel (Id) ON DELETE CASCADE,
-     CONSTRAINT FK_Zaak_Tafels_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS Reservatie (
-    Id              INT IDENTITY PRIMARY KEY,
-    Tijdstip        DATETIME(6)  NOT NULL,
-    Totaal          DOUBLE       NOT NULL,
-    UurMarge        TIME         NOT NULL,
-    Klant_Email     VARCHAR(255) NOT NULL,
-    Tafel_Id        INT          NOT NULL,
-    Zaak_Id         INT          NOT NULL,
-    CONSTRAINT FK_Reservatie_Tafel FOREIGN KEY (Tafel_Id) REFERENCES Tafel (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_Reservatie_Klant FOREIGN KEY (Klant_Email) REFERENCES Klant (Email) ON DELETE CASCADE,
-    CONSTRAINT FK_Reservatie_Zaak FOREIGN KEY (Zaak_Id) REFERENCES Zaak (Id) ON DELETE CASCADE
+create table if not exists Reservatie
+(
+    Id          int IDENTITY
+        primary key,
+    Tijdstip    datetime(6)  null,
+    UurMarge    time         null,
+    Klant_Email varchar(255) null,
+    Tafel_Id    int          null,
+    Zaak_Id     int          null,
+    constraint FKk58raqe3godi237rdkvxd62e9
+        foreign key (Zaak_Id) references Zaak (Id) ON DELETE CASCADE ,
+    constraint FKn86jbj6wnofa80g7l0jw8ikfw
+        foreign key (Tafel_Id) references Tafel (Id) ON DELETE CASCADE
 );

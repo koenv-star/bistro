@@ -24,7 +24,7 @@ public class BestellingVerzameling {
 
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     private Klant klant;
 

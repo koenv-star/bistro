@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class KlantTest {
-    private class KlantMock extends Klant {}
     private Klant klant;
 
     @BeforeEach
@@ -85,12 +84,12 @@ class KlantTest {
     }
 
     @Test
-    void throws_on_71long_wachtwoord() {
+    void throws_on_59long_wachtwoord() {
         assertThrows(IllegalArgumentException.class, () -> klant.setWachtwoord("a".repeat(59)));
     }
 
     @Test
-    void throws_on_73long_wachtwoord() {
+    void throws_on_61long_wachtwoord() {
         assertThrows(IllegalArgumentException.class, () -> klant.setWachtwoord("a".repeat(61)));
     }
 

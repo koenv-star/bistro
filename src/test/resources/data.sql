@@ -42,17 +42,17 @@ VALUES  (1), (2), (3);
 
 INSERT INTO Dag(ID ,Naam, OpeningsUur, SluitingsUur, openings_uren_id)
 VALUES  (1, 'Ma', '12:30:00', '19:00:00', 1),
-(2, 'Di', '09:45:00', '13:30:00', 2),
-(3, 'Wo', '08:15:00', '21:30:00', 2),
-(4, 'Zo', '12:00:00', '20:45:00', 1),
-(5, 'Zo', '12:00:00', '20:45:00', 3),
-(6, 'Zo', '12:00:00', '20:45:00', 2);
+        (2, 'Di', '09:45:00', '13:30:00', 2),
+        (3, 'Wo', '08:15:00', '21:30:00', 2),
+        (4, 'Zo', '12:00:00', '20:45:00', 1),
+        (5, 'Zo', '12:00:00', '20:45:00', 3),
+        (6, 'Zo', '12:00:00', '20:45:00', 2);
 
 
 INSERT INTO MenuItem(Id, Naam, Prijs)
 VALUES  (1, 'Pizza', 15.5),
-(2, 'Spaghetti', 20.25),
-(3, 'Macaroni', 12.0);
+        (2, 'Spaghetti', 20.25),
+        (3, 'Macaroni', 12.0);
 
 INSERT INTO Menu(Id) VALUES (1), (2), (3);
 
@@ -60,10 +60,10 @@ INSERT INTO Menu_menuItems(menu_id, menu_item_id) VALUES (1, 2), (1, 3), (2, 1),
 
 INSERT INTO Zaak(Id, Naam, Parking, Rating, Adres_Id, Menu_Id, Openingsuren_Id, Uitbater_Email)
 VALUES (1, 'Bistro Mehmet', 1, 5, 3, 1, 2, 'mehmet@jammik.be'),
-(2, 'Bistro Michael', 1, 5, 1, 2, 2, 'michael@jammik.be'),
-(3, 'Bistro Koen', 1, 5, 4, 2, 3, 'koen@jammik.be'),
-(4, 'Bistro Jan', 1, 5, 2, 3, 1, 'jan@jammik.be'),
-(5, 'Bistro Mehmet 2', 0, 4, 5, 1, 2, 'mehmet@jammik.be');
+       (2, 'Bistro Michael', 1, 5, 1, 2, 2, 'michael@jammik.be'),
+       (3, 'Bistro Koen', 1, 5, 4, 2, 3, 'koen@jammik.be'),
+       (4, 'Bistro Jan', 1, 5, 2, 3, 1, 'jan@jammik.be'),
+       (5, 'Bistro Mehmet 2', 0, 4, 5, 1, 2, 'mehmet@jammik.be');
 
 INSERT INTO Bestelling(Id, zaak_id, bestelling_verzameling_id) VALUES (1, 4, 2), (2, 2, 3), (3, 3, 1), (4, 4, 2);
 
