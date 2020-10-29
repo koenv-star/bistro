@@ -1,5 +1,7 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -17,7 +19,6 @@ public class Uitbater extends Klant {
     @NotNull
     @OneToMany(mappedBy="uitbater", cascade=CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
-
     private List<Zaak> zaken;
 
     public Uitbater() {

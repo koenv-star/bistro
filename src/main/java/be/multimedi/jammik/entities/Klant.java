@@ -1,6 +1,8 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.LazyCollection;
@@ -24,7 +26,7 @@ public class Klant {
     @NotNull
     @Email
     @Unique
-    @Column(name="Email")
+    @Column(name = "Email")
     protected String email;
 
     @NotNull
@@ -45,16 +47,21 @@ public class Klant {
 
 
     @NotNull
-    @OneToMany(cascade=CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @LazyCollection(LazyCollectionOption.FALSE)
-
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany( cascade=CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
 
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
@@ -77,7 +84,8 @@ public class Klant {
     }
 
     public void setEmail(String email) {
-        if (email == null || !validEmail(email)) throw new IllegalArgumentException("email mag niet null zijn en moet valid email zijn");
+        if (email == null || !validEmail(email))
+            throw new IllegalArgumentException("email mag niet null zijn en moet valid email zijn");
         this.email = email;
     }
 
@@ -86,7 +94,8 @@ public class Klant {
     }
 
     public void setNaam(String naam) {
-        if (naam == null || naam.isBlank() || naam.length() > 25) throw new IllegalArgumentException("naam mag niet null of leeg of langer dan 25 characters zijn");
+        if (naam == null || naam.isBlank() || naam.length() > 25)
+            throw new IllegalArgumentException("naam mag niet null of leeg of langer dan 25 characters zijn");
         this.naam = naam;
     }
 
@@ -95,7 +104,8 @@ public class Klant {
     }
 
     public void setVoornaam(String voornaam) {
-        if (voornaam == null || voornaam.isBlank() || voornaam.length() > 25) throw new IllegalArgumentException("voornaam mag niet null of leeg of langer dan 25 characters zijn");
+        if (voornaam == null || voornaam.isBlank() || voornaam.length() > 25)
+            throw new IllegalArgumentException("voornaam mag niet null of leeg of langer dan 25 characters zijn");
         this.voornaam = voornaam;
     }
 
@@ -104,7 +114,8 @@ public class Klant {
     }
 
     public void setWachtwoord(String wachtwoord) {
-        if (wachtwoord == null || wachtwoord.length() != 60) throw new IllegalArgumentException("wachtwoord mag niet null of moet 60 characters lang zijn");
+        if (wachtwoord == null || wachtwoord.length() != 60)
+            throw new IllegalArgumentException("wachtwoord mag niet null of moet 60 characters lang zijn");
         this.wachtwoord = wachtwoord;
     }
 
@@ -122,7 +133,7 @@ public class Klant {
     }
 
     public void setReservaties(List<Reservatie> reservaties) {
-        if(reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
+        if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
         this.reservaties = reservaties;
     }
 
@@ -131,7 +142,8 @@ public class Klant {
     }
 
     public void setBestellingVerzamelingen(List<BestellingVerzameling> bestellingVerzamelingen) {
-        if (bestellingVerzamelingen == null) throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
+        if (bestellingVerzamelingen == null)
+            throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
         this.bestellingVerzamelingen = bestellingVerzamelingen;
     }
 

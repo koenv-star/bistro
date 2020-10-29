@@ -24,10 +24,8 @@ public class ZaakServiceImpl {
     public List<Zaak> getZakenOpUitbater(String email) {
 
         return repository.findZaaksByUitbaterEmail(email).get();
-
     }
     public List<Zaak> getAlleZaken() {
-        repository.findAll().stream().forEach(System.out::println);
 
         return repository.findAll();
 

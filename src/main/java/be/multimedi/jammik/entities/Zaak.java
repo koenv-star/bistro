@@ -1,5 +1,7 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -53,6 +55,9 @@ public class Zaak {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "Uitbater_Email", referencedColumnName = "Email")
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "email")
     private Uitbater uitbater;
 
     @NotNull
@@ -64,12 +69,19 @@ public class Zaak {
     @NotNull
     @OneToMany(mappedBy = "zaak", cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
 
     private List<Reservatie> reservaties;
 
     @NotNull
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "zaak")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+
     private List<Bestelling> bestellingen;
 
     public Zaak() {

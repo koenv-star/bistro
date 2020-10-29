@@ -22,7 +22,6 @@ public class Menu {
 
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
-
     @ManyToMany( cascade = CascadeType.REMOVE)
     @JoinTable(name = "Menu_MenuItems",
             joinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")},

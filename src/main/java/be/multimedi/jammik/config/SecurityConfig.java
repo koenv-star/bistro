@@ -89,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
 //                .antMatchers("/zaken").hasRole("UITBATER")
-                .antMatchers("/klanten", "/", "/login","/uitbaters","/klants", "/gebruiker","/zaken").permitAll()
+                .antMatchers("/klanten", "/", "/login","/uitbaters","/klants", "/gebruiker","/zaken/**").permitAll()
                 .anyRequest().authenticated()
         ;
 

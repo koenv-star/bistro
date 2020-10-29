@@ -23,7 +23,7 @@ public class Gebruiker implements UserDetails {
     private String role;
 
 
-    @JsonIgnore
+  
     private String paswoord;
 
     public Gebruiker(Klant klant) {

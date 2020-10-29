@@ -19,5 +19,5 @@ public interface ZaakRepository extends JpaRepository<Zaak, Integer> {
 
     Optional<List<Zaak>> findZaaksByUitbaterEmail(String email);
 
-
+    Optional<Zaak> findZaakByNaam(String naam);
 }

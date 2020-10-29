@@ -1,5 +1,7 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,6 +41,9 @@ public class Reservatie {
     @ManyToOne
     @JoinColumn(name="Zaak_Id", referencedColumnName="Id")
     @NotNull
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     private Zaak zaak;
 
     @OneToOne

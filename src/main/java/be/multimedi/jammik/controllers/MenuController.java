@@ -53,4 +53,5 @@ public class MenuController extends ExceptionHandling {
         mr.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
 }

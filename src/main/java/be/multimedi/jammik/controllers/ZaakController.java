@@ -1,7 +1,11 @@
 package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Zaak;
+import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.services.ZaakServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,21 +22,34 @@ public class ZaakController {
 
     private ZaakServiceImpl zaakService;
 
+    private ZaakRepository repository;
+
+    @Autowired
+    public void setRepository(ZaakRepository repository) {
+        this.repository = repository;
+    }
+
     @Autowired
     public void setZaakService(ZaakServiceImpl zaakService) {
         this.zaakService = zaakService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Zaak>>  getAlleZaken() {
+    public ResponseEntity<List<Zaak>> getAlleZaken() {
 
-        return ResponseEntity.ok(zaakService.getAlleZaken()) ;
+        return ResponseEntity.ok(zaakService.getAlleZaken());
     }
 
-    @PostMapping
-    public String getZakenOpUitbater(@RequestBody() String email) {
-        return zaakService.getZakenOpUitbater(email).get(0).getNaam();
+    @GetMapping(value = "{email}")
+    public ResponseEntity<List<Zaak>> getZakenOpUitbater(@PathVariable("email") String email) {
+
+        return ResponseEntity.ok(zaakService.getZakenOpUitbater(email));
     }
 
+    @GetMapping(value = "zaak/{naam}", produces="application/json")
+    public ResponseEntity<Zaak> getZaakbyNaam(@PathVariable("naam") String zaaknaam) {
+
+        return ResponseEntity.ok(repository.findZaakByNaam(zaaknaam).get());
+    }
 
 }
