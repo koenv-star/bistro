@@ -1,6 +1,8 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,7 +15,9 @@ import java.util.List;
 public class Uitbater extends Klant {
 
     @NotNull
-    @OneToMany(mappedBy="uitbater", fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="uitbater", cascade=CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     private List<Zaak> zaken;
 
     public Uitbater() {

@@ -1,5 +1,7 @@
 package be.multimedi.jammik.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
@@ -19,8 +21,10 @@ public class OpeningsUren {
     @Column(name="Id")
     private int id;
 
-    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    @OneToMany( cascade=CascadeType.REMOVE)
     @JoinColumn(name = "openings_uren_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     private List<Dag> dagen;
 
     public OpeningsUren() {

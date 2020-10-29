@@ -1,4 +1,4 @@
-package be.multimedi.jammik.Config;
+package be.multimedi.jammik.config;
 
 import be.multimedi.jammik.services.GebruikerServiceImpl;
 import be.multimedi.jammik.jwt.JwtConfig;
@@ -88,7 +88,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/klanten", "/", "/login","/uitbaters","/klants", "/gebruiker").permitAll()
+//                .antMatchers("/zaken").hasRole("UITBATER")
+                .antMatchers("/klanten", "/", "/login","/uitbaters","/klants", "/gebruiker","/zaken").permitAll()
                 .anyRequest().authenticated()
         ;
 

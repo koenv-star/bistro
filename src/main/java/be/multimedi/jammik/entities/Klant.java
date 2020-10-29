@@ -3,6 +3,9 @@ package be.multimedi.jammik.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.List;
@@ -33,7 +36,6 @@ public class Klant {
     protected String voornaam;
 
     @NotNull
-    @JsonIgnore
     @Column(name = "Wachtwoord")
     protected String wachtwoord;
 
@@ -43,13 +45,17 @@ public class Klant {
 
 
     @NotNull
-    @OneToMany(fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany(fetch= FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany( cascade=CascadeType.REMOVE)
     @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
 

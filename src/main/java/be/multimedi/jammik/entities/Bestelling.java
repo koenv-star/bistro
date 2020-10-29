@@ -1,6 +1,9 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.util.List;
@@ -14,11 +17,12 @@ public class Bestelling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(0)
-    @Column(name="Id")
+    @Column(name = "Id")
     private int id;
 
     @NotNull
-    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Bestelling_MenuItems",
             joinColumns = {@JoinColumn(name = "bestelling_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})
@@ -43,7 +47,7 @@ public class Bestelling {
     }
 
     public void setId(int id) {
-        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
+        if (id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 
@@ -56,7 +60,8 @@ public class Bestelling {
     }
 
     public void setMenuItems(List<MenuItem> menuItems) {
-        if (menuItems == null || menuItems.size() < 1) throw new IllegalArgumentException("menu items mag niet null of leeg zijn");
+        if (menuItems == null || menuItems.size() < 1)
+            throw new IllegalArgumentException("menu items mag niet null of leeg zijn");
         this.menuItems = menuItems;
     }
 
@@ -74,7 +79,8 @@ public class Bestelling {
     }
 
     public void setBestellingVerzameling(BestellingVerzameling bestellingVerzameling) {
-        if(bestellingVerzameling == null) throw new IllegalArgumentException("Bestellingverzameling mag niet null zijn");
+        if (bestellingVerzameling == null)
+            throw new IllegalArgumentException("Bestellingverzameling mag niet null zijn");
         this.bestellingVerzameling = bestellingVerzameling;
     }
 }

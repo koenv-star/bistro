@@ -1,6 +1,9 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,59 +13,63 @@ import java.util.List;
 // Gemaakt door: Michael Creelle
 
 @Entity
-@Table(name="Zaak")
+@Table(name = "Zaak")
 public class Zaak {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(0)
-    @Column(name="Id")
+    @Column(name = "Id")
     private int id;
 
     @NotNull
     @Min(2)
-    @Column(name="Naam")
+    @Column(name = "Naam")
     private String naam;
 
-    @Column(name="Parking")
+    @Column(name = "Parking")
     private boolean parking;
 
     @Min(0)
     @Max(5)
-    @Column(name="Rating")
+    @Column(name = "Rating")
     private float rating;
 
     @NotNull
     @OneToOne
-    @JoinColumn(name="Openingsuren_Id", referencedColumnName="Id")
+    @JoinColumn(name = "Openingsuren_Id", referencedColumnName = "Id")
     private OpeningsUren openingsUren;
 
     @NotNull
-    @OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
-    @JoinColumn(name="Adres_Id", referencedColumnName="Id")
+    @OneToOne( cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "Adres_Id", referencedColumnName = "Id")
     private Adres adres;
 
     @NotNull
     @OneToOne
-    @JoinColumn(name="Menu_Id", referencedColumnName="Id")
+    @JoinColumn(name = "Menu_Id", referencedColumnName = "Id")
     private Menu menu;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name="Uitbater_Email", referencedColumnName="Email")
+    @JoinColumn(name = "Uitbater_Email", referencedColumnName = "Email")
     private Uitbater uitbater;
 
     @NotNull
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "zaak_id")
     private List<Tafel> tafels;
 
     @NotNull
-    @OneToMany(mappedBy="zaak", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy = "zaak", cascade = CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "zaak")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "zaak")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Bestelling> bestellingen;
 
     public Zaak() {
@@ -85,7 +92,7 @@ public class Zaak {
     }
 
     public void setId(int id) {
-        if(id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
+        if (id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
         this.id = id;
     }
 
@@ -98,7 +105,7 @@ public class Zaak {
     }
 
     public void setNaam(String naam) {
-        if(naam == null) throw new IllegalArgumentException("naam kan niet null zijn");
+        if (naam == null) throw new IllegalArgumentException("naam kan niet null zijn");
 
         this.naam = naam;
     }
@@ -181,5 +188,22 @@ public class Zaak {
     public void setBestellingen(List<Bestelling> bestellingen) {
         if (bestellingen == null) throw new IllegalArgumentException("bestellingen mag niet null zijn");
         this.bestellingen = bestellingen;
+    }
+
+    @Override
+    public String toString() {
+        return "Zaak{" +
+                "id=" + id +
+                ", naam='" + naam + '\'' +
+                ", parking=" + parking +
+                ", rating=" + rating +
+                ", openingsUren=" + openingsUren +
+                ", adres=" + adres +
+                ", menu=" + menu +
+                ", uitbater=" + uitbater +
+                ", tafels=" + tafels +
+                ", reservaties=" + reservaties +
+                ", bestellingen=" + bestellingen +
+                '}';
     }
 }

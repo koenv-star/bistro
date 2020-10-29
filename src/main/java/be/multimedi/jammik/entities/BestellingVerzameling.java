@@ -1,6 +1,8 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,7 +21,8 @@ public class BestellingVerzameling {
     private int id;
 
     @NotNull
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy = "bestellingVerzameling")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "bestellingVerzameling")
     private List<Bestelling> bestellingen;
 
 
