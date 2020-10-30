@@ -78,7 +78,6 @@ public class Zaak {
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-
     private List<Reservatie> reservaties;
 
     @NotNull
@@ -96,7 +95,6 @@ public class Zaak {
     public Zaak(@Min(0) int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
                 OpeningsUren openingsUren, Adres adres, Menu menu, Uitbater uitbater, List<Tafel> tafels,
                 List<Reservatie> reservaties) {
-
         setId(id);
         setNaam(naam);
         setParking(parking);
@@ -144,7 +142,7 @@ public class Zaak {
         this.imageURL = imageURL;
     }
 
-    public boolean heeftParking() {
+    public boolean isParking() {
         return parking;
     }
 

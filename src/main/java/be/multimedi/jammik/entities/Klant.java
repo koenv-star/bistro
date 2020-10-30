@@ -39,6 +39,7 @@ public class Klant {
 
     @NotNull
     @Column(name = "Wachtwoord")
+    @JsonIgnore
     protected String wachtwoord;
 
     @NotNull

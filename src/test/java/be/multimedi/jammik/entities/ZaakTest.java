@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,7 @@ class ZaakTest {
     @Test
     void setParking() {
         zaak.setParking(true);
-        assertTrue(zaak.heeftParking());
+        assertTrue(zaak.isParking());
     }
 
     @Test
