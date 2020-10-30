@@ -30,4 +30,8 @@ public class ZaakServiceImpl {
         return repository.findAll();
 
     }
+
+    public Zaak getZaakById(int id) {
+        return  repository.getZaakById(id);
+    }
 }

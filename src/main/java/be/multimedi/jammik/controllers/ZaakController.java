@@ -34,6 +34,12 @@ public class ZaakController {
         this.zaakService = zaakService;
     }
 
+    @GetMapping(value = "zaak/id={id}", produces="application/json")
+    public ResponseEntity<Zaak> getZaakById(@PathVariable("id") int id) {
+
+        return ResponseEntity.ok(repository.getZaakById(id));
+    }
+
     @GetMapping
     public ResponseEntity<List<Zaak>> getAlleZaken() {
 

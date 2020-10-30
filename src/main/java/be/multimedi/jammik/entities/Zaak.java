@@ -29,6 +29,12 @@ public class Zaak {
     @Column(name = "Naam")
     private String naam;
 
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "ImageURL")
+    private String imageURL;
+
     @Column(name = "Parking")
     private boolean parking;
 
@@ -120,6 +126,22 @@ public class Zaak {
         if (naam == null) throw new IllegalArgumentException("naam kan niet null zijn");
 
         this.naam = naam;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public boolean heeftParking() {
