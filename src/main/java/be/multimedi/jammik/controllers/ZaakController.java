@@ -43,7 +43,7 @@ public class ZaakController {
     @GetMapping(value = "{email}")
     public ResponseEntity<List<Zaak>> getZakenOpUitbater(@PathVariable("email") String email) {
 
-        return ResponseEntity.ok(zaakService.getZakenOpUitbater(email));
+        return ResponseEntity.ok(repository.findZaaksByUitbaterEmail(email).orElseThrow());
     }
 
     @GetMapping(value = "zaak/{naam}", produces="application/json")

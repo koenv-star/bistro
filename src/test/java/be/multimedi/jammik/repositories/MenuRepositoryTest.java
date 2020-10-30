@@ -1,5 +1,6 @@
 package be.multimedi.jammik.repositories;
 
+import be.multimedi.jammik.common.Categorie;
 import be.multimedi.jammik.entities.Menu;
 import be.multimedi.jammik.entities.MenuItem;
 import org.junit.jupiter.api.Test;
@@ -45,8 +46,8 @@ class MenuRepositoryTest {
     @Test
     void save() {
         Menu menu = new Menu(0, List.of(
-                new MenuItem(4, "Aji de Gallina", 25.35f),
-                new MenuItem(5, "Patita con Mani", 15.58f)
+                new MenuItem(4, "Aji de Gallina", 25.35f,"lekker gerechtje", Categorie.DESSERTS),
+                new MenuItem(5, "Patita con Mani", 15.58f,"lekker gerechtje", Categorie.DESSERTS)
         ));
 
         menu = mr.save(menu);

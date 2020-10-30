@@ -1,5 +1,6 @@
 package be.multimedi.jammik.repositories;
 
+import be.multimedi.jammik.common.Categorie;
 import be.multimedi.jammik.entities.MenuItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,7 +44,7 @@ class MenuItemRepositoryTest {
 
     @Test
     void save() {
-        MenuItem menuItem = new MenuItem(0, "Aji de Gallina", 25.5f);
+        MenuItem menuItem = new MenuItem(0, "Aji de Gallina", 25.5f,"lekker gerechtje", Categorie.DESSERTS);
         menuItem = mir.save(menuItem);
         assertEquals(4, menuItem.getId());
     }
