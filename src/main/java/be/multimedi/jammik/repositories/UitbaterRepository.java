@@ -16,4 +16,5 @@ public interface UitbaterRepository extends JpaRepository<Uitbater, String> {
 
 
     Optional<Uitbater> findUitbaterByEmail(String email);
+
 }
