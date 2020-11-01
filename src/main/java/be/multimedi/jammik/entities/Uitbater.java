@@ -42,7 +42,7 @@ public class Uitbater extends Klant {
     }
 
     public void setZaken(List<Zaak> zaken) {
-        if (zaken == null) throw new IllegalArgumentException("zaken mag niet null zijn");
+//        if (zaken == null) throw new IllegalArgumentException("zaken mag niet null zijn");
         this.zaken = zaken;
     }
 

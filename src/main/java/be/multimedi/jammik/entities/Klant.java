@@ -2,6 +2,7 @@ package be.multimedi.jammik.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.checkerframework.common.aliasing.qual.Unique;
@@ -38,8 +39,8 @@ public class Klant {
     protected String voornaam;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "Wachtwoord")
-    @JsonIgnore
     protected String wachtwoord;
 
     @NotNull
@@ -134,7 +135,7 @@ public class Klant {
     }
 
     public void setReservaties(List<Reservatie> reservaties) {
-        if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
+//        if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
         this.reservaties = reservaties;
     }
 
@@ -143,8 +144,8 @@ public class Klant {
     }
 
     public void setBestellingVerzamelingen(List<BestellingVerzameling> bestellingVerzamelingen) {
-        if (bestellingVerzamelingen == null)
-            throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
+//        if (bestellingVerzamelingen == null)
+//            throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
         this.bestellingVerzamelingen = bestellingVerzamelingen;
     }
 
