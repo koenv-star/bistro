@@ -9,6 +9,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Optional;
 
 // Gemaakt door: Michael Creelle
 

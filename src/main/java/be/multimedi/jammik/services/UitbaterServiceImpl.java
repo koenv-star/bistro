@@ -1,5 +1,6 @@
 package be.multimedi.jammik.services;
 
+import be.multimedi.jammik.common.Gebruiker;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.UitbaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * made by Koen
@@ -20,6 +22,15 @@ public class UitbaterServiceImpl {
     public List<Uitbater> findAllUitbaters() {
 
         return uitbaterRepository.findAll();
+    }
+
+    public Uitbater findUitbaterByEmail(String email) {
+        Optional<Uitbater> uitbater = uitbaterRepository.findUitbaterByEmail(email);
+        if (uitbater.isPresent()) {
+            Uitbater temp = uitbater.get();
+            return temp;
+        } else return null;
+
     }
 
     public Uitbater saveUitbater(Uitbater uitbater) {

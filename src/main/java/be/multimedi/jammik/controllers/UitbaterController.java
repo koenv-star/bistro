@@ -1,13 +1,16 @@
 package be.multimedi.jammik.controllers;
 
 
+import be.multimedi.jammik.common.Gebruiker;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.UitbaterRepository;
 import be.multimedi.jammik.services.UitbaterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Made by Koennnn
@@ -37,10 +40,18 @@ public class UitbaterController {
     @GetMapping()
     public List<Uitbater> getAll(){  return  uitbaterService.findAllUitbaters();}
 
+
 //    @GetMapping()
 //    public List<Uitbater> getAll() {
 //        return repository.findAll();
 //    }
+
+    @GetMapping(path = "/{email}")
+    public Uitbater getUitbaterByEmail(@PathVariable("email") String email ){
+        return uitbaterService.findUitbaterByEmail(email);
+
+    }
+
 
     @PostMapping
     public Uitbater registerUitbater(@RequestBody Uitbater uitbater) {

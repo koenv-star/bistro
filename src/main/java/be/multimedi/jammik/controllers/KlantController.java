@@ -31,7 +31,10 @@ public class KlantController {
         return klantService.findAllKlanten();
     }
 
-
+    @GetMapping(path = "/{email}")
+    public Klant getKlantByEmail(@PathVariable("email") String email){
+        return klantService.findKlantById(email);
+    }
     @PostMapping
     public Klant save(@RequestBody Klant klant) {
         return klantService.saveKlant(klant);
