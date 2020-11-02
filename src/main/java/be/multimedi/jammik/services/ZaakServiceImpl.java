@@ -49,8 +49,6 @@ public class ZaakServiceImpl implements ZaakService {
 
         String imageUrl;
 
-        System.out.println(zaakJsonString);
-
         // convert json string to Zaak object
         Zaak zaak = mapper.readValue(zaakJsonString, Zaak.class);
 
