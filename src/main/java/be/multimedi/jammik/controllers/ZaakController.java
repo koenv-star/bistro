@@ -2,13 +2,16 @@ package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Zaak;
 import be.multimedi.jammik.repositories.ZaakRepository;
+import be.multimedi.jammik.services.ZaakService;
 import be.multimedi.jammik.services.ZaakServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,11 +19,11 @@ import java.util.List;
  * Made by Koen
  */
 @RestController
-@RequestMapping("zaken")
+@RequestMapping("/zaken")
 @CrossOrigin
 public class ZaakController {
 
-    private ZaakServiceImpl zaakService;
+    private ZaakService zaakService;
 
     private ZaakRepository repository;
 
@@ -30,7 +33,7 @@ public class ZaakController {
     }
 
     @Autowired
-    public void setZaakService(ZaakServiceImpl zaakService) {
+    public void setZaakService(ZaakService zaakService) {
         this.zaakService = zaakService;
     }
 
@@ -58,4 +61,11 @@ public class ZaakController {
         return ResponseEntity.ok(repository.findZaakByNaam(zaaknaam).get());
     }
 
+    @PostMapping(consumes={MediaType.MULTIPART_FORM_DATA_VALUE}, produces="application/json")
+    private ResponseEntity<Zaak> postHandler(@RequestParam("zaak") String zaakJsonString,
+                                             @RequestParam("imageFile") MultipartFile file) throws Exception {
+
+        Zaak zaak = zaakService.saveZaak(zaakJsonString, file);
+        return zaak != null ? ResponseEntity.ok(zaak) : ResponseEntity.badRequest().build();
+    }
 }

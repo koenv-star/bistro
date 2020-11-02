@@ -2,9 +2,13 @@ package be.multimedi.jammik.services;
 
 import be.multimedi.jammik.entities.Zaak;
 import be.multimedi.jammik.repositories.ZaakRepository;
+import be.multimedi.jammik.tools.ImageTool;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,26 +16,52 @@ import java.util.List;
  * made by Koen
  */
 @Service
-public class ZaakServiceImpl {
-    private ZaakRepository repository;
+@Transactional
+public class ZaakServiceImpl implements ZaakService {
 
-    @Autowired
-    public void setRepository(ZaakRepository repository) {
-        this.repository = repository;
+    private ZaakRepository zaakRepository;
+    private ImageTool imageTool;
+    ObjectMapper mapper;
+
+    public ZaakServiceImpl(ZaakRepository zaakRepository, ImageTool imageTool) {
+        this.zaakRepository = zaakRepository;
+        this.imageTool = imageTool;
+        this.mapper = new ObjectMapper();
     }
-
 
     public List<Zaak> getZakenOpUitbater(String email) {
-
-        return repository.findZaaksByUitbaterEmail(email).get();
+        return zaakRepository.findZaaksByUitbaterEmail(email).get();
     }
     public List<Zaak> getAlleZaken() {
-
-        return repository.findAll();
-
+        return zaakRepository.findAll();
     }
 
     public Zaak getZaakById(int id) {
-        return  repository.getZaakById(id);
+        return  zaakRepository.getZaakById(id);
+    }
+
+    @Override
+    public Zaak saveZaak(String zaakJsonString, MultipartFile file) throws Exception {
+
+        String imageUrl;
+
+        // convert json string to Zaak object
+        Zaak zaak = mapper.readValue(zaakJsonString, Zaak.class);
+
+        if(zaak == null || zaak.getId() != 0)
+            return null;
+
+        // put image in folder
+        imageUrl = imageTool.putImageInFolder(file, zaak);
+
+        // save the zaak to the database
+        zaak.setImageURL(imageUrl);
+        zaak = zaakRepository.save(zaak);
+
+        // delete image if zaak not saved
+        if(zaak.getId() == 0)
+            imageTool.deleteImage(imageUrl);
+
+        return zaak;
     }
 }
