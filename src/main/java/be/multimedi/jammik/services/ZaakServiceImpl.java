@@ -4,6 +4,8 @@ import be.multimedi.jammik.entities.Zaak;
 import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.tools.ImageTool;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +28,9 @@ public class ZaakServiceImpl implements ZaakService {
     public ZaakServiceImpl(ZaakRepository zaakRepository, ImageTool imageTool) {
         this.zaakRepository = zaakRepository;
         this.imageTool = imageTool;
-        this.mapper = new ObjectMapper();
+        this.mapper = new ObjectMapper()
+                        .registerModule(new ParameterNamesModule())
+                        .registerModule(new JavaTimeModule());
     }
 
     public List<Zaak> getZakenOpUitbater(String email) {
@@ -44,6 +48,8 @@ public class ZaakServiceImpl implements ZaakService {
     public Zaak saveZaak(String zaakJsonString, MultipartFile file) throws Exception {
 
         String imageUrl;
+
+        System.out.println(zaakJsonString);
 
         // convert json string to Zaak object
         Zaak zaak = mapper.readValue(zaakJsonString, Zaak.class);

@@ -24,7 +24,6 @@ public class OpeningsUren {
     @OneToMany( cascade=CascadeType.REMOVE)
     @JoinColumn(name = "openings_uren_id")
     @LazyCollection(LazyCollectionOption.FALSE)
-
     private List<Dag> dagen;
 
     public OpeningsUren() {
