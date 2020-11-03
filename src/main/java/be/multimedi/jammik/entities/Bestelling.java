@@ -3,10 +3,8 @@ package be.multimedi.jammik.entities;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 // Gemaakt door: Michael Creelle
 
@@ -22,15 +20,17 @@ public class Bestelling {
 
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name = "Bestelling_MenuItems",
-            joinColumns = {@JoinColumn(name = "bestelling_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})
-    private List<MenuItem> menuItems;
+    @OneToOne
+    private MenuItem menuItem;
+
+    @Min(1)
+    @Column(name = "Aantal")
+    private int aantal;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Zaak zaak;
+    @Min(1)
+    @Column(name = "zaak_Id")
+    private int zaakId;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,11 +40,13 @@ public class Bestelling {
     public Bestelling() {
     }
 
-    public Bestelling(@Min(0) int id, List<MenuItem> menuItems, Zaak zaak) {
+    public Bestelling(@Min(0) int id, MenuItem menuItem, int aantal, int zaakId) {
         setId(id);
-        setMenuItems(menuItems);
-        setZaak(zaak);
+        setMenuItem(menuItem);
+        setAantal(aantal);
+        setZaakId(zaakId);
     }
+
 
     public void setId(int id) {
         if (id < 0) throw new IllegalArgumentException("id mag niet kleiner zijn dan 0");
@@ -55,23 +57,31 @@ public class Bestelling {
         return id;
     }
 
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public MenuItem getMenuItem() {
+        return menuItem;
     }
 
-    public void setMenuItems(List<MenuItem> menuItems) {
-        if (menuItems == null || menuItems.size() < 1)
-            throw new IllegalArgumentException("menu items mag niet null of leeg zijn");
-        this.menuItems = menuItems;
+    public void setMenuItem(MenuItem menuItem) {
+        if (menuItem == null ) throw new IllegalArgumentException("menuItem mag niet null of leeg zijn");
+        this.menuItem = menuItem;
     }
 
-    public Zaak getZaak() {
-        return zaak;
+    public int getAantal() {
+        return aantal;
     }
 
-    public void setZaak(Zaak zaak) {
-        if (zaak == null) throw new IllegalArgumentException("zaak mag niet null zijn");
-        this.zaak = zaak;
+    public void setAantal(int aantal) {
+        if (aantal < 0) throw new IllegalArgumentException("aantal moet groter dan 0 zijn");
+        this.aantal = aantal;
+    }
+
+    public int getZaakId() {
+        return zaakId;
+    }
+
+    public void setZaakId(int zaakId) {
+        if(zaakId < 1) throw new IllegalArgumentException("zaak id mag niet onder 1 zijn");
+        this.zaakId = zaakId;
     }
 
     public BestellingVerzameling getBestellingVerzameling() {
