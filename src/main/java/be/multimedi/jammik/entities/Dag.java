@@ -1,6 +1,7 @@
 package be.multimedi.jammik.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -25,10 +26,12 @@ public class Dag {
 
     @NotNull
     @Column(name = "OpeningsUur")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime openingsUur;
 
     @NotNull
     @Column(name = "SluitingsUur")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm")
     private LocalTime sluitingsUur;
 
     public Dag() {

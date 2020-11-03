@@ -22,7 +22,8 @@ public class Menu {
 
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany( cascade = CascadeType.ALL)
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Menu_MenuItems",
             joinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})

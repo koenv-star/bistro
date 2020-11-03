@@ -1,8 +1,6 @@
 package be.multimedi.jammik.repositories;
 
-import be.multimedi.jammik.entities.Bestelling;
 import be.multimedi.jammik.entities.BestellingVerzameling;
-import be.multimedi.jammik.entities.MenuItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +39,8 @@ class BestellingVerzamelingRepositoryTest {
 
         assertNotNull(bestellingVerzameling);
         assertEquals(2, bestellingVerzameling.getBestellingen().size());
-        assertEquals(1, bestellingVerzameling.getBestellingen().get(0).getMenuItems().size());
-        assertEquals("Spaghetti", bestellingVerzameling.getBestellingen().get(0).getMenuItems().get(0).getNaam());
+    //    assertEquals(1, bestellingVerzameling.getBestellingen().get(0).getMenuItem());
+        assertEquals("Spaghetti", bestellingVerzameling.getBestellingen().get(0).getMenuItem().getNaam());
     }
 
     @Test

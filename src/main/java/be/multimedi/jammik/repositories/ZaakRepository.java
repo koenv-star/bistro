@@ -16,8 +16,6 @@ public interface ZaakRepository extends JpaRepository<Zaak, Integer> {
     default Zaak getZaakById(int id) {
         return getOne(id);
     }
-
-    Optional<List<Zaak>> findZaaksByUitbaterEmail(String email);
-
+    Optional<List<Zaak>> findZaaksByEmail(String email);
     Optional<Zaak> findZaakByNaam(String naam);
 }

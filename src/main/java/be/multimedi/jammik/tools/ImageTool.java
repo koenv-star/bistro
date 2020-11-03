@@ -59,7 +59,7 @@ public class ImageTool {
         int beginPosition = file.getOriginalFilename().contains(".jpeg") ? nameLength -5 : nameLength -4;
         String extension = file.getOriginalFilename().substring(beginPosition);
 
-        String imageUrl = zaak.getUitbater().getNaam().toLowerCase() + "_" +
+        String imageUrl = zaak.getEmail().toLowerCase() + "_" +
                 zaak.getNaam().toLowerCase() + extension;
 
         file.transferTo(new File(location + "\\" + imageUrl));

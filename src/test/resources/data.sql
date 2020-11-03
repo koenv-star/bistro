@@ -49,10 +49,10 @@ VALUES  (1, 'Ma', '12:30:00', '19:00:00', 1),
         (6, 'Zo', '12:00:00', '20:45:00', 2);
 
 
-INSERT INTO MenuItem(Id, Naam, Prijs)
-VALUES  (1, 'Pizza', 15.5),
-        (2, 'Spaghetti', 20.25),
-        (3, 'Macaroni', 12.0);
+INSERT INTO MenuItem(Id, Naam, Prijs, Beschrijving, Categorie)
+VALUES  (1, 'Pizza', 15.5, 'Lekker gerechtje', 1),
+        (2, 'Spaghetti', 20.25, 'Spaghetti met tomatensaus', 1),
+        (3, 'Macaroni', 12.0, 'Macaroni met hesp en kaas', 1);
 
 INSERT INTO Menu(Id) VALUES (1), (2), (3);
 
@@ -65,9 +65,9 @@ VALUES (1, 'Bistro Mehmet', 1, 5, 3, 1, 2, 'mehmet@jammik.be'),
        (4, 'Bistro Jan', 1, 5, 2, 3, 1, 'jan@jammik.be'),
        (5, 'Bistro Mehmet 2', 0, 4, 5, 1, 2, 'mehmet@jammik.be');
 
-INSERT INTO Bestelling(Id, zaak_id, bestelling_verzameling_id) VALUES (1, 4, 2), (2, 2, 3), (3, 3, 1), (4, 4, 2);
+INSERT INTO Bestelling(Id, aantal, zaak_id, bestelling_verzameling_id, Menu_Item_Id) VALUES (1, 1, 4, 2, 2), (2, 5, 2, 3, 2), (3, 2, 3, 1, 1), (4, 1, 4, 2, 2);
 
-INSERT INTO Bestelling_MenuItems(bestelling_Id, menu_item_id) VALUES (1, 2), (2, 3), (2, 2), (3, 1);
+--INSERT INTO Bestelling_MenuItems(bestelling_Id, menu_item_id) VALUES (1, 2), (2, 3), (2, 2), (3, 1);
 
 INSERT INTO Tafel(Id, Stoelen, zaak_id) VALUES (1, 4, 1), (2, 2, 1), (3, 1, 2);
 

@@ -8,6 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.IllformedLocaleException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -92,14 +93,13 @@ class ZaakTest {
     }
 
     @Test
-    void setUitbater() {
-        assertThrows(IllegalArgumentException.class, () -> zaak.setUitbater(null));
+    void setEmail() {
+        assertThrows(IllegalArgumentException.class, () -> zaak.setEmail(null));
 
-        Uitbater uitbater = new Uitbater();
-        uitbater.setEmail("uitbater@test.com");
-        zaak.setUitbater(uitbater);
+        String email = "uitbater@test.com";
+        zaak.setEmail(email);
 
-        assertEquals("uitbater@test.com", zaak.getUitbater().getEmail());
+        assertEquals("uitbater@test.com", zaak.getEmail());
     }
 
     @Test
@@ -146,5 +146,29 @@ class ZaakTest {
     @Test
     void throws_exception_on_null_bestellingen() {
         assertThrows(IllegalArgumentException.class, () -> zaak.setBestellingen(null));
+    }
+
+    @Test
+    void set_get_description() {
+        String description = "een description";
+        zaak.setDescription(description);
+        assertEquals(description, zaak.getDescription());
+    }
+
+    @Test
+    void throw_exception_on_null_description(){
+        assertThrows(IllegalArgumentException.class, () -> zaak.setDescription(null));
+    }
+
+    @Test
+    void set_get_imageUrl() {
+        String url = "zotte//url//ofzo";
+        zaak.setImageURL(url);
+        assertEquals(url, zaak.getImageURL());
+    }
+
+    @Test
+    void throws_exception_null_url() {
+        assertThrows(IllegalArgumentException.class, () -> zaak.setImageURL(null));
     }
 }
