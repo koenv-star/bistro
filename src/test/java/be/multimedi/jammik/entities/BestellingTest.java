@@ -42,13 +42,8 @@ class BestellingTest {
     }
 
     @Test
-    void throws_exception_on_null_menuItems() {
+    void throws_exception_on_null_menuItem() {
         assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItem(null));
-    }
-
-    @Test
-    void throws_exception_on_empty_list_menuItems() {
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItem(new MenuItem()));
     }
 
     @Test
@@ -77,6 +72,7 @@ class BestellingTest {
 
     @Test
     void set_get_aantal(){
+        bestelling.setAantal(5);
         assertEquals(5, bestelling.getAantal());
     }
 

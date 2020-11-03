@@ -9,8 +9,7 @@ create table if not exists Adres
 );
 create table if not exists BestellingVerzameling
 (
-    Id          int IDENTITY
-        primary key,
+    Id          int Identity primary key,
     Klant_Email varchar(255) null
 );
 create table if not exists Klant
@@ -90,15 +89,20 @@ create table if not exists Zaak
     constraint FKor2ftcutapr3ehfipjtbfldsw
         foreign key (Uitbater_Email) references Uitbater (Email) ON DELETE CASCADE
 );
+
 create table if not exists Bestelling
 (
     Id                        int IDENTITY primary key,
+    Aantal                    int null,
     zaak_Id                   int null,
     bestelling_verzameling_id int null,
+    Menu_Item_Id              int null,
     constraint FK6pgylk2t442urcq35hdgp1dae
-        foreign key (bestelling_verzameling_id) references BestellingVerzameling (Id) ON DELETE CASCADE ,
+        foreign key (bestelling_verzameling_id) references BestellingVerzameling (Id),
     constraint FKqd3hhj7o4aewxl4rcmcdkltuq
-        foreign key (zaak_Id) references Zaak (Id) ON DELETE CASCADE
+        foreign key (zaak_Id) references Zaak (Id),
+    constraint FKwjo64foccqq3exv2ybf94g6g
+        foreign key (Menu_Item_Id) references MenuItem (Id)
 );
 create table if not exists Bestelling_MenuItems
 (

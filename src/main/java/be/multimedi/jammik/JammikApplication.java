@@ -46,15 +46,17 @@ public class JammikApplication implements CommandLineRunner {
 
 
 //        Klant klant = new Klant();
-        System.out.println(encoder.encode("paswoord1"));
+//        System.out.println(encoder.encode("paswoord1"));
 //        klant.setWachtwoord(encoder.encode("KoenVochten"));
 //        klant.setNaam("Vochten");
 //        klant.setVoornaam("Koen");
 //        klant.setEmail("koenvochten@hotmail.com");
 //        repo.save(klant);
 
-        List<Zaak> zaken1 = zaakRepository.findZaaksByEmail("mehmet@jammik.be").get();
-        List<Zaak> zaken = zaakRepository.findAll();
+
+//        List<Zaak> zaken1 = zaakRepository.findZaaksByUitbaterEmail("mehmet@jammik.be").get();
+//        List<Zaak> zaken = zaakRepository.findAll();
+
         System.out.println("ok");
 //        Uitbater uitbater= new Uitbater();
 //

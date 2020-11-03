@@ -1,8 +1,6 @@
 package be.multimedi.jammik.entities;
 
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 
@@ -19,8 +17,8 @@ public class Bestelling {
     private int id;
 
     @NotNull
-    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne
+    @JoinColumn(name = "Menu_Item_Id")
     private MenuItem menuItem;
 
     @Min(1)
@@ -71,7 +69,7 @@ public class Bestelling {
     }
 
     public void setAantal(int aantal) {
-        if (aantal < 0) throw new IllegalArgumentException("aantal moet groter dan 0 zijn");
+        if (aantal < 1) throw new IllegalArgumentException("aantal moet groter dan 0 zijn");
         this.aantal = aantal;
     }
 
