@@ -43,9 +43,8 @@ public class ZaakController {
         return ResponseEntity.ok(repository.getZaakById(id));
     }
 
-    @GetMapping
+    @GetMapping(produces="application/json")
     public ResponseEntity<List<Zaak>> getAlleZaken() {
-
         return ResponseEntity.ok(zaakService.getAlleZaken());
     }
 
