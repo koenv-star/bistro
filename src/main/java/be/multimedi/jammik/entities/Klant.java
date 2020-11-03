@@ -135,7 +135,7 @@ public class Klant {
     }
 
     public void setReservaties(List<Reservatie> reservaties) {
-//        if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
+        if (reservaties == null) throw new IllegalArgumentException("reservaties mag niet null zijn");
         this.reservaties = reservaties;
     }
 
@@ -144,8 +144,8 @@ public class Klant {
     }
 
     public void setBestellingVerzamelingen(List<BestellingVerzameling> bestellingVerzamelingen) {
-//        if (bestellingVerzamelingen == null)
-//            throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
+        if (bestellingVerzamelingen == null)
+            throw new IllegalArgumentException("bestellingverzamelingen mag niet null zijn");
         this.bestellingVerzamelingen = bestellingVerzamelingen;
     }
 

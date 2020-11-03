@@ -34,7 +34,7 @@ public class ZaakServiceImpl implements ZaakService {
     }
 
     public List<Zaak> getZakenOpUitbater(String email) {
-        return zaakRepository.findZaaksByUitbaterEmail(email).get();
+        return zaakRepository.findZaaksByEmail(email).get();
     }
     public List<Zaak> getAlleZaken() {
         return zaakRepository.findAll();

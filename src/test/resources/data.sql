@@ -49,10 +49,10 @@ VALUES  (1, 'Ma', '12:30:00', '19:00:00', 1),
         (6, 'Zo', '12:00:00', '20:45:00', 2);
 
 
-INSERT INTO MenuItem(Id, Naam, Prijs)
-VALUES  (1, 'Pizza', 15.5),
-        (2, 'Spaghetti', 20.25),
-        (3, 'Macaroni', 12.0);
+INSERT INTO MenuItem(Id, Naam, Prijs, Beschrijving, Categorie)
+VALUES  (1, 'Pizza', 15.5, 'Lekker gerechtje', 1),
+        (2, 'Spaghetti', 20.25, 'Spaghetti met tomatensaus', 1),
+        (3, 'Macaroni', 12.0, 'Macaroni met hesp en kaas', 1);
 
 INSERT INTO Menu(Id) VALUES (1), (2), (3);
 

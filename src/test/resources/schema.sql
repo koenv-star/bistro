@@ -32,7 +32,9 @@ create table if not exists MenuItem
     Id    int IDENTITY
         primary key,
     Naam  varchar(255) null,
-    Prijs float        null
+    Prijs float        null,
+    Beschrijving varchar(255) not null,
+    Categorie int not null
 );
 create table if not exists Menu_MenuItems
 (

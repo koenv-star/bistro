@@ -18,8 +18,9 @@ import java.util.Optional;
 public class Uitbater extends Klant {
 
     @NotNull
-    @OneToMany(mappedBy="uitbater", cascade=CascadeType.REMOVE)
+    @OneToMany(cascade=CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name="Uitbater_Email")
     private List<Zaak> zaken;
 
     public Uitbater() {

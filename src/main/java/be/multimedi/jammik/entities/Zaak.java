@@ -58,13 +58,17 @@ public class Zaak {
     @JoinColumn(name = "Menu_Id", referencedColumnName = "Id")
     private Menu menu;
 
+//    @NotNull
+//    @ManyToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name = "Uitbater_Email", referencedColumnName = "Email")
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "email", scope=Uitbater.class)
+//    private Uitbater uitbater;
+
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "Uitbater_Email", referencedColumnName = "Email")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "email")
-    private Uitbater uitbater;
+    @Column(name="Uitbater_Email")
+    private String email;
 
     @NotNull
     @OneToMany(cascade=CascadeType.ALL)
@@ -93,7 +97,7 @@ public class Zaak {
     }
 
     public Zaak(@Min(0) int id, @Min(2) String naam, boolean parking, @Min(0) @Max(5) float rating,
-                OpeningsUren openingsUren, Adres adres, Menu menu, Uitbater uitbater, List<Tafel> tafels,
+                OpeningsUren openingsUren, Adres adres, Menu menu, String email, List<Tafel> tafels,
                 List<Reservatie> reservaties) {
         setId(id);
         setNaam(naam);
@@ -102,7 +106,7 @@ public class Zaak {
         setOpeningsUren(openingsUren);
         setAdres(adres);
         setMenu(menu);
-        setUitbater(uitbater);
+        setEmail(email);
         setTafels(tafels);
         setReservaties(reservaties);
     }
@@ -186,13 +190,13 @@ public class Zaak {
         this.menu = menu;
     }
 
-    public Uitbater getUitbater() {
-        return uitbater;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUitbater(Uitbater uitbater) {
-        if (uitbater == null) throw new IllegalArgumentException("uitbater mag niet null zijn");
-        this.uitbater = uitbater;
+    public void setEmail(String email) {
+        if (email == null) throw new IllegalArgumentException("email mag niet null zijn");
+        this.email = email;
     }
 
     public List<Tafel> getTafels() {
@@ -232,7 +236,7 @@ public class Zaak {
                 ", openingsUren=" + openingsUren +
                 ", adres=" + adres +
                 ", menu=" + menu +
-                ", uitbater=" + uitbater +
+                ", email=" + email +
                 ", tafels=" + tafels +
                 ", reservaties=" + reservaties +
                 ", bestellingen=" + bestellingen +

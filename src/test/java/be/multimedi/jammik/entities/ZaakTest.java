@@ -92,14 +92,13 @@ class ZaakTest {
     }
 
     @Test
-    void setUitbater() {
-        assertThrows(IllegalArgumentException.class, () -> zaak.setUitbater(null));
+    void setEmail() {
+        assertThrows(IllegalArgumentException.class, () -> zaak.setEmail(null));
 
-        Uitbater uitbater = new Uitbater();
-        uitbater.setEmail("uitbater@test.com");
-        zaak.setUitbater(uitbater);
+        String email = "uitbater@test.com";
+        zaak.setEmail(email);
 
-        assertEquals("uitbater@test.com", zaak.getUitbater().getEmail());
+        assertEquals("uitbater@test.com", zaak.getEmail());
     }
 
     @Test
