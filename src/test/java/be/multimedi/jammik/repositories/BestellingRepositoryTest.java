@@ -48,6 +48,7 @@ class BestellingRepositoryTest {
     void save() {
         Bestelling bestelling = new Bestelling();
         bestelling.setMenuItem(new MenuItem());
+        bestelling.setZaakId(3);
 
         bestelling = bestellingRepository.save(bestelling);
         assertEquals(5, bestelling.getId());

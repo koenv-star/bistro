@@ -92,17 +92,18 @@ create table if not exists Zaak
 
 create table if not exists Bestelling
 (
-    Id                        int IDENTITY primary key,
+    Id                        int IDENTITY
+        primary key,
     Aantal                    int null,
     zaak_Id                   int null,
     bestelling_verzameling_id int null,
     Menu_Item_Id              int null,
     constraint FK6pgylk2t442urcq35hdgp1dae
-        foreign key (bestelling_verzameling_id) references BestellingVerzameling (Id),
-    constraint FKqd3hhj7o4aewxl4rcmcdkltuq
-        foreign key (zaak_Id) references Zaak (Id),
+        foreign key (bestelling_verzameling_id) references BestellingVerzameling (Id) ON DELETE CASCADE ,
+    constraint FKhbanelxrvlfstv7yrk3c31qnu
+        foreign key (zaak_Id) references Zaak (Id) ON DELETE CASCADE,
     constraint FKwjo64foccqq3exv2ybf94g6g
-        foreign key (Menu_Item_Id) references MenuItem (Id)
+        foreign key (Menu_Item_Id) references MenuItem (Id) ON DELETE CASCADE
 );
 create table if not exists Bestelling_MenuItems
 (

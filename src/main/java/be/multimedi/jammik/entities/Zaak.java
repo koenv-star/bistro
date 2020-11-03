@@ -85,11 +85,12 @@ public class Zaak {
     private List<Reservatie> reservaties;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "zaakId")
+    @OneToMany(cascade = CascadeType.DETACH)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
+    @JoinColumn(name = "zaak_id")
     private List<Bestelling> bestellingen;
 
     public Zaak() {
