@@ -67,7 +67,7 @@ class ZaakRepositoryTest {
         List<Tafel> tafels = new ArrayList<>(List.of(tr.getTafelById(2), tr.getTafelById(3)));
         List<Reservatie> reservaties = new ArrayList<>(List.of(rr.getReservatieById(1), rr.getReservatieById(3)));
 
-        Zaak zaak = new Zaak(0, "TestBistro", false, 2.6f, ourn, adres, menu, uitbater, tafels, reservaties);
+        Zaak zaak = new Zaak(0, "TestBistro", false, 2.6f, ourn, adres, menu, "michael@jammik.be", tafels, reservaties);
 
         zaak = zr.save(zaak);
         assertEquals(6, zaak.getId());

@@ -34,8 +34,7 @@ class BestellingRepositoryTest {
         Bestelling bestelling = bestellingRepository.getBestellingById(2);
         assertNotNull(bestelling);
         assertEquals(2, bestelling.getId());
-        assertEquals(2, bestelling.getMenuItems().size());
-        assertEquals("Spaghetti", bestelling.getMenuItems().get(1).getNaam());
+        assertEquals("Spaghetti", bestelling.getMenuItem().getNaam());
     }
 
     @Test
@@ -48,10 +47,8 @@ class BestellingRepositoryTest {
     @Test
     void save() {
         Bestelling bestelling = new Bestelling();
-        bestelling.setMenuItems(new ArrayList<>(List.of(
-                new MenuItem(),
-                new MenuItem()
-        )));
+        bestelling.setMenuItem(new MenuItem());
+        bestelling.setZaakId(3);
 
         bestelling = bestellingRepository.save(bestelling);
         assertEquals(5, bestelling.getId());

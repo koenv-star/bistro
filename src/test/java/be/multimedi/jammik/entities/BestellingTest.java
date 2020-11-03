@@ -6,10 +6,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 // Gemaakt door: Michael Creelle
@@ -40,32 +36,26 @@ class BestellingTest {
 
     @Test
     void set_get_MenuItems() {
-        List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem());
-        bestelling.setMenuItems(menuItems);
-        assertEquals(menuItems, bestelling.getMenuItems());
+        MenuItem menuItem = new MenuItem();
+        bestelling.setMenuItem(menuItem);
+        assertEquals(menuItem, bestelling.getMenuItem());
     }
 
     @Test
-    void throws_exception_on_null_menuItems() {
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItems(null));
+    void throws_exception_on_null_menuItem() {
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItem(null));
     }
 
     @Test
-    void throws_exception_on_empty_list_menuItems() {
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setMenuItems(new ArrayList<>()));
+    void set_get_zaakId() {
+        int zaakId = 15;
+        bestelling.setZaakId(zaakId);
+        assertEquals(zaakId, bestelling.getZaakId());
     }
 
     @Test
-    void set_get_zaak() {
-        Zaak zaak = new Zaak();
-        bestelling.setZaak(zaak);
-        assertEquals(zaak, bestelling.getZaak());
-    }
-
-    @Test
-    void throws_on_zaak_null(){
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setZaak(null));
+    void throws_on_zaak_onder_1(){
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setZaakId(0));
     }
 
     @Test
@@ -78,6 +68,17 @@ class BestellingTest {
     @Test
     void throws_on_bestellingverzameling_null(){
         assertThrows(IllegalArgumentException.class, () -> bestelling.setBestellingVerzameling(null));
+    }
+
+    @Test
+    void set_get_aantal(){
+        bestelling.setAantal(5);
+        assertEquals(5, bestelling.getAantal());
+    }
+
+    @Test
+    void throws_on_aantal_less_than_1() {
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setAantal(0));
     }
 
 }
