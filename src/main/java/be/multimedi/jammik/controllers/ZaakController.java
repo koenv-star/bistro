@@ -3,7 +3,6 @@ package be.multimedi.jammik.controllers;
 import be.multimedi.jammik.entities.Zaak;
 import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.services.ZaakService;
-import be.multimedi.jammik.services.ZaakServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
