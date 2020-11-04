@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *
  * @author Mehmet van Team-B
- * */
+ */
 @RestController
 @RequestMapping("/Advertenties")
 public class AdvertentiesController {
@@ -25,14 +24,15 @@ public class AdvertentiesController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Advertenties>>  getAllAdvertenties(){
+    public ResponseEntity<List<Advertenties>> getAllAdvertenties() {
         return ResponseEntity.ok(adr.getAll());
+
     }
 
-    @PostMapping(consumes="application/json", produces="application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Advertenties> postHandler(@RequestBody Advertenties advertentie) {
 
-        if(advertentie == null || advertentie.getId() != 0)
+        if (advertentie == null || advertentie.getId() != 0)
             return ResponseEntity.badRequest().build();
 
         return ResponseEntity.ok(adr.save(advertentie));

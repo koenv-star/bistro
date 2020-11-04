@@ -16,7 +16,7 @@ public interface AdvertentiesRepository extends JpaRepository<Advertenties, Inte
         return getOne(id);
     }
     default List<Advertenties> getAll() {
-        return getAll();
+        return findAll();
     }
 
 }

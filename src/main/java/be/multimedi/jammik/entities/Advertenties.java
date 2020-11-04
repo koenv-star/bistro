@@ -18,6 +18,9 @@ public class Advertenties {
     @Column(name = "ZaakNaam")
     private String zaakNaam;
 
+    @Column(name = "ZaakId")
+    private int zaakId;
+
     @Column(name = "Description")
     private String zaakDesc;
 
