@@ -23,7 +23,7 @@ public class Menu {
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Menu_MenuItems",
             joinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_item_id", referencedColumnName = "id")})
@@ -51,7 +51,8 @@ public class Menu {
     }
 
     public void setMenuItems(List<MenuItem> menuItems) {
-        if (menuItems == null || menuItems.size() < 1)
+        if (menuItems == null )
+//            || menuItems.size() < 1
             throw new IllegalArgumentException("MenuItems mag niet null of leeg zijn");
         this.menuItems = menuItems;
     }
