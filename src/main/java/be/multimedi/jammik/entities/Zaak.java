@@ -79,7 +79,8 @@ public class Zaak {
     private List<Tafel> tafels;
 
     @NotNull
-    @OneToMany(mappedBy = "zaak", cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "zaak_id")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
