@@ -90,8 +90,8 @@ public class Bestelling {
     }
 
     public void setBestellingVerzamelingId(int bestellingVerzamelingId) {
-        if (bestellingVerzamelingId < 1)
-            throw new IllegalArgumentException("Bestellingverzameling mag niet onder 1 zijn");
+        if (bestellingVerzamelingId < 0)
+            throw new IllegalArgumentException("Bestellingverzameling mag niet onder 0 zijn");
         this.bestellingVerzamelingId = bestellingVerzamelingId;
     }
 }
