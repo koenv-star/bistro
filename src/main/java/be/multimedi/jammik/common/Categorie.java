@@ -5,7 +5,7 @@ package be.multimedi.jammik.common;
  * Made by Koen
  */
 public enum Categorie {
-    DESSERTS("Desserten"),
+    DESSERTEN("Desserten"),
     HOOFDGERECHTEN("Hoofdgerechten"),
     COCKTAILS("Cocktails"),
     FRISDRANKEN("frisdranken");

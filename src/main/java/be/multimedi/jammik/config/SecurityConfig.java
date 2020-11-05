@@ -51,9 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
         UrlBasedCorsConfigurationSource source = new
                 UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 
@@ -88,8 +95,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-//                .antMatchers("/zaken").hasRole("UITBATER")
-                .antMatchers("/klanten", "/klanten/**", "/", "/login","/uitbaters","/uitbaters/**","/klants", "/gebruiker","/zaken/**", "/bestelling*").permitAll()
+                .antMatchers("/menu/**").hasRole("UITBATER")
+                .antMatchers("/klanten", "/klanten/**", "/", "/login","/uitbaters","/uitbaters/**","/klants", "/gebruiker","/zaken/**","/advertenties/**","/advertenties","/bestelling*").permitAll()
+
                 .anyRequest().authenticated()
         ;
 

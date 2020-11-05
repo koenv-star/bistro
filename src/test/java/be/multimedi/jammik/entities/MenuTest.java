@@ -37,11 +37,6 @@ class MenuTest {
         assertThrows(IllegalArgumentException.class, () -> menu.setId(-1));
     }
 
-//    @Test
-//    void throw_exception_on_0_id() {
-//        assertThrows(IllegalArgumentException.class, () -> menu.setId(0));
-//    }
-
     @Test
     void set_get_MenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
@@ -53,10 +48,5 @@ class MenuTest {
     @Test
     void throws_exception_on_null_menuItems() {
         assertThrows(IllegalArgumentException.class, () -> menu.setMenuItems(null));
-    }
-
-    @Test
-    void throws_exception_on_empty_list_menuItems() {
-        assertThrows(IllegalArgumentException.class, () -> menu.setMenuItems(new ArrayList<>()));
     }
 }

@@ -55,21 +55,16 @@ class ReservatieTest {
     @Test
     void setKlant() {
         assertThrows(IllegalArgumentException.class, () -> reservatie.setKlant(null));
-
-        Klant klant = new Klant();
-        klant.setEmail("test@test.be");
+        String klant = "test@test.be";
         reservatie.setKlant(klant);
-        assertEquals("test@test.be", reservatie.getKlant().getEmail());
+        assertEquals("test@test.be", reservatie.getKlant());
     }
 
     @Test
     void setZaak() {
-        assertThrows(IllegalArgumentException.class, () -> reservatie.setZaak(null));
-
-        Zaak zaak = new Zaak();
-        zaak.setNaam("TestZaak");
-        reservatie.setZaak(zaak);
-        assertEquals("TestZaak", reservatie.getZaak().getNaam());
+        assertThrows(IllegalArgumentException.class, () -> reservatie.setZaak(0));
+        reservatie.setZaak(5);
+        assertEquals(5, reservatie.getZaak());
     }
 
     @Test

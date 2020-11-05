@@ -46,8 +46,9 @@ class MenuRepositoryTest {
     @Test
     void save() {
         Menu menu = new Menu(0, List.of(
-                new MenuItem(0, "Aji de Gallina", 25.35f,"lekker gerechtje", Categorie.DESSERTS),
-                new MenuItem(0, "Patita con Mani", 15.58f,"lekker gerechtje", Categorie.DESSERTS)
+
+                new MenuItem(0, "Aji de Gallina", 25.35f, "lekker gerechtje", Categorie.DESSERTEN),
+                new MenuItem(0, "Patita con Mani", 15.58f, "lekker gerechtje", Categorie.DESSERTEN)
         ));
 
         menu = mr.save(menu);

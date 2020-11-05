@@ -44,7 +44,7 @@ class MenuItemRepositoryTest {
 
     @Test
     void save() {
-        MenuItem menuItem = new MenuItem(0, "Aji de Gallina", 25.5f,"lekker gerechtje", Categorie.DESSERTS);
+        MenuItem menuItem = new MenuItem(0, "Aji de Gallina", 25.5f,"lekker gerechtje", Categorie.DESSERTEN);
         menuItem = mir.save(menuItem);
         assertEquals(4, menuItem.getId());
     }
