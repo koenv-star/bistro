@@ -30,9 +30,8 @@ public class Bestelling {
     @Column(name = "zaak_Id")
     private int zaakId;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bestelling_verzameling_id")
+    @Min(1)
+    @Column(name = "bestelling_verzameling_id")
     private BestellingVerzameling bestellingVerzameling;
 
     public Bestelling() {

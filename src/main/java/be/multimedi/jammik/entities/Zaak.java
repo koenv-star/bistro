@@ -46,17 +46,17 @@ public class Zaak {
     private float rating;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "Openingsuren_Id", referencedColumnName = "Id")
     private OpeningsUren openingsUren;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Adres_Id", referencedColumnName = "Id")
     private Adres adres;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "Menu_Id", referencedColumnName = "Id")
     private Menu menu;
 
@@ -73,7 +73,7 @@ public class Zaak {
     private String email;
 
     @NotNull
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.PERSIST)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "zaak_id")
     private List<Tafel> tafels;

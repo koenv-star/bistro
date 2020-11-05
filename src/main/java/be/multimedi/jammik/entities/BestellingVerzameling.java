@@ -22,7 +22,7 @@ public class BestellingVerzameling {
 
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "bestellingVerzameling")
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy = "bestellingVerzameling")
     private List<Bestelling> bestellingen;
 
 
