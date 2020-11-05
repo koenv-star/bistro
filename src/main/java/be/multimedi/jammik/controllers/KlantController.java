@@ -43,6 +43,7 @@ public class KlantController {
         return klantService.saveKlant(klant);
     }
 
+    //Updating the Klant object
     @PutMapping(path = "/{email}" ,consumes = "application/json", produces = "application/json")
     public ResponseEntity<Klant> putHandler(@PathVariable ("email") String email, @RequestBody Klant klant){
         Klant tempKlant = klantService.findKlantById(email);
@@ -55,7 +56,6 @@ public class KlantController {
             return new ResponseEntity<>(klantService.saveKlant(tempKlant), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
     }
 }
