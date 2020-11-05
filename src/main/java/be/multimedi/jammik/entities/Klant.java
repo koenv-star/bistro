@@ -59,12 +59,11 @@ public class Klant {
 
     @NotNull
     @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-
     private List<BestellingVerzameling> bestellingVerzamelingen;
 
 

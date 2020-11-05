@@ -60,7 +60,7 @@ class BestellingVerzamelingTest {
 
     @Test
     void set_get_Klant(){
-        Klant klant = new Klant();
+        String klant = "jos@vos.com";
         bestellingVerzameling.setKlant(klant);
         assertEquals( klant, bestellingVerzameling.getKlant());
     }

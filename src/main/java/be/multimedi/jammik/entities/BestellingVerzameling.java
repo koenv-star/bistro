@@ -22,14 +22,14 @@ public class BestellingVerzameling {
 
     @NotNull
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "bestellingVerzameling")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "bestelling_verzameling_id", nullable = true)
     private List<Bestelling> bestellingen;
 
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
-    private Klant klant;
+    @Column(name = "Klant_Email")
+    private String klant;
 
     public BestellingVerzameling() {
     }
@@ -57,12 +57,12 @@ public class BestellingVerzameling {
         this.bestellingen = bestellingen;
     }
 
-    public Klant getKlant() {
+    public String getKlant() {
         return klant;
     }
 
-    public void setKlant(Klant klant) {
-        if (klant == null) throw new IllegalArgumentException("klant mag niet null zijn");
-        this.klant = klant;
+    public void setKlant(String klantEmail) {
+        if (klantEmail == null) throw new IllegalArgumentException("klant mag niet null zijn");
+        this.klant = klantEmail;
     }
 }
