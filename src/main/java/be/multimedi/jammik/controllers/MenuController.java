@@ -72,7 +72,6 @@ public class MenuController extends ExceptionHandling {
         if (menuData.isPresent()) {
             Menu _menu = menuData.get();
             _menu.setMenuItems(menu.getMenuItems());
-//            menu.getMenuItems().forEach(menuItem -> menuItemRepository.save(menuItem));
             return new ResponseEntity<>(mr.save(_menu), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
