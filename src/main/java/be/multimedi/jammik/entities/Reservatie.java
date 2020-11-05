@@ -38,7 +38,7 @@ public class Reservatie {
     @NotNull
     private Klant klant;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Zaak_Id", referencedColumnName="Id")
     @NotNull
     @JsonIdentityInfo(

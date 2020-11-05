@@ -2,6 +2,7 @@ package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Reservatie;
 import be.multimedi.jammik.repositories.ReservatieRepository;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,4 +53,13 @@ public class ReservatieController {
         rr.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(path="zaak/{id:^\\d+$}", produces="application/json")
+    public ResponseEntity<List<Reservatie>> getReservatiesByZaakId(@PathVariable("id") int id) {
+        if(id <= 0) return ResponseEntity.badRequest().build();
+
+        List<Reservatie> reservaties = rr.findReservatiesByZaakId(id).orElse(null);
+        return reservaties != null ? ResponseEntity.ok(reservaties) : ResponseEntity.badRequest().build();
+    }
+
 }

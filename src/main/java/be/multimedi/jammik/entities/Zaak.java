@@ -73,7 +73,7 @@ public class Zaak {
     private String email;
 
     @NotNull
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.PERSIST)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "zaak_id")
     private List<Tafel> tafels;
