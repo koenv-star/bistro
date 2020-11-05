@@ -1,6 +1,10 @@
 package be.multimedi.jammik.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 
@@ -31,8 +35,8 @@ public class Bestelling {
     private int zaakId;
 
     @Min(1)
-    @Column(name = "bestelling_verzameling_id")
-    private BestellingVerzameling bestellingVerzameling;
+    @Column(name = "bestelling_verzameling_id", insertable = false, nullable = true)
+    private int bestellingVerzamelingId;
 
     public Bestelling() {
     }
@@ -81,13 +85,13 @@ public class Bestelling {
         this.zaakId = zaakId;
     }
 
-    public BestellingVerzameling getBestellingVerzameling() {
-        return bestellingVerzameling;
+    public int getBestellingVerzamelingId() {
+        return bestellingVerzamelingId;
     }
 
-    public void setBestellingVerzameling(BestellingVerzameling bestellingVerzameling) {
-        if (bestellingVerzameling == null)
-            throw new IllegalArgumentException("Bestellingverzameling mag niet null zijn");
-        this.bestellingVerzameling = bestellingVerzameling;
+    public void setBestellingVerzamelingId(int bestellingVerzamelingId) {
+        if (bestellingVerzamelingId < 1)
+            throw new IllegalArgumentException("Bestellingverzameling mag niet onder 1 zijn");
+        this.bestellingVerzamelingId = bestellingVerzamelingId;
     }
 }
