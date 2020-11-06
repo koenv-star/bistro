@@ -26,9 +26,18 @@ public class PlacesController {
         return restTemplate.exchange(API_VLAANDEREN_BASE_URL + "/gemeenten?limit=500", HttpMethod.GET, entity, Object.class);
     }
 
-    @GetMapping(path="/{community}", produces="application/json")
+    @GetMapping(path="/zipcode/{community}", produces="application/json")
     public ResponseEntity<Object> getZipcodeByCommunity(@PathVariable("community") String community) {
         return restTemplate.exchange(API_VLAANDEREN_BASE_URL + "/postinfo?gemeentenaam=" + community, HttpMethod.GET, entity, Object.class);
     }
 
+    @GetMapping(path="streets/{community}", produces="application/json")
+    public ResponseEntity<Object> getStreetsByCommunity(@PathVariable("community") String community) {
+        return restTemplate.exchange(API_VLAANDEREN_BASE_URL + "/straatnamen?gemeentenaam=" + community + "&limit=10000", HttpMethod.GET, entity, Object.class);
+    }
+
+    @GetMapping(path="numbers/{zipcode}/{street}")
+    public ResponseEntity<Object> getBusNumbersByStreet(@PathVariable("zipcode") String zipcode, @PathVariable("street") String street) {
+        return restTemplate.exchange(API_VLAANDEREN_BASE_URL + "/adressen?postcode=" + zipcode + "&straatnaam=" + street, HttpMethod.GET, entity, Object.class);
+    }
 }
