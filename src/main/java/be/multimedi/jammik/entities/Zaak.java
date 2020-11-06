@@ -46,17 +46,17 @@ public class Zaak {
     private float rating;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "Openingsuren_Id", referencedColumnName = "Id")
     private OpeningsUren openingsUren;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Adres_Id", referencedColumnName = "Id")
     private Adres adres;
 
     @NotNull
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "Menu_Id", referencedColumnName = "Id")
     private Menu menu;
 
@@ -79,7 +79,8 @@ public class Zaak {
     private List<Tafel> tafels;
 
     @NotNull
-    @OneToMany(mappedBy = "zaak", cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "zaak_id")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,

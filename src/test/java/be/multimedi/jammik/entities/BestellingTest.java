@@ -59,15 +59,14 @@ class BestellingTest {
     }
 
     @Test
-    void set_get_bestelling_verzameling() {
-        BestellingVerzameling bestellingVerzameling = new BestellingVerzameling();
-        bestelling.setBestellingVerzameling(bestellingVerzameling);
-        assertEquals(bestellingVerzameling, bestelling.getBestellingVerzameling());
+    void set_get_bestelling_verzameling_id() {
+        bestelling.setBestellingVerzamelingId(1);
+        assertEquals(1, bestelling.getBestellingVerzamelingId());
     }
 
     @Test
-    void throws_on_bestellingverzameling_null(){
-        assertThrows(IllegalArgumentException.class, () -> bestelling.setBestellingVerzameling(null));
+    void throws_on_bestelling_verzameling_id_onder_1(){
+        assertThrows(IllegalArgumentException.class, () -> bestelling.setBestellingVerzamelingId(0));
     }
 
     @Test

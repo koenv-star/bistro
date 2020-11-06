@@ -51,9 +51,7 @@ public class Menu {
     }
 
     public void setMenuItems(List<MenuItem> menuItems) {
-        if (menuItems == null )
-//            || menuItems.size() < 1
-            throw new IllegalArgumentException("MenuItems mag niet null of leeg zijn");
+        if (menuItems == null) throw new IllegalArgumentException("MenuItems mag niet null zijn");
         this.menuItems = menuItems;
     }
 }

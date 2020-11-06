@@ -31,10 +31,19 @@ public class Advertenties {
     public Advertenties() {
     }
 
-    public Advertenties(String zaakNaam, String zaakDesc, int numberOfShow) {
+    public Advertenties(String zaakNaam, String zaakDesc,int zaakId ,int numberOfShow) {
         this.zaakNaam = zaakNaam;
         this.zaakDesc = zaakDesc;
         this.numberOfShow = numberOfShow;
+        this.zaakId= zaakId;
+    }
+
+    public int getZaakId() {
+        return zaakId;
+    }
+
+    public void setZaakId(int zaakId) {
+        this.zaakId = zaakId;
     }
 
     public int getId() {

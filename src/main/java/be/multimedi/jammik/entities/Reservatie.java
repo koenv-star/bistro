@@ -33,18 +33,14 @@ public class Reservatie {
     @Column(name="UurMarge")
     private LocalTime uurMarge;
 
-    @ManyToOne
-    @JoinColumn(name = "Klant_Email", referencedColumnName = "Email")
     @NotNull
-    private Klant klant;
+    @Column(name = "Klant_Email")
+    private String klant;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="Zaak_Id", referencedColumnName="Id")
+
     @NotNull
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")
-    private Zaak zaak;
+    @Column(name = "zaak_id")
+    private int zaak;
 
     @OneToOne
     @JoinColumn(name="Tafel_Id", referencedColumnName="Id")
@@ -54,8 +50,8 @@ public class Reservatie {
     public Reservatie() {
     }
 
-    public Reservatie(@Min(0) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge, @NotNull Klant klant,
-                      @NotNull Zaak zaak, @NotNull Tafel tafel) {
+    public Reservatie(@Min(0) int id, @Future LocalDateTime tijdstip, LocalTime uurMarge, @NotNull String klant,
+                      @NotNull int zaak, @NotNull Tafel tafel) {
         setId(id);
         setTijdstip(tijdstip);
         setUurMarge(uurMarge);
@@ -93,22 +89,22 @@ public class Reservatie {
         this.uurMarge = uurMarge;
     }
 
-    public Klant getKlant() {
+    public String getKlant() {
         return klant;
     }
 
-    public void setKlant(Klant klant) {
+    public void setKlant(String klant) {
         if(klant == null) throw new IllegalArgumentException("klant kan niet null zijn");
 
         this.klant = klant;
     }
 
-    public Zaak getZaak() {
+    public int getZaak() {
         return zaak;
     }
 
-    public void setZaak(Zaak zaak) {
-        if(zaak == null) throw new IllegalArgumentException("zaak kan niet null zijn");
+    public void setZaak(int zaak) {
+        if(zaak < 1) throw new IllegalArgumentException("zaak kan niet null zijn");
 
         this.zaak = zaak;
     }
