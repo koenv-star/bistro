@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,43 +24,43 @@ public class ReservatieController {
         this.rr = rr;
     }
 
-    @GetMapping(path="/{id:^\\d+$}", produces="application/json")
+    @GetMapping(path = "/{id:^\\d+$}", produces = "application/json")
     public ResponseEntity<Reservatie> getByIdHandler(@PathVariable("id") int id) {
-        if(id <= 0) return ResponseEntity.badRequest().build();
+        if (id <= 0) return ResponseEntity.badRequest().build();
 
         Reservatie reservatie = rr.getReservatieById(id);
         return reservatie != null ? ResponseEntity.ok(reservatie) : ResponseEntity.badRequest().build();
     }
 
-    @GetMapping(produces="application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<Reservatie>> getAllHandler() {
         List<Reservatie> reservaties = rr.findAll();
         return ResponseEntity.ok(reservaties);
     }
 
-    @PostMapping(consumes="application/json", produces="application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Reservatie> postHandler(@RequestBody Reservatie reservatie) {
 
-        if(reservatie == null || reservatie.getId() != 0)
+        if (reservatie == null || reservatie.getId() != 0)
             return ResponseEntity.badRequest().build();
 
         return ResponseEntity.ok(rr.save(reservatie));
     }
 
-    @DeleteMapping(path="/{id:^\\d+$}")
+    @DeleteMapping(path = "/{id:^\\d+$}")
     public ResponseEntity<?> deleteHandler(@PathVariable("id") int id) {
-        if(id <= 0) return ResponseEntity.badRequest().build();
+        if (id <= 0) return ResponseEntity.badRequest().build();
 
         rr.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(path="zaak/{id:^\\d+$}", produces="application/json")
+    @GetMapping(path = "zaak/{id:^\\d+$}", produces = "application/json")
     public ResponseEntity<List<Reservatie>> getReservatiesByZaakId(@PathVariable("id") int id) {
-        if(id <= 0) return ResponseEntity.badRequest().build();
+        if (id <= 0) return ResponseEntity.badRequest().build();
 
-        List<Reservatie> reservaties = rr.findReservatiesByZaakId(id).orElse(null);
-        return reservaties != null ? ResponseEntity.ok(reservaties) : ResponseEntity.badRequest().build();
+        List<Reservatie> reservaties = rr.findReservatiesByZaak(id).orElse(new ArrayList<>());
+        return ResponseEntity.ok(reservaties);
     }
 
 }

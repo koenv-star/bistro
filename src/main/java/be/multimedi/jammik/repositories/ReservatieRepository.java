@@ -17,5 +17,5 @@ public interface ReservatieRepository extends JpaRepository<Reservatie, Integer>
         return getOne(id);
     }
 
-    Optional<List<Reservatie>> findReservatiesByZaakId(Integer integer);
+    Optional<List<Reservatie>> findReservatiesByZaak(int id);
 }
