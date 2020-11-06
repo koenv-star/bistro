@@ -12,6 +12,7 @@ TRUNCATE TABLE Reservatie RESTART IDENTITY AND COMMIT;
 TRUNCATE TABLE Tafel RESTART IDENTITY AND COMMIT;
 TRUNCATE TABLE Uitbater RESTART IDENTITY AND COMMIT;
 TRUNCATE TABLE Zaak RESTART IDENTITY AND COMMIT;
+TRUNCATE TABLE Advertenties RESTART IDENTITY AND COMMIT;
 
 INSERT INTO Adres(Id, Straat, HuisNr, Postcode, Gemeente)
 VALUES (1, 'JavaStraat', 18, 3000, 'Leuven'),
@@ -76,6 +77,10 @@ INSERT INTO Reservatie(Id, Tijdstip, UurMarge, Klant_Email, Tafel_Id, Zaak_Id)
 VALUES (1, '2020-11-12 12:00:00',  '00:45:00', 'jammik@bistro.be', 1, 2),
        (2, '2021-02-05 17:50:00',  '02:00:00', 'test@klant.be', 2, 1),
        (3, '2021-06-12 09:30:00',  '03:15:00', 'jammik@bistro.be', 1, 1);
+
+INSERT INTO Advertenties(Id, NumberShow, Description, ZaakId, ZaakNaam)
+VALUES  (1,200,'Welcome',29,'newDurms'),
+        (2,3000,'The Best Coffe',29,'newDurms');
 
 --INSERT INTO Openingsuren_dagen(Openingsuren_Id, dagen_Naam) VALUES (1, 'Ma'), (1, 'Zo'), (2, 'Wo'), (2, 'Zo'), (3, 'Di');
 
