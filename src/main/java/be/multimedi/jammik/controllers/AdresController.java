@@ -19,7 +19,7 @@ public class AdresController extends ExceptionHandling {
     private AdresRepository ar;
 
     @Autowired
-    public AdresController(AdresRepository ar) {
+    public void setAr(AdresRepository ar) {
         this.ar = ar;
     }
 
