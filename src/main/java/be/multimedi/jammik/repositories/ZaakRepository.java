@@ -1,6 +1,7 @@
 package be.multimedi.jammik.repositories;
 
 import be.multimedi.jammik.entities.Zaak;
+import be.multimedi.jammik.projections.ZakenPagina;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +19,6 @@ public interface ZaakRepository extends JpaRepository<Zaak, Integer> {
     }
     Optional<List<Zaak>> findZaaksByEmail(String email);
     Optional<Zaak> findZaakByNaam(String naam);
+    <T> List<T> findAllBy(Class<T> type);
+    List<ZakenPagina> findAllByEmail(String email);
 }

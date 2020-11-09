@@ -1,15 +1,14 @@
 package be.multimedi.jammik.services;
 
 import be.multimedi.jammik.entities.Zaak;
+import be.multimedi.jammik.projections.ZakenPagina;
 import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.tools.ImageTool;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -32,10 +31,7 @@ public class ZaakServiceImpl implements ZaakService {
                         .registerModule(new ParameterNamesModule())
                         .registerModule(new JavaTimeModule());
     }
-
-    public List<Zaak> getZakenOpUitbater(String email) {
-        return zaakRepository.findZaaksByEmail(email).get();
-    }
+    
     public List<Zaak> getAlleZaken() {
         return zaakRepository.findAll();
     }
