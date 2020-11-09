@@ -31,6 +31,10 @@ public class BestellingVerzameling {
     @Column(name = "Klant_Email")
     private String klant;
 
+    @NotNull
+    @Column(name = "Message")
+    private String message;
+
     public BestellingVerzameling() {
     }
 
@@ -64,5 +68,14 @@ public class BestellingVerzameling {
     public void setKlant(String klantEmail) {
         if (klantEmail == null) throw new IllegalArgumentException("klant mag niet null zijn");
         this.klant = klantEmail;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        if (message == null) throw new IllegalArgumentException("Message mag niet null zijn");
+        this.message = message;
     }
 }

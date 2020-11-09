@@ -22,7 +22,8 @@ import java.util.List;
 public class KlantController {
 
     private KlantServiceImpl klantService;
-    private KlantRepository kr;
+
+    private KlantRepository klantRepository;
 
 
 
@@ -32,7 +33,9 @@ public class KlantController {
     }
 
     @Autowired
-    public void setKr(KlantRepository kr){this.kr = kr;}
+
+    public void setKlantRepository(KlantRepository klantRepository) {this.klantRepository = klantRepository;}
+
 
     @GetMapping()
     public List<Klant> getAll() {
@@ -58,10 +61,10 @@ public class KlantController {
             tempKlant.setReservaties(klant.getReservaties());
             tempKlant.setBestellingVerzamelingen(klant.getBestellingVerzamelingen());
             tempKlant.setKrediet(klant.getKrediet());
-            return new ResponseEntity<>(kr.save(tempKlant), HttpStatus.OK);
+            System.out.println(tempKlant.toString());
+            return new ResponseEntity<>(klantRepository.save(tempKlant), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
     }
 }

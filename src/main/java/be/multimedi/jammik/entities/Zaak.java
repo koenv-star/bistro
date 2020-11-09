@@ -133,13 +133,13 @@ public class Zaak {
         this.naam = naam;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) {
         if (description == null) throw new IllegalArgumentException("description mag niet null zijn");
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getImageURL() {

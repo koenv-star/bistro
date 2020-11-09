@@ -8,7 +8,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.IllformedLocaleException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

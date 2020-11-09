@@ -31,6 +31,14 @@ public class BestellingVerzamelingController extends ExceptionHandling {
         return bv != null ? ResponseEntity.ok(bv) : ResponseEntity.badRequest().build();
     }
 
+    @GetMapping(path="/email={email}", produces="application/json")
+    public ResponseEntity<List<BestellingVerzameling>> getByIdHandler(@PathVariable("email") String email) {
+        if(email.isBlank()) return ResponseEntity.badRequest().build();
+
+        List<BestellingVerzameling> bv = bvr.getAllBestellingVerzamelingsByKlant(email);
+        return bv != null ? ResponseEntity.ok(bv) : ResponseEntity.badRequest().build();
+    }
+
     @GetMapping(produces="application/json")
     public ResponseEntity<List<BestellingVerzameling>> getAllHandler() {
         List<BestellingVerzameling> bvn = bvr.findAll();

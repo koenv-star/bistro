@@ -151,4 +151,17 @@ public class Klant {
     public String getRole() {
         return "ROLE_KLANT";
     }
+
+    @Override
+    public String toString() {
+        return "Klant{" +
+                "email='" + email + '\'' +
+                ", naam='" + naam + '\'' +
+                ", voornaam='" + voornaam + '\'' +
+                ", wachtwoord='" + wachtwoord + '\'' +
+                ", krediet=" + krediet +
+                ", reservaties=" + reservaties +
+                ", bestellingVerzamelingen=" + bestellingVerzamelingen +
+                '}';
+    }
 }
