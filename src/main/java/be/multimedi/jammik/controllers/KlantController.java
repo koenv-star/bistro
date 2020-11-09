@@ -2,6 +2,7 @@ package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Klant;
 import be.multimedi.jammik.entities.Uitbater;
+import be.multimedi.jammik.repositories.KlantRepository;
 import be.multimedi.jammik.services.KlantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.List;
 public class KlantController {
 
     private KlantServiceImpl klantService;
+    private KlantRepository klantRepository;
 
 
     @Autowired
@@ -28,6 +30,8 @@ public class KlantController {
         this.klantService = klantService;
     }
 
+    @Autowired
+    public void setKlantRepository(KlantRepository klantRepository) {this.klantRepository = klantRepository;}
 
     @GetMapping()
     public List<Klant> getAll() {
@@ -53,7 +57,8 @@ public class KlantController {
             tempKlant.setReservaties(klant.getReservaties());
             tempKlant.setBestellingVerzamelingen(klant.getBestellingVerzamelingen());
             tempKlant.setKrediet(klant.getKrediet());
-            return new ResponseEntity<>(klantService.saveKlant(tempKlant), HttpStatus.OK);
+            System.out.println(tempKlant.toString());
+            return new ResponseEntity<>(klantRepository.save(tempKlant), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

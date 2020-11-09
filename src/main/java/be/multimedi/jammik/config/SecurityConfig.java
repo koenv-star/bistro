@@ -97,7 +97,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/menu/**").hasRole("UITBATER")
                 .antMatchers("/klanten", "/klanten/**", "/", "/login","/uitbaters","/uitbaters/**","/klants", "/gebruiker","/zaken/**","/advertenties/**","/advertenties","/bestelling*", "/adres", "/adres/**", "/places", "/places/**").permitAll()
-
                 .anyRequest().authenticated()
         ;
 
