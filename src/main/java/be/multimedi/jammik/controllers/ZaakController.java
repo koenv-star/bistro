@@ -1,6 +1,7 @@
 package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Zaak;
+import be.multimedi.jammik.projections.ZakenPagina;
 import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.services.ZaakService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,19 @@ public class ZaakController {
         return ResponseEntity.ok(zaakService.getAlleZaken());
     }
 
+    @GetMapping(value = "/display", produces = "application/json")
+    public ResponseEntity<List<ZakenPagina>> getAlleZakenVoorDisplay() {
+        return ResponseEntity.ok(repository.findAllBy(ZakenPagina.class));
+    }
+
     @GetMapping(value = "{email}")
     public ResponseEntity<List<Zaak>> getZakenOpUitbater(@PathVariable("email") String email) {
         return ResponseEntity.ok(Objects.requireNonNull(repository.findZaaksByEmail(email).orElse(null)));
+    }
+
+    @GetMapping(value = "/display/{email}")
+    public ResponseEntity<List<ZakenPagina>> getZakenOpUitbaterVoorDisplay(@PathVariable("email") String email) {
+        return ResponseEntity.ok(repository.findAllByEmail(email));
     }
 
     @GetMapping(value = "zaak/{naam}", produces="application/json")

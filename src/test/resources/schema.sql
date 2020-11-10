@@ -137,3 +137,14 @@ create table if not exists Reservatie
     constraint FKn86jbj6wnofa80g7l0jw8ikfw
         foreign key (Tafel_Id) references Tafel (Id) ON DELETE CASCADE
 );
+
+create table if not exists Advertenties
+(
+    Id          int IDENTITY
+        primary key,
+    NumberShow  int          null,
+    Description varchar(255) null,
+    ZaakId      int          null,
+    ZaakNaam    varchar(255) null
+);
+

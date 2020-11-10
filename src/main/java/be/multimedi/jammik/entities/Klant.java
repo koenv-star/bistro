@@ -115,8 +115,8 @@ public class Klant {
     }
 
     public void setWachtwoord(String wachtwoord) {
-        if (wachtwoord == null || wachtwoord.length() != 60)
-            throw new IllegalArgumentException("wachtwoord mag niet null of moet 60 characters lang zijn");
+//        if (wachtwoord == null || wachtwoord.length() != 60)
+//            throw new IllegalArgumentException("wachtwoord mag niet null of moet 60 characters lang zijn");
         this.wachtwoord = wachtwoord;
     }
 
@@ -150,5 +150,18 @@ public class Klant {
 
     public String getRole() {
         return "ROLE_KLANT";
+    }
+
+    @Override
+    public String toString() {
+        return "Klant{" +
+                "email='" + email + '\'' +
+                ", naam='" + naam + '\'' +
+                ", voornaam='" + voornaam + '\'' +
+                ", wachtwoord='" + wachtwoord + '\'' +
+                ", krediet=" + krediet +
+                ", reservaties=" + reservaties +
+                ", bestellingVerzamelingen=" + bestellingVerzamelingen +
+                '}';
     }
 }

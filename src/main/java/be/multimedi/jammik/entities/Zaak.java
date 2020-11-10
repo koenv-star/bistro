@@ -31,7 +31,7 @@ public class Zaak {
 
     @NotNull
     @Column(name = "Description")
-    private String description;
+    private String text;
 
     @NotNull
     @Column(name = "ImageURL")
@@ -133,13 +133,13 @@ public class Zaak {
         this.naam = naam;
     }
 
-    public String getDescription() {
-        return description;
+    public void setText(String description) {
+        if (description == null) throw new IllegalArgumentException("description mag niet null zijn");
+        this.text = description;
     }
 
-    public void setDescription(String description) {
-        if (description == null) throw new IllegalArgumentException("description mag niet null zijn");
-        this.description = description;
+    public String getText() {
+        return text;
     }
 
     public String getImageURL() {
