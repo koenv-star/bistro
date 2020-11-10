@@ -37,6 +37,7 @@ public class Reservatie {
     @Column(name = "Klant_Email")
     private String klant;
 
+
     @NotNull
     @Column(name = "zaak_id")
     private int zaak;
