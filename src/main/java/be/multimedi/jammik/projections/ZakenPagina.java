@@ -8,5 +8,6 @@ public interface ZakenPagina {
     String getNaam();
     String getImageURL();
     String getEmail();
+    String getText();
 }
 

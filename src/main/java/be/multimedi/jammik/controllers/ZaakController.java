@@ -10,7 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Made by Koen
@@ -52,9 +56,7 @@ public class ZaakController {
 
     @GetMapping(value = "{email}")
     public ResponseEntity<List<Zaak>> getZakenOpUitbater(@PathVariable("email") String email) {
-
-        return ResponseEntity.ok(repository.findZaaksByEmail(email).orElse(null));
-
+        return ResponseEntity.ok(Objects.requireNonNull(repository.findZaaksByEmail(email).orElse(null)));
     }
     @GetMapping(value = "/display/{email}")
     public ResponseEntity<List<ZakenPagina>> getZakenOpUitbaterVoorDisplay(@PathVariable("email") String email) {

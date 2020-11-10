@@ -150,13 +150,13 @@ class ZaakTest {
     @Test
     void set_get_description() {
         String description = "een description";
-        zaak.setDescription(description);
-        assertEquals(description, zaak.getDescription());
+        zaak.setText(description);
+        assertEquals(description, zaak.getText());
     }
 
     @Test
     void throw_exception_on_null_description(){
-        assertThrows(IllegalArgumentException.class, () -> zaak.setDescription(null));
+        assertThrows(IllegalArgumentException.class, () -> zaak.setText(null));
     }
 
     @Test
