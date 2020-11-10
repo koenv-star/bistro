@@ -9,5 +9,6 @@ public interface ZakenPagina {
     String getImageURL();
     String getEmail();
     String getText();
+    float getRating();
 }
 
