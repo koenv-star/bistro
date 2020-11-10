@@ -97,8 +97,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/menu/**", "/uitbaters/**").hasRole("UITBATER")
                 .antMatchers( "/klants/**").hasRole("KLANT")
-                .antMatchers("/", "/adres/**", "/gebruiker/**", "/zaken/**", "/bestelling/**", "/adres/**", "/places/**").access("hasRole('ROLE_KLANT') or hasRole('ROLE_UITBATER')")
-                .antMatchers("/login/**", "/klanten/**","/advertenties/**").permitAll()
+                .antMatchers("/", "/adres/**", "/gebruiker/**", "/zaken/**", "/bestelling/**", "/adres/**").access("hasRole('ROLE_KLANT') or hasRole('ROLE_UITBATER')")
+                .antMatchers("/login/**", "/klanten/**","/advertenties/**","/places/**").permitAll()
                 .anyRequest().authenticated()
         ;
 
