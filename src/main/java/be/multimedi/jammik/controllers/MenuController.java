@@ -2,7 +2,6 @@ package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Menu;
 import be.multimedi.jammik.exceptions.ExceptionHandling;
-import be.multimedi.jammik.repositories.MenuItemRepository;
 import be.multimedi.jammik.repositories.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,24 +19,17 @@ import java.util.Optional;
 public class MenuController extends ExceptionHandling {
 
     private MenuRepository mr;
-    private MenuItemRepository menuItemRepository;
 
     @Autowired
     public MenuController(MenuRepository mr) {
         this.mr = mr;
     }
 
-    @Autowired
-    public void setMenuItemRepository(MenuItemRepository menuItemRepository) {
-        this.menuItemRepository = menuItemRepository;
-    }
-
-
     @GetMapping(path = "/{id:^\\d+$}", produces = "application/json")
     public ResponseEntity<Menu> getByIdHandler(@PathVariable("id") int id) {
         if (id <= 0) return ResponseEntity.badRequest().build();
 
-        Menu menu = mr.getMenuById(id);
+        Menu menu = mr.findById(id).get();
         return menu != null ? ResponseEntity.ok(menu) : ResponseEntity.badRequest().build();
     }
 

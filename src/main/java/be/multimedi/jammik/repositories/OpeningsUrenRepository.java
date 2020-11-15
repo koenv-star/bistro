@@ -10,7 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OpeningsUrenRepository extends JpaRepository<OpeningsUren, Integer> {
 
-    default OpeningsUren getOpeningsUrenById(int id) {
-        return getOne(id);
-    }
+
 }

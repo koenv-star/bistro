@@ -29,7 +29,7 @@ class TafelRepositoryTest {
 
     @Test
     void getById() {
-        Tafel tafel = tr.getTafelById(2);
+        Tafel tafel = tr.findById(2).get();
         assertNotNull(tafel);
         assertEquals(2, tafel.getStoelen());
     }

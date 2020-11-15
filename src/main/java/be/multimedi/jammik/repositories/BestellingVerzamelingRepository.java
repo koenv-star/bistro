@@ -14,4 +14,6 @@ public interface BestellingVerzamelingRepository extends JpaRepository<Bestellin
         return getOne(id);
     }
     List<BestellingVerzameling> getAllBestellingVerzamelingsByKlant(String email);
+
+    List<BestellingVerzameling> findAllByKlant (String email);
 }

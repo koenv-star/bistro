@@ -1,9 +1,7 @@
 package be.multimedi.jammik.controllers;
 
-import be.multimedi.jammik.entities.Menu;
 import be.multimedi.jammik.entities.Reservatie;
 import be.multimedi.jammik.repositories.ReservatieRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +29,8 @@ public class ReservatieController {
     public ResponseEntity<Reservatie> getByIdHandler(@PathVariable("id") int id) {
         if (id <= 0) return ResponseEntity.badRequest().build();
 
-        Reservatie reservatie = rr.getReservatieById(id);
-        return reservatie != null ? ResponseEntity.ok(reservatie) : ResponseEntity.badRequest().build();
+        Optional<Reservatie> reservatie = rr.findById(id);
+        return reservatie.isPresent()? ResponseEntity.ok(reservatie.get()) : ResponseEntity.badRequest().build();
     }
 
     @GetMapping(produces = "application/json")

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Gemaakt door Jan
@@ -27,7 +28,8 @@ public class AdresController extends ExceptionHandling {
     public ResponseEntity<Adres> getByIdHandler(@PathVariable("id") int id) {
         if(id <= 0) return ResponseEntity.badRequest().build();
 
-        Adres adres = ar.getAdresById(id);
+      Adres  adres = ar.findById(id).orElse(null);
+
         return adres != null ? ResponseEntity.ok(adres) : ResponseEntity.badRequest().build();
     }
 

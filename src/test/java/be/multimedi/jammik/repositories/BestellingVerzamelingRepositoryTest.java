@@ -54,8 +54,8 @@ class BestellingVerzamelingRepositoryTest {
     @Test
     void save() {
         BestellingVerzameling bv = new BestellingVerzameling(0, List.of(
-                bestellingRepository.getBestellingById(2),
-                bestellingRepository.getBestellingById(3)
+                bestellingRepository.findById(2).get(),
+                bestellingRepository.findById(3).get()
         ));
 
         bv = bestellingVerzamelingRepository.save(bv);

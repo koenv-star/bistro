@@ -25,10 +25,9 @@ public class UitbaterServiceImpl {
     }
 
     public Uitbater findUitbaterByEmail(String email) {
-        Optional<Uitbater> uitbater = uitbaterRepository.findUitbaterByEmail(email);
+        Optional<Uitbater> uitbater = uitbaterRepository.findById(email);
         if (uitbater.isPresent()) {
-            Uitbater temp = uitbater.get();
-            return temp;
+            return uitbater.get();
         } else return null;
 
     }

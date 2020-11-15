@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DagRepository extends JpaRepository<Dag, Integer> {
 
-    Dag getDagById(int id);
+
 
 }

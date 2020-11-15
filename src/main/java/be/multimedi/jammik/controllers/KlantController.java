@@ -1,7 +1,6 @@
 package be.multimedi.jammik.controllers;
 
 import be.multimedi.jammik.entities.Klant;
-import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.KlantRepository;
 import be.multimedi.jammik.services.KlantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -26,7 +26,6 @@ public class KlantController {
     private KlantRepository klantRepository;
 
 
-
     @Autowired
     public void setKlantService(KlantServiceImpl klantService) {
         this.klantService = klantService;
@@ -34,36 +33,49 @@ public class KlantController {
 
     @Autowired
 
-    public void setKlantRepository(KlantRepository klantRepository) {this.klantRepository = klantRepository;}
+    public void setKlantRepository(KlantRepository klantRepository) {
+        this.klantRepository = klantRepository;
+    }
 
 
     @GetMapping()
     public List<Klant> getAll() {
-        return klantService.findAllKlanten();
+        return klantRepository.findAll();
     }
 
     @GetMapping(path = "/{email}")
-    public Klant getKlantByEmail(@PathVariable("email") String email){
-        return klantService.findKlantById(email);
-    }
-    @PostMapping
-    public Klant save(@RequestBody Klant klant) {
-        return klantService.saveKlant(klant);
+    public ResponseEntity<Klant> getKlantByEmail(@PathVariable("email") String email) {
+        Optional<Klant> klant = klantRepository.findById(email);
+
+        return klant.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
     }
 
-    //Updating the Klant object
-    @PutMapping(path = "/{email}" ,consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Klant> putHandler(@PathVariable ("email") String email, @RequestBody Klant klant){
-        Klant tempKlant = klantService.findKlantById(email);
-        if(tempKlant != null) {
-            tempKlant.setNaam(klant.getNaam());
-            tempKlant.setVoornaam(klant.getVoornaam());
-            tempKlant.setReservaties(klant.getReservaties());
-            tempKlant.setBestellingVerzamelingen(klant.getBestellingVerzamelingen());
-            tempKlant.setKrediet(klant.getKrediet());
+    @PostMapping
+    public ResponseEntity<Klant> save(@RequestBody Klant klant) {
+
+        Klant klantrespons = klantService.saveKlant(klant);
+
+        if (klantrespons != null) {
+            return ResponseEntity.ok(klantrespons);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(path = "/{email}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Klant> putHandler(@PathVariable("email") String email, @RequestBody Klant klant) {
+        Optional<Klant> tempKlant = klantRepository.findById(email);
+        if (tempKlant.isPresent()) {
+            Klant _tempklant = tempKlant.get();
+            _tempklant.setNaam(klant.getNaam());
+            _tempklant.setVoornaam(klant.getVoornaam());
+            _tempklant.setReservaties(klant.getReservaties());
+            _tempklant.setKrediet(klant.getKrediet());
+            _tempklant.setBestellingVerzamelingen(klant.getBestellingVerzamelingen());
             System.out.println(tempKlant.toString());
-            return new ResponseEntity<>(klantRepository.save(tempKlant), HttpStatus.OK);
-        }else{
+            return new ResponseEntity<>(klantRepository.save(_tempklant), HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

@@ -45,7 +45,7 @@ class ZaakRepositoryTest {
 
     @Test
     void getById() {
-        Zaak zaak = zr.getZaakById(3);
+        Zaak zaak = zr.findById(3).get();
         assertNotNull(zaak);
         assertEquals("Bistro Koen", zaak.getNaam());
     }
@@ -59,13 +59,13 @@ class ZaakRepositoryTest {
 
     @Test
     void save() {
-        OpeningsUren ourn = our.getOpeningsUrenById(2);
+        OpeningsUren ourn = our.findById(2).get();
 
-        Adres adres = ar.getAdresById(1);
-        Menu menu = mr.getMenuById(3);
-        Uitbater uitbater = ur.findUitbaterByEmail("michael@jammik.be").get();
-        List<Tafel> tafels = new ArrayList<>(List.of(tr.getTafelById(2), tr.getTafelById(3)));
-        List<Reservatie> reservaties = new ArrayList<>(List.of(rr.getReservatieById(1), rr.getReservatieById(3)));
+        Adres adres = ar.findById(1).get();
+        Menu menu = mr.findById(3).get();
+        Uitbater uitbater = ur.findById("michael@jammik.be").get();
+        List<Tafel> tafels = new ArrayList<>(List.of(tr.findById(2).get(), tr.findById(3).get()));
+        List<Reservatie> reservaties = new ArrayList<>(List.of(rr.findById(1).get(), rr.findById(3).get()));
 
         Zaak zaak = new Zaak(0, "TestBistro", false, 2.6f, ourn, adres, menu, "michael@jammik.be", tafels, reservaties);
 

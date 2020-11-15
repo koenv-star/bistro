@@ -26,11 +26,7 @@ public class GebruikerServiceImpl implements UserDetailsService {
     private UitbaterRepository uitbaterRepository;
 
     private Klant person;
-
-    public Klant getPerson() {
-        return person;
-    }
-
+    
     @Autowired
     public void setKlantRepository(KlantRepository klantRepository) {
         this.klantRepository = klantRepository;
@@ -43,12 +39,12 @@ public class GebruikerServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<Klant> klant = klantRepository.findKlantByEmail(s);
+        Optional<Klant> klant = klantRepository.findById(s);
         if (klant.isPresent()) {
             person = klant.get();
             return new Gebruiker(person);
         } else {
-            Optional<Uitbater> uitbater = uitbaterRepository.findUitbaterByEmail(s);
+            Optional<Uitbater> uitbater = uitbaterRepository.findById(s);
             if (uitbater.isPresent()) {
                 person = uitbater.get();
                 return new Gebruiker(person);

@@ -31,7 +31,7 @@ class BestellingRepositoryTest {
 
     @Test
     void getById() {
-        Bestelling bestelling = bestellingRepository.getBestellingById(2);
+        Bestelling bestelling = bestellingRepository.findById(2).get();
         assertNotNull(bestelling);
         assertEquals(2, bestelling.getId());
         assertEquals("Spaghetti", bestelling.getMenuItem().getNaam());

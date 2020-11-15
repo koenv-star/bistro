@@ -30,7 +30,7 @@ class MenuItemRepositoryTest {
 
     @Test
     void getById() {
-        MenuItem menuItem = mir.getMenuItemById(2);
+        MenuItem menuItem = mir.findById(2).get();
         assertNotNull(menuItem);
         assertEquals("Spaghetti", menuItem.getNaam());
     }

@@ -39,9 +39,9 @@ public class ImageTool {
         byte[] imageBytes;
         HashMap<String, byte[]> images = new HashMap<>();
 
-        if(dir.isDirectory()) {
+        if (dir.isDirectory()) {
 
-            for(File file : Objects.requireNonNull(dir.listFiles())) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
 
                 imageName = file.getName();
                 imageBytes = FileUtils.readFileToByteArray(file);
@@ -56,7 +56,7 @@ public class ImageTool {
 
         // put the image in the images folder
         int nameLength = Objects.requireNonNull(file.getOriginalFilename()).length();
-        int beginPosition = file.getOriginalFilename().contains(".jpeg") ? nameLength -5 : nameLength -4;
+        int beginPosition = file.getOriginalFilename().contains(".jpeg") ? nameLength - 5 : nameLength - 4;
         String extension = file.getOriginalFilename().substring(beginPosition);
 
         String imageUrl = zaak.getEmail().toLowerCase() + "_" +
@@ -69,15 +69,15 @@ public class ImageTool {
 
     public void deleteImage(int zaakId) throws Exception {
 
-        Zaak zaak = zaakRepository.getZaakById(zaakId);
+        Zaak zaak = zaakRepository.findById(zaakId).get();
         String imageName = zaak.getImageURL();
         File dir = new File(location);
 
-        if(dir.isDirectory()) {
+        if (dir.isDirectory()) {
 
-            for(File file : Objects.requireNonNull(dir.listFiles())) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
 
-                if(file.getName().equals(imageName))
+                if (file.getName().equals(imageName))
                     Files.deleteIfExists(Paths.get(location + "\\" + imageName));
             }
         }
@@ -87,11 +87,11 @@ public class ImageTool {
 
         File dir = new File(location);
 
-        if(dir.isDirectory()) {
+        if (dir.isDirectory()) {
 
-            for(File file : Objects.requireNonNull(dir.listFiles())) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
 
-                if(file.getName().equals(imageUrl))
+                if (file.getName().equals(imageUrl))
                     Files.deleteIfExists(Paths.get(location + "\\" + imageUrl));
             }
         }

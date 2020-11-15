@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Gemaakt door Jan
@@ -27,8 +28,8 @@ public class OpeningsUrenController extends ExceptionHandling {
     public ResponseEntity<OpeningsUren> getByIdHandler(@PathVariable("id") int id) {
         if(id <= 0) return ResponseEntity.badRequest().build();
 
-        OpeningsUren ou = our.getOpeningsUrenById(id);
-        return ou != null ? ResponseEntity.ok(ou) : ResponseEntity.badRequest().build();
+        Optional<OpeningsUren> ou = our.findById(id);
+        return ou.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @GetMapping(produces="application/json")

@@ -1,6 +1,6 @@
 package be.multimedi.jammik.controllers;
 
-import be.multimedi.jammik.entities.Advertenties;
+import be.multimedi.jammik.entities.Advertentie;
 import be.multimedi.jammik.entities.Zaak;
 import be.multimedi.jammik.repositories.AdvertentiesRepository;
 import be.multimedi.jammik.repositories.ZaakRepository;
@@ -17,61 +17,68 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/advertenties")
-public class AdvertentiesController {
+public class AdvertentieController {
 
 
     private AdvertentiesRepository adr;
     private ZaakRepository zr;
 
     @Autowired
-    public AdvertentiesController(AdvertentiesRepository adr, ZaakRepository zr) {
+    public AdvertentieController(AdvertentiesRepository adr, ZaakRepository zr) {
         this.adr = adr;
         this.zr = zr;
     }
 
     @GetMapping
-    public ResponseEntity<List<Advertenties>> getAllAdvertenties() {
-        return ResponseEntity.ok(adr.getAll());
+    public ResponseEntity<List<Advertentie>> getAllAdvertenties() {
+        List<Advertentie> advertenties = adr.findAll();
+
+
+        if (!advertenties.isEmpty()) {
+            return new ResponseEntity<>(advertenties, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
     }
+
     @GetMapping(path = "/{id:^\\d+$}")
-    public ResponseEntity<Advertenties> getOneById(@PathVariable("id") int adId){
-        return  ResponseEntity.ok(adr.getAll().get(adId));
+    public ResponseEntity<Advertentie> getOneById(@PathVariable("id") int adId) {
+
+        Advertentie ad = adr.findById(adId).get();
+
+        return ad == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(ad);
     }
 
     @GetMapping(path = "/AdvertentiesLength")
     public ResponseEntity<Integer> getAllAdvertentiesLength() {
-        List<Advertenties> advertentiesList = adr.getAll();
+        List<Advertentie> advertentiesList = adr.findAll();
         advertentiesList = advertentiesList.stream().filter(x -> x.getNumberOfShow() > 0).collect(Collectors.toList());
         return ResponseEntity.ok(advertentiesList.size());
     }
 
     @GetMapping(path = "/Zaak/{id:^\\d+$}")
     public ResponseEntity<Zaak> getAdvertentieZaak(@PathVariable("id") int adId) {
-        // getting ad from database according to given id
-        //if the the showing number is bigger then 0 then we turning back to restaurant info
-        Advertenties ad = adr.getAll().get(adId);
+        Advertentie ad = adr.findById(adId).get();
+        int id = ad.getZaakId();
         int numberOfShow = ad.getNumberOfShow();
-
-        //if showing number -1 is bigger than 0 then needed to update the ad show number
-        //and returning to ad restaurant info according to advertisement id
-        if ( numberOfShow - 1 > 0) {
-            Zaak adZaak = zr.getZaakById(ad.getZaakId());
-            ad.setNumberOfShow(numberOfShow-1);
+        if (numberOfShow - 1 > 0) {
+            Zaak adZaak = zr.findById(id).get();
+            ad.setNumberOfShow(numberOfShow - 1);
             adr.save(ad);
             return ResponseEntity.ok(adZaak);
-        }else if(numberOfShow-1 == 0) {
-            Zaak adZaak = zr.getZaakById(ad.getZaakId());
+        } else if (numberOfShow - 1 == 0) {
+            Zaak adZaak = zr.findById(id).get();
             adr.deleteById(ad.getId());
             return ResponseEntity.ok(adZaak);
-        }else{
+        } else {
             return ResponseEntity.badRequest().build();
         }
 
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Advertenties> postHandler(@RequestBody Advertenties advertentie) {
+    public ResponseEntity<Advertentie> postHandler(@RequestBody Advertentie advertentie) {
 
         if (advertentie == null || advertentie.getId() != 0)
             return ResponseEntity.badRequest().build();
@@ -79,10 +86,9 @@ public class AdvertentiesController {
         return ResponseEntity.ok(adr.save(advertentie));
     }
 
-    //Updating the Advertentie object
     @PutMapping(path = "/{id:^\\d+$}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Advertenties> putHandler(@PathVariable("id") int id, @RequestBody Advertenties advertentie) {
-        Advertenties tempAdvertentie = adr.getAdvertentiesById(id);
+    public ResponseEntity<Advertentie> putHandler(@PathVariable("id") int id, @RequestBody Advertentie advertentie) {
+        Advertentie tempAdvertentie = adr.getOne(id);
         if (tempAdvertentie != null) {
             tempAdvertentie.setNumberOfShow(advertentie.getNumberOfShow());
             tempAdvertentie.setZaakDesc(advertentie.getZaakDesc());

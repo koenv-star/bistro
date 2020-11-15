@@ -3,12 +3,11 @@ package be.multimedi.jammik.entities;
 import javax.persistence.*;
 
 /**
- *
  * @author Mehmet van Team-B
- * */
+ */
 @Entity
 @Table(name = "Advertenties")
-public class Advertenties {
+public class Advertentie {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,14 +27,14 @@ public class Advertenties {
     private int numberOfShow;
 
 
-    public Advertenties() {
+    public Advertentie() {
     }
 
-    public Advertenties(String zaakNaam, String zaakDesc,int zaakId ,int numberOfShow) {
+    public Advertentie(String zaakNaam, String zaakDesc, int zaakId, int numberOfShow) {
         this.zaakNaam = zaakNaam;
         this.zaakDesc = zaakDesc;
         this.numberOfShow = numberOfShow;
-        this.zaakId= zaakId;
+        this.zaakId = zaakId;
     }
 
     public int getZaakId() {

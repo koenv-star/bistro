@@ -4,10 +4,12 @@ import be.multimedi.jammik.entities.MenuItem;
 import be.multimedi.jammik.exceptions.ExceptionHandling;
 import be.multimedi.jammik.repositories.MenuItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/menuitem")
@@ -20,32 +22,31 @@ public class MenuItemController extends ExceptionHandling {
         this.mir = mir;
     }
 
-    @GetMapping(path="/{id:^\\d+$}", produces="application/json")
+    @GetMapping(path = "/{id:^\\d+$}", produces = "application/json")
     public ResponseEntity<MenuItem> getByIdHandler(@PathVariable("id") int id) {
-        if(id <= 0) return ResponseEntity.badRequest().build();
-
-        MenuItem menuItem = mir.getMenuItemById(id);
-        return menuItem != null ? ResponseEntity.ok(menuItem) : ResponseEntity.badRequest().build();
+        if (id <= 0) return ResponseEntity.badRequest().build();
+        Optional<MenuItem> menuItem = mir.findById(id);
+        return menuItem.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping(produces="application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<MenuItem>> getAllHandler() {
         List<MenuItem> menuItems = mir.findAll();
         return ResponseEntity.ok(menuItems);
     }
 
-    @PostMapping(consumes="applciation/json", produces="application/json")
+    @PostMapping(consumes = "applciation/json", produces = "application/json")
     public ResponseEntity<MenuItem> postHandler(@RequestBody MenuItem menuItem) {
 
-        if(menuItem == null || menuItem.getId() != 0)
+        if (menuItem == null || menuItem.getId() != 0)
             return ResponseEntity.badRequest().build();
 
         return ResponseEntity.ok(mir.save(menuItem));
     }
 
-    @DeleteMapping(path="/{id:^\\d+$}")
+    @DeleteMapping(path = "/{id:^\\d+$}")
     public ResponseEntity<?> deleteHandler(@PathVariable("id") int id) {
-        if(id <= 0) return ResponseEntity.badRequest().build();
+        if (id <= 0) return ResponseEntity.badRequest().build();
 
         mir.deleteById(id);
         return ResponseEntity.ok().build();

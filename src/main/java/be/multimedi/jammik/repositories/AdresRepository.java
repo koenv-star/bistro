@@ -11,7 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface AdresRepository extends JpaRepository<Adres, Integer> {
 
 
-    default Adres getAdresById(int id) {
-        return getOne(id);
-    }
+
 }

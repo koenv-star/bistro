@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * made by Koen
  */
@@ -24,17 +22,10 @@ public class KlantServiceImpl {
         this.klantRepository = klantRepository;
     }
 
-    public List<Klant> findAllKlanten() {
-        return klantRepository.findAll();
-    }
-    public Klant findKlantById(String email) {
-        return klantRepository.findKlantByEmail(email).get();
-    }
     public Klant saveKlant(Klant klant) {
         klant.setWachtwoord(encoder.encode(klant.getWachtwoord()));
         return klantRepository.save(klant);
     }
-
 
 
 }

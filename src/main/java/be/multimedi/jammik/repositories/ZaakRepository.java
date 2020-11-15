@@ -14,9 +14,6 @@ import java.util.Optional;
 @Repository
 public interface ZaakRepository extends JpaRepository<Zaak, Integer> {
 
-    default Zaak getZaakById(int id) {
-        return getOne(id);
-    }
     Optional<List<Zaak>> findZaaksByEmail(String email);
     Optional<Zaak> findZaakByNaam(String naam);
     <T> List<T> findAllBy(Class<T> type);

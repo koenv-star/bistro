@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class AdvertentiesTest {
-    private Advertenties advertentie;
+    private Advertentie advertentie;
 
     @BeforeEach
     void setUp() {
-    advertentie = new Advertenties();
+    advertentie = new Advertentie();
     }
 
     @Test

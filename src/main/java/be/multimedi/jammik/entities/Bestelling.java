@@ -1,9 +1,6 @@
 package be.multimedi.jammik.entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -63,7 +60,7 @@ public class Bestelling {
     }
 
     public void setMenuItem(MenuItem menuItem) {
-        if (menuItem == null ) throw new IllegalArgumentException("menuItem mag niet null of leeg zijn");
+        if (menuItem == null) throw new IllegalArgumentException("menuItem mag niet null of leeg zijn");
         this.menuItem = menuItem;
     }
 
@@ -81,7 +78,7 @@ public class Bestelling {
     }
 
     public void setZaakId(int zaakId) {
-        if(zaakId < 1) throw new IllegalArgumentException("zaak id mag niet onder 1 zijn");
+        if (zaakId < 1) throw new IllegalArgumentException("zaak id mag niet onder 1 zijn");
         this.zaakId = zaakId;
     }
 

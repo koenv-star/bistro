@@ -5,16 +5,14 @@ import be.multimedi.jammik.projections.ZakenPagina;
 import be.multimedi.jammik.repositories.ZaakRepository;
 import be.multimedi.jammik.services.ZaakService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Made by Koen
@@ -38,13 +36,13 @@ public class ZaakController {
         this.zaakService = zaakService;
     }
 
-    @GetMapping(value = "zaak/id={id}", produces="application/json")
+    @GetMapping(value = "zaak/id={id}", produces = "application/json")
     public ResponseEntity<Zaak> getZaakById(@PathVariable("id") int id) {
 
-        return ResponseEntity.ok(repository.getZaakById(id));
+        return repository.findById(id).map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping(produces="application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<Zaak>> getAlleZaken() {
         return ResponseEntity.ok(zaakService.getAlleZaken());
     }
@@ -56,7 +54,10 @@ public class ZaakController {
 
     @GetMapping(value = "{email}")
     public ResponseEntity<List<Zaak>> getZakenOpUitbater(@PathVariable("email") String email) {
-        return ResponseEntity.ok(Objects.requireNonNull(repository.findZaaksByEmail(email).orElse(null)));
+
+        Optional<List<Zaak>> zaken = repository.findZaaksByEmail(email);
+
+        return zaken.isPresent() ? ResponseEntity.ok(zaken.get()) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/display/{email}")
@@ -64,13 +65,13 @@ public class ZaakController {
         return ResponseEntity.ok(repository.findAllByEmail(email));
     }
 
-    @GetMapping(value = "zaak/{naam}", produces="application/json")
+    @GetMapping(value = "zaak/{naam}", produces = "application/json")
     public ResponseEntity<Zaak> getZaakbyNaam(@PathVariable("naam") String zaaknaam) {
 
-        return ResponseEntity.ok(repository.findZaakByNaam(zaaknaam).get());
+        return (repository.findZaakByNaam(zaaknaam).map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND)));
     }
 
-    @PostMapping(consumes={MediaType.MULTIPART_FORM_DATA_VALUE}, produces="application/json")
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = "application/json")
     private ResponseEntity<Zaak> postHandler(@RequestParam("zaak") String zaakJsonString,
                                              @RequestParam("imageFile") MultipartFile file) throws Exception {
 

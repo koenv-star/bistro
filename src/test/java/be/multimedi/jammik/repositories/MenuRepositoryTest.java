@@ -31,7 +31,7 @@ class MenuRepositoryTest {
 
     @Test
     void getById() {
-        Menu menu = mr.getMenuById(1);
+        Menu menu = mr.findById(1).get();
         assertNotNull(menu);
         assertEquals("Macaroni", menu.getMenuItems().get(1).getNaam());
     }

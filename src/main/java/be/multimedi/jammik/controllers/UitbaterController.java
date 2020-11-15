@@ -1,7 +1,6 @@
 package be.multimedi.jammik.controllers;
 
 
-import be.multimedi.jammik.common.Gebruiker;
 import be.multimedi.jammik.entities.Uitbater;
 import be.multimedi.jammik.repositories.UitbaterRepository;
 import be.multimedi.jammik.services.UitbaterServiceImpl;
@@ -10,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Email;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Made by Koennnn
@@ -40,16 +37,13 @@ public class UitbaterController {
 
 
     @GetMapping()
-    public List<Uitbater> getAll(){  return  uitbaterService.findAllUitbaters();}
+    public List<Uitbater> getAll() {
+        return uitbaterService.findAllUitbaters();
+    }
 
-
-//    @GetMapping()
-//    public List<Uitbater> getAll() {
-//        return repository.findAll();
-//    }
 
     @GetMapping(path = "/{email}")
-    public Uitbater getUitbaterByEmail(@PathVariable("email") String email ){
+    public Uitbater getUitbaterByEmail(@PathVariable("email") String email) {
         return uitbaterService.findUitbaterByEmail(email);
 
     }
@@ -60,11 +54,10 @@ public class UitbaterController {
         return this.uitbaterService.saveUitbater(uitbater);
     }
 
-    //Updating the Uitbater object
-    @PutMapping(path = "/{email}" ,consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Uitbater> putHandler(@PathVariable ("email") String email, @RequestBody Uitbater uitbater){
+    @PutMapping(path = "/{email}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Uitbater> putHandler(@PathVariable("email") String email, @RequestBody Uitbater uitbater) {
         Uitbater tempUitbater = uitbaterService.findUitbaterByEmail(email);
-        if(tempUitbater != null) {
+        if (tempUitbater != null) {
             tempUitbater.setNaam(uitbater.getNaam());
             tempUitbater.setVoornaam(uitbater.getVoornaam());
             tempUitbater.setReservaties(uitbater.getReservaties());
@@ -72,7 +65,7 @@ public class UitbaterController {
             tempUitbater.setBestellingVerzamelingen(uitbater.getBestellingVerzamelingen());
             tempUitbater.setKrediet(uitbater.getKrediet());
             return new ResponseEntity<>(repository.save(tempUitbater), HttpStatus.OK);
-        }else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         }

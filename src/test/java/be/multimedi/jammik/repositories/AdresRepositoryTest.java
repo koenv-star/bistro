@@ -27,12 +27,6 @@ class AdresRepositoryTest {
         this.adresRepository = adresRepository;
     }
 
-    @Test
-    void getById() {
-        Adres adres = adresRepository.getAdresById(1);
-        assertNotNull(adres);
-        assertEquals("JavaStraat", adres.getStraat());
-    }
 
     @Test
     void findAll() {

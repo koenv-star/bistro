@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -47,16 +48,12 @@ public class InkomController {
 
         for (Zaak zaak : zaken) {
             Inkom inkom = this.getbyId(zaak.getId());
-            if(inkom != null){
-                inkomList.add(inkom);
-            }else{
-                inkomList.add(new Inkom(zaak.getId(),zaak.getNaam(),0));
-            }
+            inkomList.add(Objects.requireNonNullElseGet(inkom, () -> new Inkom(zaak.getId(), zaak.getNaam(), 0)));
         }
-        if(inkomList != null){
+        if (inkomList != null) {
             return ResponseEntity.ok(inkomList);
 
-        }else{
+        } else {
             return ResponseEntity.badRequest().build();
         }
 
@@ -66,10 +63,9 @@ public class InkomController {
     @GetMapping("/id/{id:^\\d+$}")
     public ResponseEntity<Inkom> getInkomsById(@PathVariable("id") int id) {
         Inkom inkom = this.getbyId(id);
-        if (inkom != null)
-        {
+        if (inkom != null) {
             return ResponseEntity.ok(inkom);
-        }else{
+        } else {
             return ResponseEntity.badRequest().build();
         }
 
@@ -79,7 +75,7 @@ public class InkomController {
     public Inkom getbyId(int id) {
         List<Bestelling> bestellingen = br.findAll();
         bestellingen = bestellingen.stream().filter(x -> x.getZaakId() == id).collect(Collectors.toList());
-        Zaak zaak = zr.getZaakById(id);
+        Zaak zaak = zr.findById(id).get();
         if (bestellingen != null) {
             double total = 0;
             double temp = 0;
@@ -87,7 +83,7 @@ public class InkomController {
                 temp = bestelling.getAantal() * bestelling.getMenuItem().getPrijs();
                 total += temp;
             }
-            Inkom inkom = new Inkom(zaak.getId(),zaak.getNaam(), total);
+            Inkom inkom = new Inkom(zaak.getId(), zaak.getNaam(), total);
             return inkom;
         } else {
             return null;

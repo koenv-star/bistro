@@ -48,7 +48,7 @@ class KlantRepositoryTest {
 
     @Test
     void getByEmail() {
-        Klant klant = klantRepository.findKlantByEmail("resto@rant.be").get();
+        Klant klant = klantRepository.findById("resto@rant.be").get();
         assertNotNull(klant);
         assertEquals("Resto", klant.getVoornaam());
     }
@@ -63,8 +63,8 @@ class KlantRepositoryTest {
     @Test
     void save() {
         List<Reservatie> reservaties = new ArrayList<>(List.of(
-                reservatieRepository.getReservatieById(2),
-                reservatieRepository.getReservatieById(3)));
+                reservatieRepository.findById(2).get(),
+                reservatieRepository.findById(3).get()));
 
         List<BestellingVerzameling> bestellingVerzamelingen = new ArrayList<>(List.of(
                 bestellingVerzamelingRepository.getBestellingVerzamelingById(2),

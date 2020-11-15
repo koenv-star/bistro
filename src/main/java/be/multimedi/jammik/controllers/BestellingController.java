@@ -4,10 +4,12 @@ import be.multimedi.jammik.entities.Bestelling;
 import be.multimedi.jammik.exceptions.ExceptionHandling;
 import be.multimedi.jammik.repositories.BestellingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Gemaakt door Jan
@@ -27,8 +29,8 @@ public class BestellingController extends ExceptionHandling {
     public ResponseEntity<Bestelling> getByIdHandler(@PathVariable("id") int id) {
         if(id <= 0) return ResponseEntity.badRequest().build();
 
-        Bestelling bestelling = br.getBestellingById(id);
-        return bestelling != null ? ResponseEntity.ok(bestelling) : ResponseEntity.badRequest().build();
+        Optional<Bestelling> bestelling = br.findById(id);
+        return bestelling.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping(produces="application/json")

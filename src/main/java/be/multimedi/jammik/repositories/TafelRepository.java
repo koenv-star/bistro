@@ -10,7 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TafelRepository extends JpaRepository<Tafel, Integer> {
 
-    default Tafel getTafelById(int id) {
-        return getOne(id);
-    }
+
 }

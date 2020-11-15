@@ -10,7 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, Integer> {
 
-    default MenuItem getMenuItemById(int id) {
-        return getOne(id);
-    }
 }

@@ -37,7 +37,7 @@ class ReservatieRepositoryTest {
 
     @Test
     void getById() {
-        Reservatie reservatie = rr.getReservatieById(3);
+        Reservatie reservatie = rr.findById(3).get();
         assertNotNull(reservatie);
         assertEquals("jammik@bistro.be", reservatie.getKlant());
     }
@@ -52,7 +52,7 @@ class ReservatieRepositoryTest {
     @Test
     void save() {
         Reservatie reservatie = new Reservatie(0, LocalDateTime.of(2021, 12, 25, 9, 15),
-                LocalTime.of(1, 0), "jammik@bistro.be", 2, tr.getTafelById(1));
+                LocalTime.of(1, 0), "jammik@bistro.be", 2, tr.findById(1).get());
 
         reservatie = rr.save(reservatie);
         assertEquals(4, reservatie.getId());

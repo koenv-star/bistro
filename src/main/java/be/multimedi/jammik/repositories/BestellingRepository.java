@@ -10,7 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BestellingRepository extends JpaRepository<Bestelling, Integer> {
 
-    default Bestelling getBestellingById(int id) {
-        return getOne(id);
-    }
+
 }
